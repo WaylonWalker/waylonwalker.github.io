@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>WaylonWalker - Test</title><link href="http://www.blog.waylonwalker.com/" rel="alternate"></link><link href="http://www.blog.waylonwalker.com/feeds/test.atom.xml" rel="self"></link><id>http://www.blog.waylonwalker.com/</id><updated>2017-05-29T13:56:26-05:00</updated><entry><title>Test</title><link href="http://www.blog.waylonwalker.com/test.html" rel="alternate"></link><published>2017-05-29T13:56:26-05:00</published><updated>2017-05-29T13:56:26-05:00</updated><author><name>Waylon Walker</name></author><id>tag:www.blog.waylonwalker.com,2017-05-29:/test.html</id><summary type="html">&lt;h1&gt;Test&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;This is a test of Pelican&lt;/em&gt;&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Test&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;This is a test of Pelican&lt;/em&gt;&lt;/p&gt;</content></entry></feed>
