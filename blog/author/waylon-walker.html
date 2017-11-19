@@ -15,34 +15,127 @@
         <header id="banner" class="body">
                 <h1><a href="../">WaylonWalker </a></h1>
                 <nav><ul>
-                    <li><a href="../category/test.html">Test</a></li>
-                    <li><a href="../category/video.html">Video</a></li>
+                    <li><a href="../category/blog.html">Blog</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../pycon-2017-roundup.html">Pycon 2017 Roundup</a></h1>
+                    <h1 class="entry-title"><a href="../background-tasks-in-python.html">background tasks in python</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2017-05-30T00:00:00-05:00">
-                Published: Tue 30 May 2017
+        <abbr class="published" title="2017-09-16T00:00:00-05:00">
+                Published: Sat 16 September 2017
         </abbr>
 
         <address class="vcard author">
                 By                         <a class="url fn" href="../author/waylon-walker.html">Waylon Walker</a>
         </address>
-<p>In <a href="../category/video.html">Video</a>.</p>
-<p>tags: <a href="../tag/python.html">Python</a> <a href="../tag/pycon.html">Pycon</a> <a href="../tag/youtube.html">Youtube</a> </p>
-</footer><!-- /.post-info --><h1>Pycon 2017 Roundup</h1>
-<p>Good afternoon fellow Data Geeks.  Last week <a href="https://www.youtube.com/channel/UCrJhliKNQ8g0qoE_zvL8eVg">Pycon</a> released 141 videos of greatness.  Here are my top picks from the event.</p>
-<h2>#3 Kelsey Hightower - Keynote - Pycon 2017</h2>
-<p><a href="http://www.youtube.com/watch?v=u_iAXzy3xBA&amp;t=1795s" title="Click to Watch"><img alt="Click to Watch" src="http://img.youtube.com/vi/u_iAXzy3xBA/0.jpg"></a></p>
-<h2>#2 Al Sweigart Yes, It's Time to Learn Regular Expressions PyCon 2017</h2>
-<p><a href="http://www.youtube.com/watch?v=abrcJ9MpF60" title="Click to Watch"><img alt="Click to Watch" src="http://img.youtube.com/vi/abrcJ9MpF60/0.jpg"></a></p>
-<h2>#1 Trey Hunner Readability Counts PyCon 2017</h2>
-<p><a href="http://www.youtube.com/watch?v=knMg6G9_XCg" title="Click to Watch"><img alt="Click to Watch" src="http://img.youtube.com/vi/knMg6G9_XCg/0.jpg"></a></p>
-<h2>What's on Tap</h2>
-<p><a href="http://www.thirty-thirtycoffee.com/" title="Whats on Tap"><img alt="Whats on Tap" src="http://www.thirty-thirtycoffee.com/wp-content/uploads/2016/09/thirty-thirty-peoria-logo.png"></a></p>                </article>
+<p>In <a href="../category/blog.html">Blog</a>.</p>
+<p>tags: <a href="../tag/python.html">Python</a> <a href="../tag/data-science.html">Data Science</a> </p>
+</footer><!-- /.post-info --><h1>background tasks in python</h1>
+<p>I have tried most of the different methods in the past and found that copying and pasting the <a href="https://docs.python.org/3/library/concurrent.futures.html#threadpoolexecutor-example">threadpoolexecutor example</a> or the <a href="https://docs.python.org/3/library/concurrent.futures.html#processpoolexecutor-example">processpoolexecutor example</a> from the standard library documentation to be the most reliable.  Since this is often something that I stuff in the back of a utility module of a library it is not something that I write often enough to be familiar with, which makes it both hard to write and hard to read and debug.  If you are looking for a good overview of the difference concurrency <a href="https://twitter.com/raymondh">Raymond Hettinger</a> has a great talk about the difference between the various different methods, when to use them and why.</p>
+<p>Recently a new python library was released to make running tasks in the background very simple. The <a href="https://github.com/kennethreitz/background">background</a> project by Kenneth Reitz is a high level implementation of python 3's ThreadPoolExecutor.  I have been playing around with this project over the last week and I will say that this is definitely the simplest way to run background tasks in python by far.  It really simplifes the syntax and lets me focus on my job rather than implementing custom concurrent code that is more difficult to debug.</p>
+<h2>Background</h2>
+<p>I have pulled the latest version of the project in Sept 2017.  I found that it had some updates that were important to pass *args and **kwargs compared to the pypi version.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">background</span> <span class="kn">as</span> <span class="nn">bg</span>
+
+<span class="o">%</span><span class="n">load_ext</span> <span class="n">watermark</span>
+<span class="o">%</span><span class="n">watermark</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="n">p</span> <span class="n">background</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>2017-09-16
+
+CPython 3.6.2
+IPython 6.1.0
+
+background n
+</pre></div>
+
+
+<h2>Define Worker Functions</h2>
+<p>Each of these worker functions takes 1s to run, simulating a moderately long calculation that we need to do many times over.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">work</span><span class="p">():</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">1</span>
+
+<span class="nd">@bg.task</span>
+<span class="k">def</span> <span class="nf">bg_work</span><span class="p">():</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">1</span>
+</pre></div>
+
+
+<h2>Run the Worker Functions</h2>
+<h2>Blocking function</h2>
+<p>This function is blocking each time the function runs, thus taking 1 second to run for each calculation.  The example below took exactly <strong>100 s</strong> to run 100 calculations.  Depending on your use case this may not be fast enough.  If the calculations do not rely on the global state</p>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">work</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>Wall time: 1min 40s
+</pre></div>
+
+
+<h3>Reaction</h3>
+<p>I  know what half of you are saying to yourselfs..</p>
+<blockquote>
+<p>!!What!! that took 100 s, by now my users have already sent a dozen messages and filed an issue that my feature is down</p>
+</blockquote>
+<p>and the other half</p>
+<blockquote>
+<p>Seriously that wasnt even enough time to grab a coffee.  Any real time consuming analysis takes at least 3 dats 14 hours 159 seconds before I start to care about concurrency</p>
+</blockquote>
+<p>To you I say... I am impatient and I got other things to do rather than wait on this maching to finish its work.  Let's get into this concurrency stuff.</p>
+<h2>Background Function</h2>
+<p>This function spins off worker processes and runs much faster.  By default background sets the number of processes to the number of cpu cores available, Therefore this function should run in n/4 + (inefficiency).  Here we see that the result is just over <strong>13 s</strong>.</p>
+<p>Note:<em>Since there is a bit of inefficiency added by needing to handle all of the threads it is not exactly divided by the number of workers.</em></p>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<span class="n">f_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">bg_work</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)];</span>
+
+<span class="k">while</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">([</span><span class="n">f</span><span class="o">.</span><span class="n">done</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">f_list</span><span class="p">]):</span>
+    <span class="k">pass</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>Wall time: 13.1 s
+</pre></div>
+
+
+<h3>Reaction</h3>
+<p>I know what your saying this time.</p>
+<blockquote>
+<p>really a 7.6x improvement...  Is that really even woth the extra work.  </p>
+</blockquote>
+<p>Fine then lets crank it up to 11!</p>
+<h3>Lots of Background</h3>
+<p>lets set the number of background processes to a value just higher to than the number of workers we need to run in order to start them all simultaneously. With this simple example that is not very CPU intensive we see the result is just over the amount of time that it takes to run 1 worker. </p>
+<div class="highlight"><pre><span></span><span class="n">bg</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="mi">110</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<span class="n">f_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">bg_work</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)];</span>
+
+<span class="k">while</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">([</span><span class="n">f</span><span class="o">.</span><span class="n">done</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">f_list</span><span class="p">]):</span>
+    <span class="k">pass</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>Wall time: 1.09 s
+</pre></div>
+
+
+<h3>Reaction</h3>
+<blockquote>
+<p>91x improvement by putting my calculations into a function, adding a decorator, and some checks, im in.</p>
+</blockquote>
+<h2>On Tap</h2>
+<p>This week while taking it up to 11 I was enjoying a super thick and rich cup of El Salvador Finca Rosa from Onyx Coffee Labs.  Check out their love for letting the bean speak for it self and producing a great cup.</p>
+<p><a href="https://onyxcoffeelab.com"><img src="https://cdn.shopify.com/s/files/1/1707/3261/files/coffee_science.png?5305428688827820856"></a></p>                </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>
@@ -51,8 +144,8 @@
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="../test-jupyter.html" rel="bookmark"
-                           title="Permalink to Test Jupyter">Test Jupyter</a></h1>
+                    <h1><a href="../pycon-2017-roundup.html" rel="bookmark"
+                           title="Permalink to Pycon 2017 Roundup">Pycon 2017 Roundup</a></h1>
                 </header>
 
                 <div class="entry-content">
@@ -64,104 +157,29 @@
         <address class="vcard author">
                 By                         <a class="url fn" href="../author/waylon-walker.html">Waylon Walker</a>
         </address>
-<p>In <a href="../category/test.html">Test</a>.</p>
-
-</footer><!-- /.post-info -->                <h1>Test Post</h1>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;col_a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="s1">&#39;col_b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">]})</span>
-</pre></div>
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>col_a</th>
-      <th>col_b</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>8 …</td></tr></tbody></table></div>
-                <a class="readmore" href="../test-jupyter.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="../test.html" rel="bookmark"
-                           title="Permalink to Test">Test</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2017-05-29T13:56:26-05:00">
-                Published: Mon 29 May 2017
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="../author/waylon-walker.html">Waylon Walker</a>
-        </address>
-<p>In <a href="../category/test.html">Test</a>.</p>
-
-</footer><!-- /.post-info -->                <h1>Test</h1>
-<p><em>This is a test of Pelican</em></p>
-                <a class="readmore" href="../test.html">read more</a>
+<p>In <a href="../category/blog.html">Blog</a>.</p>
+<p>tags: <a href="../tag/python.html">Python</a> <a href="../tag/pycon.html">Pycon</a> <a href="../tag/youtube.html">Youtube</a> </p>
+</footer><!-- /.post-info -->                <h1>Pycon 2017 Roundup</h1>
+<p>Good afternoon fellow Data Geeks.  Last week <a href="https://www.youtube.com/channel/UCrJhliKNQ8g0qoE_zvL8eVg">Pycon</a> released 141 videos of greatness.  Here are my top picks from the event.</p>
+<h2>#3 Kelsey Hightower - Keynote - Pycon 2017</h2>
+<p><a href="http://www.youtube.com/watch?v=u_iAXzy3xBA&amp;t=1795s" title="Click to Watch"><img alt="Click to Watch" src="http://img.youtube.com/vi/u_iAXzy3xBA/0.jpg"></a></p>
+<h2>#2 Al Sweigart Yes, It's Time to Learn Regular Expressions PyCon 2017</h2>
+<p><a href="http://www.youtube.com/watch?v=abrcJ9MpF60" title="Click to Watch"><img alt="Click to Watch" src="http://img.youtube.com/vi/abrcJ9MpF60/0.jpg"></a></p>
+<h2>#1 Trey Hunner Readability Counts PyCon 2017</h2>
+<p><a href="http://www.youtube.com/watch?v=knMg6G9_XCg" title="Click to Watch"><img alt="Click to Watch" src="http://img.youtube.com/vi/knMg6G9_XCg/0.jpg"></a></p>
+<h2>What's …</h2>
+                <a class="readmore" href="../pycon-2017-roundup.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->
                 </section><!-- /#content -->
         <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
                 <div class="social">
                         <h2>social</h2>
                         <ul>
                             <li><a href="www.waylonwalker.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
 
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
+                            <li><a href="https://twitter.com/_WaylonWalker">@_WaylonWalker</a></li>
                         </ul>
                 </div><!-- /.social -->
         </section><!-- /#extras -->
