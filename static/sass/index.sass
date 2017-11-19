@@ -15,26 +15,35 @@ section
 h1
     color: hsla(24, 5%, 80%, 1)
     text-shadow: 0.2rem 0.2rem hsla(24, 10%, 5%, 50%)
+
 .hero
-    background: url('/static/images/WalkerFamily2017_46.jpg') center center fixed
+    background: url('/static/images/WalkerFamily2017_46_sm.jpg') center center fixed
     background-size: cover
     min-height: 100vh
     display: block
 
 .name
-    font-size: 6rem
+    line-height: 4rem
+    font-size: 5rem
     font-weight: 900
     margin: 0
-    margin-left: 40%
-    padding-top: calc(50vh - 3rem)
+    padding-top: 1rem
+    margin-left: 1rem
     display: block
+    
+
 
     .last
         font-size: 3rem
         font-weight: 100
 
+@media only screen and (min-width: 500px)
+    .name
+        margin-left: 40%
+        padding-top: calc(50vh - 3rem)
+
 #family
-    background: url('/static/images/WalkerFamily2017_4.jpg') center center fixed
+    background: url('/static/images/WalkerFamily2017_4_sm.jpg') center center fixed
     background-size: cover
 
 .nav
@@ -56,5 +65,14 @@ h1
     box-shadow: 1rem 1rem 1rem hsla(24, 5%, 10%, 0.3)
     color: hsla(24, 5%, 5%, 1)
     font-size: 1.2rem
-    margin: 1rem 1rem 0rem 25vh
     border-radius: 0.2rem
+    margin: 1rem
+    margin-top: 10rem
+    padding: 0.5rem
+
+    p
+        margin: 0 0 1rem 0
+
+@media only screen and (min-width: 500px)
+    .content
+        margin: 1rem 1rem 0rem 25vh
