@@ -17,8 +17,9 @@ h1
     text-shadow: 0.2rem 0.2rem hsla(24, 10%, 5%, 50%)
 
 .hero
-    background: url('/static/images/WalkerFamily2017_46_sm.jpg') center center fixed
+    background: url('/static/images/WalkerFamily2017_46_sm.jpg') no-repeat center center fixed
     background-size: cover
+    background-attachment: fixed;
     min-height: 100vh
     display: block
 
@@ -43,8 +44,23 @@ h1
         padding-top: calc(50vh - 3rem)
 
 #family
-    background: url('/static/images/WalkerFamily2017_4_sm.jpg') center center fixed
+    background: url('/static/images/WalkerFamily2017_4_sm.jpg') no-repeat center center fixed
     background-size: cover
+
+#hobby
+    background: url('/static/images/picnic_table.jpg') no-repeat center center fixed
+    background-size: cover
+
+#work
+    // Photo by Dan Gold on Unsplash
+    background: url('/static/images/dan-gold-297904.jpg') no-repeat center center fixed
+    background-size: cover
+    filter: grayscale(100%)
+
+
+
+
+
 
 .nav
     display: none
@@ -69,6 +85,7 @@ h1
     margin: 1rem
     margin-top: 10rem
     padding: 0.5rem
+    max-width: 1200px
 
     p
         margin: 0 0 1rem 0
@@ -76,3 +93,19 @@ h1
 @media only screen and (min-width: 500px)
     .content
         margin: 1rem 1rem 0rem 25vh
+
+footer
+    position: fixed
+    bottom: 0
+    ul
+        list-style: none
+        display: flex
+        flex-direction: row
+
+        li
+          margin: 1rem  
+
+    a
+        color: black
+        text-decoration: none
+        
