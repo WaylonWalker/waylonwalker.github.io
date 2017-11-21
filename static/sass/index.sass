@@ -1,7 +1,9 @@
 @import reset
+@import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light|Fira+Sans|Lato|Open+Sans:800');
+@import url('/static/font-awesome-4.7.0/css/font-awesome.min.css');
 
 *
-    font-family: 'Lato', sans-serif
+    font-family: 'Fira Sans', sans-serif
 
 body
     background-color: hsla(24, 10%, 55%, 1)
@@ -16,6 +18,9 @@ h1
     color: hsla(24, 5%, 80%, 1)
     text-shadow: 0.2rem 0.2rem hsla(24, 10%, 5%, 50%)
 
+a
+    text-decoration: none
+
 .hero
     background: url('/static/images/WalkerFamily2017_46_sm.jpg') no-repeat center center fixed
     background-size: cover
@@ -24,9 +29,10 @@ h1
     display: block
 
 .name
+    font-family: 'Open Sans'
     line-height: 4rem
     font-size: 5rem
-    font-weight: 900
+    font-weight: 800
     margin: 0
     padding-top: 1rem
     margin-left: 1rem
@@ -35,8 +41,9 @@ h1
 
 
     .last
+        font-family: 'Shadows Into Light'
         font-size: 3rem
-        font-weight: 100
+        font-weight: 400
 
 @media only screen and (min-width: 500px)
     .name
@@ -95,17 +102,29 @@ h1
         margin: 1rem 1rem 0rem 25vh
 
 footer
-    position: fixed
-    bottom: 0
+    text-align: right
+    font-size: 1.5rem
+    width: 100%
+    background: hsla(0, 0, 80%, 0.5)
+    .label
+        display: none
     ul
         list-style: none
         display: flex
         flex-direction: row
+        justify-content: flex-end
 
         li
-          margin: 1rem  
+          margin: 0.5rem  
 
     a
         color: black
         text-decoration: none
-        
+@media only screen and (min-width: 500px)
+    footer
+        font-size: 1rem
+        position: fixed
+        bottom: 0
+
+        .label
+            display: inline-block

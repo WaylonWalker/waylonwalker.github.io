@@ -8,8 +8,7 @@ head
     title WaylonWalker
 
     link(rel='stylesheet' href='/static/css/index.css')
-    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato')
-    link(rel='stylesheet' href='/static/font-awesome-4.7.0/css/font-awesome.min.css')
+    //- link(rel='stylesheet' href='/static/font-awesome-4.7.0/css/font-awesome.min.css')
     //- script(src='/static/js/main.js')
 
 body
@@ -31,22 +30,25 @@ body
         h1.name Walker <span class='last'>Family</span>
 
         .content
-            include:marked family.md
+            include family.pug
 
     section#hobby
         h1.name Projects <span class='last'>Hobby</span>
 
     section#work
         h1.name Projects <span class='last'>Career</span>
+
+        .content
+            include work.pug
     
     footer
         ul
             li 
-                a(href='https://www.instagram.com/yellowhatwoodworks/') <i class="fa fa-instagram" aria-hidden="true"></i> yellowhatwoodworks
+                a(href='https://www.instagram.com/yellowhatwoodworks/') <i class="fa fa-instagram" aria-hidden="true"></i> <span class='label'> yellowhatwoodworks</span>
             li 
-                a(href='https://twitter.com/_WaylonWalker') <i class="fa fa-twitter" aria-hidden="true"></i> waylonwalker 
+                a(href='https://twitter.com/_WaylonWalker') <i class="fa fa-twitter" aria-hidden="true"></i> <span class='label'> waylonwalker </span> 
             li 
-                a(href='https://github.com/WaylonWalker') <i class="fa fa-github" aria-hidden="true"></i> waylonwalker 
+                a(href='https://github.com/WaylonWalker') <i class="fa fa-github" aria-hidden="true"></i> <span class='label'> waylonwalker </span> 
 
 
     
