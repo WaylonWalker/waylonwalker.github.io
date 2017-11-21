@@ -14,11 +14,10 @@ head
 body
 
     section.hero
-        h1.name Waylon <span class='last'>Walker</span>
+        h1.name Waylon #[span.last Walker]
         //- image(src='https://avatars2.githubusercontent.com/u/22648375?v=4&u=28abbfb383a507d4c2efc36111e9e466c58acab2&s=400')
         
-        .content
-            include:marked about.md
+        include about
 
         .nav
             ul
@@ -27,28 +26,28 @@ body
 
 
     section#family
-        h1.name Walker <span class='last'>Family</span>
+        h1.name Walker #[span.last Family]
 
-        .content
-            include family.pug
+        include family
 
     section#hobby
-        h1.name Projects <span class='last'>Hobby</span>
+        h1.name Projects #[span.last Hobby]
+
+        include hobby
 
     section#work
-        h1.name Projects <span class='last'>Career</span>
+        h1.name Projects #[span.last Career]
 
-        .content
-            include work.pug
+        include work
     
     footer
         ul
             li 
-                a(href='https://www.instagram.com/yellowhatwoodworks/') <i class="fa fa-instagram" aria-hidden="true"></i> <span class='label'> yellowhatwoodworks</span>
+                a(href='https://www.instagram.com/yellowhatwoodworks/') #[i.fa.fa-instagram] #[span.label yellowhatwoodworks]
             li 
-                a(href='https://twitter.com/_WaylonWalker') <i class="fa fa-twitter" aria-hidden="true"></i> <span class='label'> waylonwalker </span> 
+                a(href='https://twitter.com/_WaylonWalker') #[i.fa.fa-twitter] #[span.label waylonwalker] 
             li 
-                a(href='https://github.com/WaylonWalker') <i class="fa fa-github" aria-hidden="true"></i> <span class='label'> waylonwalker </span> 
+                a(href='https://github.com/WaylonWalker') #[i.fa.fa-github] #[span.label waylonwalker] 
 
 
     
