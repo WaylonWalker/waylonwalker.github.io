@@ -1,0 +1,31 @@
+//- Use the presentation layout so we can keep this clean
+//- extends layouts/presentation
+include ../includes/_mixins
+//- Customize the title, meta description, and author using this block.
+//- block append config
+  -
+    config.title = 'reveal.js + Pug - The HTML Presentation Framework';
+    config.description = 'A framework for easily creating beautiful presentations using HTML by @hakimel. Ported to Pug by @jlengstorf.';
+  -
+
+//- Add your slides here. See templates/includes/_mixins.pug for information 
+//- on how `+slide` works.
+
+//- link(rel="stylesheet" href="css/custom.css")
+block slides
+  +slide
+    p Slide A
+    h1 Hello
+    ul
+        li item 1
+        li item 2
+
+
+  +slide
+    p Slide 2
+    .box_wrapper
+        .box
+            p box
+
+        .box
+            p box2

@@ -1,0 +1,191 @@
+
+
+
+<link href='https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css' 
+    rel='stylesheet' 
+    type='text/css'/>
+<script src='https://d3js.org/d3.v3.min.js' charset='utf-8'></script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js'></script>
+
+<style>
+  
+
+
+
+
+.chard-title{
+text-align:center;
+}
+
+.c3 .c3-axis-x path, .c3 .c3-axis-x line, 
+.c3 .c3-axis-y path, .c3 .c3-axis-y line,
+.c3 .c3-axis-y2 path, .c3 .c3-axis-y2 line {
+    stroke: #575c63;
+}
+
+.c3 .c3-axis-y path, .c3 .c3-axis-y line{
+opacity: 0.2;
+}
+
+.c3 .c3-axis-y2 path, .c3 .c3-axis-y2 line{
+opacity: 0.2;
+}
+
+
+.c3 .c3-axis-x path, .c3 .c3-axis-x line{
+opacity: 0.2;
+}
+
+.c3 .tick path, .c3 .tick line{
+opacity: 0.1;
+
+
+.c3 .c3-axis-x g,
+.c3 .c3-axis-y g,
+.c3 .c3-axis-y2 g,
+.c3 .c3-legend-item-data text {
+    color: #575c63;
+    fill: #575c63;
+}
+
+.c3 .c3-axis-x g,
+.c3 .c3-axis-y2 g,
+.c3 .c3-legend-item-data text {
+    color: #575c63;
+    fill: #575c63;
+}
+</style>
+
+
+<div id='chard-wrapper' class='chard-wrapper'>
+  <div id='chard-title' class='chard-title'></div>
+  <div 
+    id='chard-figure'' 
+    class='chard-figure' 
+    style='
+      width: 100%; 
+      height: 100%'
+    >
+      
+  </div>
+</div>
+
+<script>
+  var data = {
+  'size': {
+    'height': 300,
+    'width': 1000
+  },
+  'subchart': {
+    'show': false
+  },
+  'point': {
+    'show': false,
+    'r': 5
+  },
+  'grid': {
+    'x': {
+      'show': false
+    },
+    'y': {
+      'show': false
+    }
+  },
+  'data': {
+    'x': 'x',
+    'xFormat': '%Y-%m-%d',
+    'type': 'bar',
+    'types': [],
+    'axes': {
+      'm': 'y',
+      'b': 'y2',
+      'x': 'y'
+    },
+    'columns': [
+      [
+        'm',
+        -0.31006008563386117,
+        1.4898351648351644,
+        -0.3125000000000068,
+        0.21428571428571677,
+        -1.772404983916896e-14,
+        -0.8494190020505844,
+        0.45833333333332615,
+        4.541741071428566,
+        -4.375000000000019,
+        0.14663082437275698,
+        2.1428571428571392
+      ],
+      [
+        'b',
+        85.70464894850146,
+        76.56036324786326,
+        82.29166666666667,
+        82.97619047619048,
+        84.23611111111116,
+        90.97567783094101,
+        77.43055555555559,
+        73.85491071428574,
+        88.47222222222227,
+        92.01726190476192,
+        74.64285714285718
+      ],
+      [
+        'x',
+        '(\'Black\', \'F\')',
+        '(\'Black\', \'M\')',
+        '(\'Hispanic\', \'M\')',
+        '(\'Multi-race (Asian & White)\', \'M\')',
+        '(\'Multi-race (Black & Hispanic)\', \'F\')',
+        '(\'Multi-race (Black & White)\', \'F\')',
+        '(\'Multi-race (Black & White)\', \'M\')',
+        '(\'Some Other Race\', \'F\')',
+        '(\'Some Other Race\', \'M\')',
+        '(\'White\', \'F\')',
+        '(\'White\', \'M\')'
+      ]
+    ],
+    'hide': false
+  },
+  'axis': {
+    'rotated': false,
+    'x': {
+      'tick': {
+        'count': false,
+        'values': false,
+        'culling': {
+          'max': false
+        }
+      },
+      'type': 'category'
+    },
+    'y': {
+      'tick': {},
+      'show': true
+    },
+    'y2': {
+      'tick': {},
+      'show': true
+    }
+  },
+  'legend': {
+    'show': true
+  },
+  'transition': {
+    'duration': 500
+  },
+  'zoom': {
+    'enabled': true,
+    'rescale': true
+  }
+};
+
+  data['axis']['y']['tick']['format'] = d3.format(',.3f')
+  data['axis']['y2']['tick']['format'] = d3.format('0.3s')
+  data['bindto']='#chard-figure'
+  window.chard = c3.generate(data);
+  window.chard_destroy = function (){
+    chard.destroy()
+  }
+</script>

@@ -1,0 +1,17 @@
+extends layouts/presentation
+block append config
+  -
+    config.title = 'waylonwalker';
+    config.description = 'A framework for easily creating beautiful presentations using HTML by @hakimel. Ported to Pug by @jlengstorf.';
+  -
+block append styles
+  -
+  link(rel="stylesheet" href="css/custom.css")
+  -
+
+
+block slides
+  include index_slides
+
+block extras  
+  include footer

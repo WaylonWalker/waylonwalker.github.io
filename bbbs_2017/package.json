@@ -1,0 +1,22 @@
+{
+  "name": "reveal_jade",
+  "version": "1.0.0",
+  "description": "Using reveal, pug, and sass to create slides.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Waylon S. Walker",
+  "license": "MIT",
+  "dependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-pug": "^3.3.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-watch": "^4.3.11"
+  },
+  "devDependencies": {
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-plumber-notifier": "0.0.3"
+  }
+}
