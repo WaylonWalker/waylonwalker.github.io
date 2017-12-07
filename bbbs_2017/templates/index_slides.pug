@@ -4,6 +4,7 @@ include ../includes/_mixins
     h3 BBBS Hackathon
     h1 2017
     h4 Data Challenge
+    img.fragment(src='http://bbbs.org/wp-content/uploads/0000-BBBS-of-America_Purple-Horizontal.png')
 
 
 
@@ -14,20 +15,37 @@ include ../includes/_mixins
     p.fragment Data scientist for 36 days
 
 +slide
-    h2 Great Work
+    +slide
+        h2 Great Work
 
-    p.fragment.shrink Matched Students show improvement
-    
-    .plot.fragment
-        include plots/best matches.html
+        p.fragment.shrink Students with completed Surveys show improvement
+        
+        .plot.fragment
+            include plots/best matches.html
 
-+slide
-    h2 More Stuff to come
+    +slide
+        h2 yos survey v. performance
+
+        ul.no-bullet
+            li.fragment.current-visible Baseline v. Followup
+            li.fragment.current-visible report card performance v. survey
+
+        a.fragment(href='static/img/sns_m_yos.png') #[img(src='static/img/sns_m_yos.png')]
+    +slide
+        h2 Additional Data
+
+        ul.no-bullet
+            li.fragment.current-visible Baseline Report Cards
+            li.fragment.current-visible Past Report Cards
+            li.fragment.current-visible Quarterly Absence and Tardiness Data
 
 +slide
     h2 Actions
 
     ul.no-bullet
         li.fragment.current-visible Lunch Buddies
-        li.fragment.current-visible Keep Volunteers
+        li.fragment.current-visible Keep Engaging Volunteers
+        li.fragment.current-visible Obtain Volunteer gender, age, ethnicity
+        li.fragment.current-visible Gather More Data
+
 
