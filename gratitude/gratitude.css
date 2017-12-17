@@ -1,13 +1,40 @@
-body {
-  background: #ddd;
-  background: #e2e9e8; }
+@import url("/static/font-awesome-4.7.0/css/font-awesome.min.css");
+footer {
+  text-align: right;
+  font-size: 1.5rem;
+  width: 100%;
+  background: rgba(204, 204, 204, 0.8); }
+  footer .label {
+    display: none; }
+  footer ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end; }
+    footer ul li {
+      margin: 0.5rem; }
 
-h1 h2 h3 {
-  color: #e9e2e3 !important; }
+@media only screen and (min-width: 500px) {
+  footer {
+    font-size: 1rem;
+    position: fixed;
+    bottom: 0; }
+    footer .label {
+      display: inline-block; } }
+
+body {
+  padding-bottom: 10rem;
+  line-height: 1.6rem;
+  background: #e2e9e8; }
 
 .heading {
   max-width: 800px;
-  margin: auto; }
+  margin: auto;
+  margin-top: 25vh; }
+  .heading p {
+    max-width: 500px;
+    margin: auto;
+    margin-top: 5rem; }
 
 .content {
   max-width: 600px;
@@ -24,7 +51,8 @@ h3 {
   border-top: 0.5rem solid #ddd; }
 
 h3:first-of-type {
-  border: none; }
+  border: none;
+  margin-top: 25vh; }
 
 p {
   margin-top: 0.4rem;

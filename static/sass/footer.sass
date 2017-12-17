@@ -1,0 +1,27 @@
+@import url('/static/font-awesome-4.7.0/css/font-awesome.min.css');
+
+footer
+    text-align: right
+    font-size: 1.5rem
+    width: 100%
+    background: hsla(0, 0, 80%, 0.8)
+    .label
+        display: none
+    ul
+        list-style: none
+        display: flex
+        flex-direction: row
+        justify-content: flex-end
+
+        li
+          margin: 0.5rem  
+
+
+@media only screen and (min-width: 500px)
+    footer
+        font-size: 1rem
+        position: fixed
+        bottom: 0
+
+        .label
+            display: inline-block
