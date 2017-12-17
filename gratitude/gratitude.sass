@@ -1,3 +1,4 @@
+@import ../static/sass/nav.sass
 @import ../static/sass/footer.sass
 @import ../static/sass/reset.sass
 @import url('https://fonts.googleapis.com/css?family=Oswald|Lato|Dancing+Script|Shadows+Into+Light');
@@ -8,8 +9,7 @@ body
     line-height: 1.6rem
     background: hsla(170, 15%, 90%, 1)
 
-
-h1, h2, h3, h4, h5 
+h1, h2, h3, h4, h5, h6
   color: #666
   font-family: 'Oswald', "Arial Black", "Arial Bold", Gadget, sans-serif
 
@@ -24,19 +24,20 @@ strong
   color: #444
   font-family: 'Oswald', "Arial Black", "Arial Bold", Gadget, sans-serif
 
-ul 
-  list-style-type: none
-  
-li::before 
-  display: inline-block
-  content: ""
-  height: 0.4rem
-  width: 0.4rem
-  border-radius: 25%
-  background-color: rgba(151,123,157,1)
-  vertical-align: middle
-  margin-right: 0.7rem 
-  
+.content  
+  ul 
+    list-style-type: none
+    
+  li::before 
+    display: inline-block
+    content: ""
+    height: 0.4rem
+    width: 0.4rem
+    border-radius: 25%
+    background-color: rgba(151,123,157,1)
+    vertical-align: middle
+    margin-right: 0.7rem 
+    
 
 .heading
     max-width: 800px 

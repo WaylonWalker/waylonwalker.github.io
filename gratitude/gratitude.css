@@ -1,5 +1,107 @@
 @import url("/static/font-awesome-4.7.0/css/font-awesome.min.css");
 @import url("https://fonts.googleapis.com/css?family=Oswald|Lato|Dancing+Script|Shadows+Into+Light");
+nav {
+  display: flex;
+  margin: 1rem;
+  text-align: center; }
+  nav a {
+    text-decoration: none;
+    color: black; }
+  nav ul {
+    height: 4rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    display: none; }
+  nav li {
+    text-align: center;
+    background: #ddd;
+    border: #FFF;
+    perspective: 1000px;
+    padding: 1rem 1rem; }
+  nav li:hover {
+    background: #999; }
+  nav .logo {
+    background: #ddd;
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    padding: 1rem;
+    text-align: middle; }
+
+nav:hover ul {
+  display: flex;
+  list-style-type: none; }
+  nav:hover ul ul {
+    position: absolute;
+    display: none; }
+
+nav:hover li:hover {
+  cursor: pointer; }
+  nav:hover li:hover ul {
+    display: block; }
+
+nav:hover ul.first li:nth-child(1) {
+  animation-name: first;
+  animation-duration: 300ms;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards; }
+
+nav:hover ul.first li:nth-child(2) {
+  animation-name: first;
+  animation-duration: 300ms;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards; }
+
+nav:hover ul.first li:nth-child(3) {
+  animation-name: first;
+  animation-duration: 300ms;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards; }
+
+nav:hover ul.drop li:nth-child(1) {
+  animation-name: drop;
+  animation-duration: 300ms;
+  animation-delay: -150ms;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards; }
+
+nav:hover ul.drop li:nth-child(2) {
+  animation-name: drop;
+  animation-duration: 300ms;
+  animation-delay: 0ms;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards; }
+
+nav:hover ul.drop li:nth-child(3) {
+  animation-name: drop;
+  animation-duration: 300ms;
+  animation-delay: 150ms;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards; }
+
+nav:hover ul.drop li:nth-child(4) {
+  animation-name: drop;
+  animation-duration: 300ms;
+  animation-delay: 300ms;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards; }
+
+@keyframes first {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes drop {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotateY(-90deg); }
+  95% {
+    transform: scale(1.1) rotateY(20deg); }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg); } }
+
 footer {
   text-align: right;
   font-size: 1.5rem;
@@ -38,7 +140,7 @@ body {
   line-height: 1.6rem;
   background: #e2e9e8; }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, h6 {
   color: #666;
   font-family: 'Oswald', "Arial Black", "Arial Bold", Gadget, sans-serif; }
 
@@ -53,10 +155,10 @@ strong {
   color: #444;
   font-family: 'Oswald', "Arial Black", "Arial Bold", Gadget, sans-serif; }
 
-ul {
+.content ul {
   list-style-type: none; }
 
-li::before {
+.content li::before {
   display: inline-block;
   content: "";
   height: 0.4rem;
