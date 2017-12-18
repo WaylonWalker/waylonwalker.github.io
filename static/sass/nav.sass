@@ -13,6 +13,7 @@ nav
         margin-top: 1rem
         margin-left: 1rem
         display: none
+        border-radius: .2rem
         
 
     li
@@ -52,35 +53,44 @@ nav:hover
 
     ul.first
         li
+            opacity: 0
+            perspective: 1000px
+            transform-origin: top
             @for $i from 1 through 3
                 &:nth-child(#{$i})
                     animation:
                         name: first
-                        duration: 300ms 
+                        duration: 500ms 
+                        delay: (150ms * $i)
                         timing-function: ease-in-out
                         fill-mode: forwards
     ul.drop
         li
-            @for $i from 1 through 4
+            opacity: 0
+            @for $i from 1 through 6
                 &:nth-child(#{$i})
                     animation:
                         name: drop
-                        duration: 300ms 
-                        delay: (150ms * $i) - 300
+                        duration: 500ms 
+                        delay: (150ms * $i)
                         timing-function: ease-in-out
                         fill-mode: forwards
 
 @keyframes first
     0%
         opacity: 0
+        transform: rotateX(-90deg)
+    90%
+        transform: rotateX(20deg)
     100% 
         opacity: 1
+        transform: rotateX(0deg)
          
 @keyframes drop
     0%
         opacity: 0
         transform: scale(0.8) rotateY(-90deg)
-    95%
+    80%
         transform: scale(1.1) rotateY(20deg)
     100%
         opacity: 1
