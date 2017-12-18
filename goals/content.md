@@ -1,6 +1,5 @@
 <style>@import url("https://goo.gl/RrPQm5")</style>
-### 2018 Goals
-_Waylon S. Walker_
+<br>
 
 #### Attitude
 
@@ -11,11 +10,20 @@ Be **positive**
 * Take 2 10min breaks per day _clear the mind_
 * Snooze Less _be productive_
 
+
+Better **FOCUS**
+
+Being able to focus at work is important to bring high productivity and be able to support my family through all of her medical needs
+
+* get up to **8** Pomodoro
+* Keep a **Kanban** list
+* Daily/Weely Planning Session
+
 #### Physical
 
 Work out to be in better shape, feel better, and be a better person.
 
-* 3x per week _Do Something_
+* 3x per week **Do Something**
 * Be Active
 
 #### Financial
