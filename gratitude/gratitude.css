@@ -3,7 +3,12 @@
 nav {
   display: flex;
   margin: 1rem;
+  margin-top: 0;
   text-align: center; }
+  nav h1, nav h2, nav h3, nav h4, nav h5, nav h6 {
+    color: #666;
+    font-family: 'Oswald', "Arial Black", "Arial Bold", Gadget, sans-serif;
+    text-shadow: none; }
   nav a {
     text-decoration: none;
     color: black; }
@@ -22,7 +27,7 @@ nav {
   nav li:hover {
     background: #999; }
   nav .logo {
-    background: #ddd;
+    background: rgba(204, 204, 204, 0.5);
     border-radius: 50%;
     height: 2rem;
     width: 2rem;
