@@ -11,7 +11,7 @@ nav {
     text-shadow: none; }
   nav a {
     text-decoration: none;
-    color: black; }
+    color: #cc3352; }
   nav ul {
     height: 4rem;
     margin-top: 1rem;
@@ -20,19 +20,25 @@ nav {
     border-radius: .2rem; }
   nav li {
     text-align: center;
-    background: #ddd;
+    background: rgba(179, 230, 219, 0.5);
+    color: #cc3352;
     border: #FFF;
     perspective: 1000px;
-    padding: 1rem 1rem; }
+    padding: 1rem 1rem;
+    border-radius: 0.1rem; }
   nav li:hover {
-    background: #999; }
+    background: rgba(133, 173, 165, 0.5); }
   nav .logo {
-    background: rgba(204, 204, 204, 0.5);
+    background: rgba(194, 214, 210, 0.5);
     border-radius: 50%;
     height: 2rem;
     width: 2rem;
     padding: 1rem;
-    text-align: middle; }
+    text-align: center;
+    vertical-align: center; }
+
+nav:hover .logo {
+  background: rgba(133, 173, 165, 0.5); }
 
 nav:hover ul {
   display: flex;
@@ -41,10 +47,11 @@ nav:hover ul {
     position: absolute;
     display: none; }
 
-nav:hover li:hover {
+nav:hover a:hover {
   cursor: pointer; }
-  nav:hover li:hover ul {
-    display: block; }
+
+nav:hover li:hover ul {
+  display: block; }
 
 nav:hover ul.first li {
   opacity: 0;
@@ -164,10 +171,11 @@ ol {
 body {
   padding-bottom: 10rem;
   line-height: 1.6rem;
-  background: #e2e9e8; }
+  background: #c9cfce;
+  background: url("/gratitude/static/img/juha-lakaniemi-445378.jpg") cover no-repeat fixed; }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #666;
+  color: #616b69;
   font-family: 'Oswald', "Arial Black", "Arial Bold", Gadget, sans-serif; }
 
 p {
@@ -178,11 +186,14 @@ em {
   font-family: 'Shadows Into Light', cursive; }
 
 strong {
-  color: #444;
+  color: #616b69;
   font-family: 'Oswald', "Arial Black", "Arial Bold", Gadget, sans-serif; }
 
 .content ul {
   list-style-type: none; }
+
+.content li {
+  padding-left: 1rem; }
 
 .content li::before {
   display: inline-block;
@@ -195,9 +206,10 @@ strong {
   margin-right: 0.7rem; }
 
 .heading {
+  padding: 2rem;
   max-width: 800px;
   margin: auto;
-  margin-top: 25vh; }
+  margin-top: 15vh; }
   .heading p {
     max-width: 500px;
     margin: auto;
@@ -215,11 +227,11 @@ h3 {
   margin: 0;
   margin-top: 6rem;
   padding-top: 4rem;
-  border-top: 0.5rem solid #ddd; }
+  border-top: 0.5rem solid #949e9c; }
 
 h3:first-of-type {
   border: none;
-  margin-top: 25vh; }
+  margin-top: 16vh; }
 
 p {
   margin-top: 0.4rem;
@@ -227,8 +239,8 @@ p {
 
 blockquote p {
   padding: 1rem;
-  color: #777;
-  border-left: 0.5rem solid #ddd;
+  color: #b3808a;
+  border-left: 0.5rem solid #80b3a8;
   margin-top: 0;
   margin-bottom: 1rem;
   font-size: 1.2rem;
