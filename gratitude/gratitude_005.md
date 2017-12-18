@@ -8,4 +8,3 @@ Having a close family is one of the most important things in life.  They keep us
 
 >I am glad to live in a family where we can talk about anything
 
-.
