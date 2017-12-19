@@ -26,6 +26,8 @@ Work out to be in better shape, feel better, and be a better person.
 * 3x per week **Do Something**
 * Be Active
 
+**Eat Better** if there are few good sides on the menu for the night, put some frozen veggies in the microwave.
+
 #### Financial
 
 Eliminate Debt
