@@ -19,6 +19,13 @@ Being able to focus at work is important to bring high productivity and be able 
 * Keep a **Kanban** list
 * Daily/Weely Planning Session
 
+Stay **Clean**
+
+* Keep trash out of vehicles
+* pick up clutter
+* Shower
+
+
 #### Physical
 
 Work out to be in better shape, feel better, and be a better person.

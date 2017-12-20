@@ -1,4 +1,4 @@
-### Gratitude Journal #006
+### Gratitude Journal #007
 _12/19/2017 7:00:46 AM Waylon Walker_
 
 #### Accommodations
