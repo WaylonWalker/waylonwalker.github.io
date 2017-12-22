@@ -1,4 +1,4 @@
-### Gratitude Journal #006
+### Gratitude Journal #008
 _12/20/2017 8:27 Waylon Walker_
 
 #### Strength
