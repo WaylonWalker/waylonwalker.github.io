@@ -1,2 +1,3 @@
 cd fail
-sh fail\concat.sh
+sh concat.sh
+cd ..
