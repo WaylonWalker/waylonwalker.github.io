@@ -8,3 +8,4 @@ I have been getting back on my feet after a long turn of a low mindset.  My wife
 > these steps are giving me strength to keep a positive attitude
 
 After working out for the first time in a long time I feel great this morning.  My body feels stronger, I have more energy, and I feel that I can hold my positive attitude through more events in the day.  I am grateful that I was able to get this system in place, and I am ready to continue executing through 2018.
+
