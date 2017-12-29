@@ -1,15 +1,11 @@
-### Gratitude #012
-_12/25/2017 12:40:22 AM Waylon Walker_
+### Gratitude #013
+_12/26/2017 9:13:51 AM Waylon Walker_
+<style>@import url("https://goo.gl/RrPQm5")</style>
+
+#### Long Days, Good Times
+
+This Christmas we had two events on Christmas day, with 5 hours of travel, and a final destination to sleep at.  I am very grateful that we were able to get through all of the travel in one piece.  THe kids had a blast!  It was a very fun Christmas for them.  Wyatt got his most wished for gift this year, Maui's hook from Moana.  It was so fun to watch him open it.  He was absolutely speechless.
 
 
-#### The Good Days
-
-Good days are the best.  I enjoy the days where everything seems to fall into place seemingly without effort.  The air is clean and easy to breathe.  The kids are cooperating.  I am working on a project with my best friend in the world.  I play with my kids, and we all have a great time together.
-
-Today was one of those days.  I spent much of the day helping Rhiannon set up the Cuttin Scrap channel.  We are setting up a really nice area for her to work on a craft that she is very passionate about.  It is the place that she has dreamed of for years.  No its not perfect with the most space available, but it is the best with what we have got, and it is all hers.  At the end of the day we were able to sit down and begin working through her website and socials.
-
-> It is the place that she has dreamed of for years.
-
-
-I also really enjoyed getting to play in the fresh snow with Wyatt.  He loved it.  We shoveled it into big piles to jump in, threw snowballs, and just had the best of adventure.  Ayla and Rhiannon came to the window to watch, and they laughed at us while we acted silly.  Today was Christmas, one of the most magical days of the year to spend with the ones you love most.
+I am glad everyone was able to enjoy the food.  Both events were very accomodating to our family allergies.  The first event was a potato bar where everything was kept separate and you could personalize your dish.  The kids really just wanted to snack all day.  At the second event they went out of their way to find dairy free butter to cook wtih.  There were only one or two items that had dairy in them.  It feels good to be supported by your family.
 
