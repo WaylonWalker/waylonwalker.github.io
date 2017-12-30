@@ -1,6 +1,5 @@
 ### Gratitude #013
 _12/26/2017 9:13:51 AM Waylon Walker_
-<style>@import url("https://goo.gl/RrPQm5")</style>
 
 #### Long Days, Good Times
 
