@@ -1,4 +1,4 @@
-### Gratitude #0014
+### Gratitude #014
 _12/28/2017 10:31:41 PM Waylon Walker_
 
 #### Time Off
@@ -7,5 +7,3 @@ I am currently in the middle of a week long holiday break.  Its nice to take som
 
 
 The time in the car can be a nice time to connect.  We have taken quite a bit of time to plan out Rhiannon's new adventure, CuttinScrap.  It is a YouTube channel that will serve as her creative outlet, combining her love of speech and Drama with Crafting.  I am really excited to see her find her voice and get into a rhythm with the channel.  She is really excited as well.  We have been doing a lot of planning and behind the scenes work and anxiously awaiting time to make episode 0.
-
-<style>@import url("https://goo.gl/RrPQm5")</style>
