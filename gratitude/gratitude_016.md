@@ -1,7 +1,13 @@
-### Gratitude #015
-_12/29/2017 11:20:11 PM Waylon Walker_
+### Gratitude #016
+_12/31/2017 10:29:28 AM Waylon Walker_
 
-#### Special Moments
+#### One on One time
 
-I love having those special moments of time with the kids.  Today we had a few minutes to play before supper time, and we decided to go down to the basement to play some imagination action adventure game.  The kids are really into minecraft at the moment so its always very centered around minecraft.  Tonight there was an extra special moment where Wyatt on his own gave Ayla his brand new nerf gun to play with.  At this point he has not alowed her to play with it because it was a new Christmas toy.  She was extatic, and we all enjoyed running from her as she shot towards us.  I thought it was extra special because we were all having fun and no one was arguing about who got the new toy.  I am so proud of Wyatt, because he is really growing up and growing out of the not sharing phase. I have really seen him open up to share an play with Ayla in new ways lately.  It really makes you feel like a good parent when you can watch them grow up like this.
+Last night we made a long trip back from my In-Laws.  Which was a great day by the way.  Sometimes we struggle with Wyatt's energy in a house with lots of breakable items, but he did great yesterday.  When we got home Wyatt just finished up with a good two hour nap and was wired... at 11:00 PM.  He was hungry, as he was too excited to play while at grandmas house and did not eat much.  I sat up with him,  we shared a peanut butter sandwich and got out a new pack of trolls characters and worked on finding all of their names.
+
+>When we got home Wyatt just finished up with a good two hour nap and was wired... at 11:00 PM
+
+
+Moments like these do not seem to come often enough.  I really enjoy playing with the whole family and the full level of craziness that it brings, but having a calm one on one time with one member of the family seems extra special.  It was the perfect ending to a long day with lots of packing, travel, and excitement.
+
 
