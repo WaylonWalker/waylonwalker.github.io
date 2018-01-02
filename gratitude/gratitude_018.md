@@ -11,6 +11,3 @@ I ran out of time, but I will still mention that she painted her first set of to
 
 ![](/static/images/toes.jpg)
 
-<style>@import url("https://goo.gl/RrPQm5")</style>
-
-
