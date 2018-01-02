@@ -8,6 +8,4 @@ Breaks are a good time for refresh and focus on some other things.  During this 
 
 We have also spent some time at nights playing games and watching YouTube.  Its really nice to not have to worry about anything work related and focus on the family.  The extra time has helped strengthen our marriage and allow us to discuss some things that have been on our minds for awhile.  Now its time to start 2018 Fresh and Strong. 
 
-<style>@import url("https://goo.gl/RrPQm5")</style>
-
 

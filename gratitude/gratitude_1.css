@@ -189,13 +189,6 @@ strong {
   color: #616b69;
   font-family: 'Oswald', "Arial Black", "Arial Bold", Gadget, sans-serif; }
 
-img {
-  display: block;
-  margin: auto;
-  max-width: 300px;
-  border-radius: 0.1rem;
-  box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 0.3); }
-
 .content ul {
   list-style-type: none; }
 
