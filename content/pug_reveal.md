@@ -1,8 +1,8 @@
-Title: background tasks in python
-Date: 12/8/2017
+Title: Pug Reveal
+Date: 12/31/2017
 Category: Blog
 Tags: Pug, Jade, Reveal
-
+Status: draft
 
 # Pug Reveal Slides
 

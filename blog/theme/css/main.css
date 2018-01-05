@@ -13,11 +13,12 @@
 @import url("pygment.css");
 @import url("typogrify.css");
 @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&subset=latin);
+@import url('https://fonts.googleapis.com/css?family=Oswald|Lato|Dancing+Script|Shadows+Into+Light');
 
 /***** Global *****/
 /* Body */
 body {
-    background: #F5F4EF;
+    background: #c9cfce;
     color: #000305;
     font-size: 87.5%; /* Base font size: 14px */
     font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -39,7 +40,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 400;
 	line-height: 1.1;
 	margin-bottom: .8em;
-    font-family: 'Yanone Kaffeesatz', arial, serif;
+    font-family: 'Oswald', arial, serif;
 }
 
 h3, h4, h5, h6 { margin-top: .8em; }
@@ -187,9 +188,9 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 		text-align: center;
 		width: 800px;
 		
-		border-radius: 5px;
-		-moz-border-radius: 5px;
-		-webkit-border-radius: 5px;
+		border-radius: 2px;
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
 	}
 	
 	#banner nav ul {list-style: none; margin: 0 auto; width: 800px;}
@@ -210,28 +211,28 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 	}
 	
 	#banner nav li:first-child a {
-		border-top-left-radius: 5px;
+		border-top-left-radius: 2px;
 		-moz-border-radius-topleft: 5px;
-		-webkit-border-top-left-radius: 5px;
+		-webkit-border-top-left-radius: 2px;
 		
-		border-bottom-left-radius: 5px;
+		border-bottom-left-radius: 2px;
 		-moz-border-radius-bottomleft: 5px;
-		-webkit-border-bottom-left-radius: 5px;
+		-webkit-border-bottom-left-radius: 2px;
 	}
 
 /*
 	Featured
 *****************/
 #featured {
-	background: #fff;
+	background: #f9fbfa;
 	margin-bottom: 2em;
 	overflow: hidden;
 	padding: 20px;
 	width: 760px;
 	
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
 }
 
 #featured figure {
@@ -252,15 +253,15 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 	Body
 *****************/
 #content {
-	background: #fff;
+	background: #f9fbfa;
 	margin-bottom: 2em;
 	overflow: hidden;
 	padding: 20px 20px;
 	width: 760px;
 	
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
 }
 
 /*
@@ -339,7 +340,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 	About
 *****************/
 #about {
-	background: #fff;
+	background: #f9fbfa;
 	font-style: normal;
 	margin-bottom: 2em;
 	overflow: hidden;
@@ -347,9 +348,9 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 	text-align: left;
 	width: 760px;
 	
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
 }
 
 #about .primary {float: left; width: 165px;}
@@ -378,7 +379,7 @@ li:last-child .hentry, #content > .hentry {border: 0; margin: 0;}
 .hentry img{display : none ;}
 .entry-title {font-size: 3em; margin-bottom: 10px; margin-top: 0;}
 .entry-title a:link, .entry-title a:visited {text-decoration: none; color: #333;}
-.entry-title a:visited {background-color: #fff;}
+.entry-title a:visited {background-color: ##f9fbfa;}
 
 .hentry .post-info * {font-style: normal;}
 
@@ -407,9 +408,9 @@ li:last-child .hentry, #content > .hentry {border: 0; margin: 0;}
 		margin: 2em 0;
 		padding: 10px 20px 15px 20px;
 		
-		border-radius: 5px;
-		-moz-border-radius: 5px;
-		-webkit-border-radius: 5px;
+		border-radius: 2px;
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
 	}
 	
 	#about-author strong {
@@ -430,9 +431,9 @@ li:last-child .hentry, #content > .hentry {border: 0; margin: 0;}
 		margin: 0;
 		padding: 15px 20px;
 		
-		border-radius: 5px;
-		-moz-border-radius: 5px;
-		-webkit-border-radius: 5px;
+		border-radius: 2px;
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
 	}
 	#comments-list footer {color: #888; padding: .5em 1em 0 0; text-align: right;}
 	
