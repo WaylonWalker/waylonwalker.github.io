@@ -59,14 +59,16 @@ df = pd.read_csv('https://query.data.world/s/AnMFhZ2dC7RJCTnpGsSCFBvr03a9kl')
 I thought I could find a story to tell with the remarkable growth of Turkey through the 1980's, but was unable to find any reasoning in the short period of time that I had and just needed to get moving with something at this point.
 
 
-<iframe src="https://goo.gl/XMT2WK"></iframe>
+<iframe src="https://goo.gl/XMT2WK" width='500'></iframe>
+
 
 ### Feature Engineering
 
 Building off of the original visualization, I thought I could improve it by normalizing the consumption of red meat vs. poultry by the total amount of meat consumption.  I also converted the year to a proper date time format.
 
 ```python
-meat_raw = pd.read_excel('https://query.data.world/s/IdjIzez2eS7cdAWsdTTKdMF1HvK2X7')
+meat_raw = pd.read_excel
+('https://query.data.world/s/IdjIzez2eS7cdAWsdTTKdMF1HvK2X7')
 meat = meat_raw
 meat['Total'] = meat['Total Red Meat & Poultry'] + meat['Commercial Fish & Shell-Fish']
 meat['% red meat'] = meat['Total Red Meat'].divide(meat['Total'])
@@ -75,11 +77,9 @@ meat['DATE'] = pd.to_datetime(meat['Year'], format='%Y')
 ```
 
 
-
-
 ### Final Viz
 
-At this point I am already running out of time, so I quickly grab some colors to work with, put together a catchy title and use my current go to viz library c3.js.
+At this point I am already running out of time, so I quickly grab some colors to work with, put together a catchy title and use my current go-to viz library c3.js. I only spent a few minutets putting together the final viz.  I like that the colors are are improved over the original, and that its based on a percentage of overal consumption.
 
 <iframe src="https://goo.gl/BU1SCJ"></iframe>
 
@@ -90,5 +90,5 @@ Get right to the viz, and dont mess around so much with ETL.  Also I can see mys
 
 
 
-
+<!-- <style>@import url("https://goo.gl/RrPQm5")</style> -->
 <style>@import url("https://goo.gl/TVghHH")</style>
