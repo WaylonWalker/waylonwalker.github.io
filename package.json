@@ -1,0 +1,38 @@
+{
+  "name": "waylonwalker.github.io",
+  "version": "1.0.0",
+  "description": "Personal Website",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WaylonWalker/waylonwalker.github.io.git"
+  },
+  "keywords": [
+    "python",
+    "data",
+    "science"
+  ],
+  "author": "Waylon Walker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WaylonWalker/waylonwalker.github.io/issues"
+  },
+  "homepage": "https://github.com/WaylonWalker/waylonwalker.github.io#readme",
+  "devDependencies": {
+    "browser-sync": "^2.23.2",
+    "child_process": "^1.0.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-pug": "^3.3.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.2",
+    "gulp-watch": "^4.3.11",
+    "acorn": "^5.3.0",
+    "jstransformer-markdown-it": "^2.0.0"
+  },
+  "dependencies": {}
+}
