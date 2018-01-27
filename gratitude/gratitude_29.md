@@ -8,3 +8,4 @@ Last night was a night that I had to run back into work late at night to run som
 
 Secondly my wife is a rockstar.  She was up with our crazy son most of the night, as he was really struggling to sleep.  He was just up and ready to go really early in the morning.  I am grateful that I was able to get somme sleep, and really hope that she is able to get some rest while the house is quiet today.
 
+<style>@import url("https://goo.gl/RrPQm5")</style>
