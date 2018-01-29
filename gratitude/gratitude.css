@@ -75,6 +75,12 @@ nav:hover ul.first li {
     animation-delay: 450ms;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards; }
+  nav:hover ul.first li:nth-child(4) {
+    animation-name: first;
+    animation-duration: 300ms;
+    animation-delay: 600ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards; }
 
 nav:hover ul.drop li {
   opacity: 0; }
