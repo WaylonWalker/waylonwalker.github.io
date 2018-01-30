@@ -1,7 +1,14 @@
-### Gratitude #031
-_2018-01-26 22:13:39 Waylon Walker_
+### Gratitude #032
+_2018-01-29 06:38:29 Waylon Walker_
 
-#### Pick me up
+#### Get out and move
 
-Sometimes you just need a bit of help and it is hard to pick yourself up.  This morning was one of those days.  I just felt overwhelmed and like there was no stopping it.  Rhiannon gave me a call and after talking through some things I felt a huge weight lifted.  I wouldn't say that I was healed, but I would say I was on a good trajectory.  It's really hard to battle things as a family. We are all in it together and that picking each other up will help everyone.
+
+This weekend was an abnormally warm January weekend, which meant that we were able to ge the kids out and moving more than normal.  On Saturday we started to build Wyatt Walkers Walking path through the thick brush.  Both kids were really into it and were guiding me through the thick brush letting me know where the path should turn next.  Wyatt kept very busy with his tree pruners trimming the leftover branches.  
+
+On Sunday the kids and I went out to the skate park while mommy had a lunch date with a friend.  Ayla enjoyed throwing a small frisbee off of the top of the pyramid while Wyatt rode his scooter and daddy's skateboard around the park.
+
+
+<style>@import url("https://goo.gl/RrPQm5")</style>
+
 
