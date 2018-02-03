@@ -9,6 +9,3 @@ This weekend was an abnormally warm January weekend, which meant that we were ab
 On Sunday the kids and I went out to the skate park while mommy had a lunch date with a friend.  Ayla enjoyed throwing a small frisbee off of the top of the pyramid while Wyatt rode his scooter and daddy's skateboard around the park.
 
 
-<style>@import url("https://goo.gl/RrPQm5")</style>
-
-
