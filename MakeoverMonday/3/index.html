@@ -1,4 +1,39 @@
-<html lang="en"></html><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta http-equiv="X-UA-Compatible" content="ie=edge"/><title>Poverty in the U.S.</title><link href="index.css" rel="stylesheet"/><meta property="og:site_name"/><meta property="og:title" content="MakeOverMonday 1-15-2018"/><meta property="og:description" content="Poverty in U.S. States"/><meta property="og:image" content="http://www.waylonwalker.com/MakeoverMonday/3/img/index.png"/><meta property="og:url" content="http://www.waylonwalker.com/MakeoverMonday/3"/><meta name="twitter:card" content="summary_large_image"/><meta property="fb:app_id" content="NA"/><meta name="twitter:site" content="@waylonwalker"/><style>@import url("https://goo.gl/RrPQm5")</style></head><body><div id="content"><h1>Poverty in U.S. States</h1><p><em>Percent of households living below poverty line for the average 2.5 person household (>$20,000)</em></p><p class="left">Mississippi has the highest rate of povery, and is declining.  </p><p class="right">North Dakota has the best improvement since 2009
+<html lang="en"></html><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta http-equiv="X-UA-Compatible" content="ie=edge"/><title>Poverty in the U.S.</title><link href="index.css" rel="stylesheet"/><meta property="og:site_name"/><meta property="og:title" content="MakeOverMonday 1-15-2018"/><meta property="og:description" content="Poverty in U.S. States"/><meta property="og:image" content="http://www.waylonwalker.com/MakeoverMonday/3/img/index.png"/><meta property="og:url" content="http://www.waylonwalker.com/MakeoverMonday/3"/><meta name="twitter:card" content="summary_large_image"/><meta property="fb:app_id" content="NA"/><meta name="twitter:site" content="@waylonwalker"/><style>@import url("https://goo.gl/RrPQm5")</style><link href="/static/css/nav.css" rel="stylesheet"/><link href="/static/css/footer.css" rel="stylesheet"/><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/zenburn.min.css" rel="stylesheet"/><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();
+
+
+
+
+
+</script></head><body><nav class="init"><div id="nav-btn"><div id="ham">☰</div><div id="x">X</div></div><div id="site-navigation"></div><ul><li> <a href="/">Home</a></li><li> <a href="/blog">blog</a></li><li> <a href="/makeovermonday">MakeoverMonday</a></li><li>Personal<ul><li> <a href="/gratitude">gratitude</a></li><li><a href="/goals">goals</a></li><li><a href="/fail">failuree</a></li></ul></li></ul></nav><div id="blog"><h1>Makeover Monday Week 3</h1><p>This week <a href="https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml" title="US Census Bureau">US Census Bureu</a>  Courtesy of <a href="https://data.world/makeovermonday/2018-w-3-u-s-household-income-distribution-by-state" title="data.world"> data.world</a>.  I attempted to play with the poverty level trends in the U.S. by state.  I found that poverty level is determined by the size of the household so I used an average of 2.5 persons per house to dertermine a poverty level near $20K/year.  I found settin up the data for the viz quite fun this week.  I used python and pandas to do my transforms.
+</p><h2>Load Data from file</h2><p>As mentioned above this data was provided by data.world.</p><pre><code class="python">import pandas as pd
+df = pd.read_excel('Household Income Distribution by State.xlsx')
+</code></pre><h2>Set Poverty Rates</h2><p>Create a list of 'Income Level' categories that qualify as poverty.</p><pre><code class="python">poverty_rates = [
+    'Less than $10,000',
+    '$10,000 to $14,999',
+    '$15,000 to $19,999',
+]
+df['poverty'] = False
+df.loc[df['Income Level'].isin(poverty_rates), 'poverty'] = True
+</code></pre><h2>Set Rank</h2><pre><code class="python">st_rnk = df.groupby(['State', 'poverty'])['Number of Households'].mean().unstack()
+st_rnk['poverty'] = st_rnk[True] / (st_rnk[False] + st_rnk[True])
+st_rnk = (st_rnk[['poverty']]
+.sort_values('poverty', ascending=False)
+.reset_index()
+.reset_index()
+.rename(columns = {'index': 'rank'})
+.set_index('State')
+['rank']
+)
+</code></pre><h2>Create DataFrame for Plotting</h2><pre><code class="python">pltdf = df.groupby(['State', 'Year', 'poverty'])['Number of Households'].sum().unstack().reset_index()
+pltdf['poverty'] = pltdf[True] / (pltdf[False] + pltdf[True])
+pltdf = pltdf[pltdf['State'] != 'Puerto Rico']
+pltdf = (pltdf
+.set_index(['State', 'Year'])
+['poverty']
+.unstack()
+)
+pltdf = pltdf.join(st_rnk).sort_values('rank').drop(columns=['rank'])
+</code></pre></div><div id="content"><h1>Poverty in U.S. States</h1><p><em>Percent of households living below poverty line for the average 2.5 person household (>$20,000)</em></p><p class="left">Mississippi has the highest rate of povery, and is declining.  </p><p class="right">North Dakota has the best improvement since 2009
 </p>
 
 
@@ -648,4 +683,4 @@ opacity: 0.1;
   window.chard_destroy = function (){
     chard.destroy()
   }
-</script></div><footer> <div class="left"> <p>Source:<a href="https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml" title="US Census Bureau">US Census Bureu</a></p><p>Courtesy of:<a href="https://data.world/makeovermonday/2018-w-3-u-s-household-income-distribution-by-state" title="data.world"> data.world</a></p></div><div class="right"><p>Author: </p><a href="www.waylonwalker.com" title="waylonwalker"> Waylon Walker</a></div></footer></body>
+</script></div><div class="viz-footer"> <div class="left"> <p>Source:<a href="https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml" title="US Census Bureau">US Census Bureu</a></p><p>Courtesy of:<a href="https://data.world/makeovermonday/2018-w-3-u-s-household-income-distribution-by-state" title="data.world"> data.world</a></p></div><div class="right"><p>Author: </p><a href="www.waylonwalker.com" title="waylonwalker"> Waylon Walker</a></div></div><footer><ul><li> <a href="https://www.instagram.com/yellowhatwoodworks/"><i class="fa fa-instagram"></i> <span class="label">yellowhatwoodworks</span></a></li><li> <a href="https://twitter.com/_WaylonWalker"><i class="fa fa-twitter"></i> <span class="label">waylonwalker</span> </a></li><li> <a href="https://github.com/WaylonWalker"><i class="fa fa-github"></i> <span class="label">waylonwalker</span> </a></li></ul></footer></body>
