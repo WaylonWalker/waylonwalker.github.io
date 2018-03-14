@@ -1,0 +1,29 @@
+doctype html
+html(lang='en')
+head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    
+    title uses
+
+    link(rel='stylesheet' href='/gratitude.css')
+    //- script(src='/static/js/main.js')
+
+body
+    include ../../layout/nav.pug
+    div.heading
+        h1 Uses
+
+        p These are the tools that I use every day.
+
+        p #[em Waylon S. Walker]
+
+    div.content
+        include content.md
+
+    div.credits
+
+    footer
+        include ../../layout/footer.pug
+

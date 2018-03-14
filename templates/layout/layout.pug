@@ -1,0 +1,23 @@
+html(lang="en")
+    head
+        title =config.title
+
+        link(href="/static/css/main.css", rel="stylesheet")
+
+        include gtag
+        
+    body
+
+        include logo
+        include socials
+        include nav
+
+        #content
+        
+        if config.disqus
+            include disqus
+        
+        block footer
+            include footer
+        
+    block script

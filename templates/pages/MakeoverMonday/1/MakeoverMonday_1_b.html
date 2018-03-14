@@ -1,0 +1,235 @@
+
+
+
+<link href='https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css' 
+    rel='stylesheet' 
+    type='text/css'/>
+<script src='https://d3js.org/d3.v3.min.js' charset='utf-8'></script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js'></script>
+
+<style>
+  
+h1{
+text-align:center;
+font-family: 'Oswald', sans-serif;
+}
+.poultry{
+color: #F0E68C;
+}
+.red{
+color: #F08080;
+}
+.c3-line {
+    stroke-width: 5px;
+}
+
+</style>
+
+
+<div id='chard-wrapper' class='chard-wrapper'>
+  <div id='chard-title' class='chard-title'><h1><span class='poultry'>Turkey's</span> Remarkable Growth <br>in the 80's</h1>
+<p><em>SOURCE: National Chicken Council</em></p></div>
+  <div 
+    id='chard-figure'' 
+    class='chard-figure' 
+    style='
+      width: 100%; 
+      height: 100%'
+    >
+      
+  </div>
+</div>
+
+<script>
+  var data = {
+  'size': {
+    'height': 430
+  },
+  'subchart': {
+    'show': false
+  },
+  'point': {
+    'show': false,
+    'r': 5
+  },
+  'grid': {
+    'x': {
+      'show': false
+    },
+    'y': {
+      'show': false
+    }
+  },
+  'data': {
+    'x': 'x',
+    'xFormat': '%Y-%m-%d',
+    'type': 'line',
+    'types': [],
+    'axes': {
+      'Turkey': 'y',
+      'x': 'y'
+    },
+    'columns': [
+      [
+        'Turkey',
+        6.2,
+        7.6,
+        7.9,
+        8.7,
+        8.1,
+        8.3,
+        8.1,
+        8.4,
+        9.0,
+        8.4,
+        8.7,
+        8.3,
+        8.9,
+        8.7,
+        8.7,
+        9.2,
+        10.2,
+        10.6,
+        10.6,
+        11.0,
+        11.0,
+        11.6,
+        12.9,
+        14.7,
+        15.7,
+        16.6,
+        17.5,
+        17.8,
+        17.8,
+        17.7,
+        17.5,
+        17.6,
+        18.1,
+        17.2,
+        17.6,
+        17.5,
+        17.3,
+        17.5,
+        17.7,
+        17.4,
+        17.0,
+        16.7,
+        16.9,
+        17.5,
+        17.6,
+        16.9,
+        16.0,
+        16.0,
+        15.9,
+        15.9,
+        15.8,
+        15.9,
+        16.6,
+        16.8,
+        17.0
+      ],
+      [
+        'x',
+        '1960-01-01',
+        '1965-01-01',
+        '1966-01-01',
+        '1967-01-01',
+        '1968-01-01',
+        '1969-01-01',
+        '1970-01-01',
+        '1971-01-01',
+        '1972-01-01',
+        '1973-01-01',
+        '1974-01-01',
+        '1975-01-01',
+        '1976-01-01',
+        '1977-01-01',
+        '1978-01-01',
+        '1979-01-01',
+        '1980-01-01',
+        '1981-01-01',
+        '1982-01-01',
+        '1983-01-01',
+        '1984-01-01',
+        '1985-01-01',
+        '1986-01-01',
+        '1987-01-01',
+        '1988-01-01',
+        '1989-01-01',
+        '1990-01-01',
+        '1991-01-01',
+        '1992-01-01',
+        '1993-01-01',
+        '1994-01-01',
+        '1995-01-01',
+        '1996-01-01',
+        '1997-01-01',
+        '1998-01-01',
+        '1999-01-01',
+        '2000-01-01',
+        '2001-01-01',
+        '2002-01-01',
+        '2003-01-01',
+        '2004-01-01',
+        '2005-01-01',
+        '2006-01-01',
+        '2007-01-01',
+        '2008-01-01',
+        '2009-01-01',
+        '2010-01-01',
+        '2011-01-01',
+        '2012-01-01',
+        '2013-01-01',
+        '2014-01-01',
+        '2015-01-01',
+        '2016-01-01',
+        '2017-01-01',
+        '2018-01-01'
+      ]
+    ],
+    'hide': false,
+    'colors': {
+      'Turkey': '#F0E68C',
+      'x': '#F0E68C'
+    }
+  },
+  'axis': {
+    'rotated': false,
+    'x': {
+      'tick': {
+        'count': 10,
+        'values': false,
+        'culling': {},
+        'format': '%Y-%m-%d'
+      },
+      'type': 'timeseries'
+    },
+    'y': {
+      'tick': {},
+      'show': true
+    },
+    'y2': {
+      'tick': {}
+    }
+  },
+  'legend': {
+    'show': true
+  },
+  'transition': {
+    'duration': 500
+  },
+  'zoom': {
+    'enabled': true,
+    'rescale': true
+  }
+};
+
+  data['axis']['y']['tick']['format'] = d3.format('%0.s')
+  data['axis']['y2']['tick']['format'] = d3.format('0.3s')
+  data['bindto']='#chard-figure'
+  window.chard = c3.generate(data);
+  window.chard_destroy = function (){
+    chard.destroy()
+  }
+</script>

@@ -7,12 +7,13 @@ var gulp = require('gulp')
     sourcemaps = require('gulp-sourcemaps')
     browserSync = require('browser-sync').create()
     py_files = '**/*.py'
-    pug_files = ['templates/**/*.pug', 'templates/**/*.md']
-    js_files = 'static/js/dev/**/*.js'
+    pug_watch_files = ['templates/**/*.pug', 'templates/**/*.md']
+    pug_files = ['templates/pages/**/*.pug']
+    js_files = 'static/es6**/*.js'
+    js_dest = 'static/js'
     sass_files = ['static/sass/**/*.sass', 'static/sass/**/*.scss']
     gratitude_files = ['gratitude/*.sass', 'gratitude/*.pug', 'gratitude/*.md', ]
     goals_files = ['goals/*.sass', 'goals/*.pug', 'goals/*.md', ]
-    js_dest = 'static/js/dist'
     css_dest = 'static/css'
     reload = browserSync.reload
     exec = require('child_process').exec
@@ -88,12 +89,12 @@ gulp.task('goals', function(){
 })
 
 gulp.task('watch', ['js-watch', 'js', 'sass', 'browserSync', 'gratitude', 'goals'], function(){
-    gulp.watch(pug_files, ['pug-watch'])
+    gulp.watch(pug_watch_files, ['pug-watch'])
     gulp.watch(sass_files, ['sass-watch']);
     gulp.watch(js_files, ['js-watch'])
     gulp.watch(gratitude_files, ['gratitude'])
     gulp.watch(goals_files, ['goals'])
-    gulp.watch([js_files, pug_files, gratitude_files, goals_files], reload)
+    gulp.watch([js_files, pug_watch_files, gratitude_files, goals_files], reload)
 })
 
 gulp.task('default', ['watch'])

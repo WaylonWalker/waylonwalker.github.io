@@ -1,0 +1,125 @@
+html(lang="en")
+block config
+    -
+        const config = {
+            site_name: '@waylonwalker',
+            title: "MakeOverMonday 1-15-2018",
+            description: "Poverty in U.S. States",
+            image: "http://www.waylonwalker.com/MakeoverMonday/3/img/index.png",
+            url: "http://www.waylonwalker.com/MakeoverMonday/3",
+            card: "summary_large_image",
+            fb_app_id: 'NA',
+            twitter:'@waylonwalker',
+            disqus:false,
+            blog: false,
+            blog_n: 0,
+        };
+    -
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Poverty in the U.S.
+        link(href="index.css", rel="stylesheet")
+
+        meta(property='og:site_name' content=site_name)
+        meta(property='og:title' content=config.title)
+        meta(property='og:description' content=config.description)
+        meta(property='og:image' content=config.image)
+        meta(property='og:url' content=config.url)
+        meta(name='twitter:card' content=config.card)
+        meta(property='fb:app_id' content=config.fb_app_id)
+        meta(name='twitter:site' content=config.twitter)
+        
+        style @import url("https://goo.gl/RrPQm5")
+        link(href="/static/css/nav.css", rel="stylesheet")
+        link(href="/static/css/footer.css", rel="stylesheet")
+        link(href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/zenburn.min.css", rel="stylesheet")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js")
+        script.
+            hljs.initHighlightingOnLoad();
+        
+        
+        
+        
+        
+
+    body
+        include ../../../layout/nav
+        #blog
+            h1 Makeover Monday Week 3
+
+            p.
+               This week #[a(href="https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml", title="US Census Bureau") US Census Bureu]  Courtesy of #[a(href="https://data.world/makeovermonday/2018-w-3-u-s-household-income-distribution-by-state", title="data.world")  data.world].  I attempted to play with the poverty level trends in the U.S. by state.  I found that poverty level is determined by the size of the household so I used an average of 2.5 persons per house to dertermine a poverty level near $20K/year.  I found settin up the data for the viz quite fun this week.  I used python and pandas to do my transforms.
+            
+            h2 Load Data from file
+            p As mentioned above this data was provided by data.world.
+
+            pre
+                code.python.
+                    import pandas as pd
+                    df = pd.read_excel('Household Income Distribution by State.xlsx')
+
+            h2 Set Poverty Rates
+            p Create a list of 'Income Level' categories that qualify as poverty.
+
+            pre
+                code.python.
+                    poverty_rates = [
+                        'Less than $10,000',
+                        '$10,000 to $14,999',
+                        '$15,000 to $19,999',
+                    ]
+                    df['poverty'] = False
+                    df.loc[df['Income Level'].isin(poverty_rates), 'poverty'] = True
+
+            h2 Set Rank
+            pre
+                code.python.
+                    st_rnk = df.groupby(['State', 'poverty'])['Number of Households'].mean().unstack()
+                    st_rnk['poverty'] = st_rnk[True] / (st_rnk[False] + st_rnk[True])
+                    st_rnk = (st_rnk[['poverty']]
+                    .sort_values('poverty', ascending=False)
+                    .reset_index()
+                    .reset_index()
+                    .rename(columns = {'index': 'rank'})
+                    .set_index('State')
+                    ['rank']
+                    )
+
+            h2 Create DataFrame for Plotting
+            pre
+                code.python.
+                    pltdf = df.groupby(['State', 'Year', 'poverty'])['Number of Households'].sum().unstack().reset_index()
+                    pltdf['poverty'] = pltdf[True] / (pltdf[False] + pltdf[True])
+                    pltdf = pltdf[pltdf['State'] != 'Puerto Rico']
+                    pltdf = (pltdf
+                    .set_index(['State', 'Year'])
+                    ['poverty']
+                    .unstack()
+                    )
+                    pltdf = pltdf.join(st_rnk).sort_values('rank').drop(columns=['rank'])
+
+        #content
+            h1 Poverty in U.S. States
+            p
+                em Percent of households living below poverty line for the average 2.5 person household (>$20,000)
+            
+            p.left.
+                Mississippi has the highest rate of povery, and is declining.  
+            p.right.
+                North Dakota has the best improvement since 2009
+
+            include chard.html
+        
+        .viz-footer 
+            .left 
+                p Source:
+                    a(href="https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml", title="US Census Bureau") US Census Bureu
+                p Courtesy of:
+                    a(href="https://data.world/makeovermonday/2018-w-3-u-s-household-income-distribution-by-state", title="data.world")  data.world
+            .right
+                p Author: 
+                a(href="www.waylonwalker.com", title="waylonwalker")  Waylon Walker
+        
+        include ../../../layout/footer

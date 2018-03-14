@@ -1,0 +1,47 @@
+html(lang="en")
+block config
+    -
+        const config = {
+            site_name: '@_waylonwalker',
+            title: "MakeOverMonday",
+            description: "Waylon Walker's Makeover Monday Entry",
+            image: "",
+            url: "http://www.waylonwalker.com/MakeoverMonday",
+            card: "summary",
+            fb_app_id: 'NA',
+            twitter:'@waylonwalker',
+            disqus:true,
+            blog: true,
+        };
+    -
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        
+        title =config.title
+        
+        link(href="index.css", rel="stylesheet")
+        meta(property='og:site_name' content=site_name)
+        meta(property='og:title' content=config.title)
+        meta(property='og:description' content=config.descriptionv)
+        meta(property='og:image' content=config.image)
+        meta(property='og:url' content=config.url)
+        meta(name='twitter:card' content=config.card)
+        meta(property='fb:app_id' content=config.fb_app_id)
+        meta(name='twitter:site' content=config.twitter)
+        //- style @import url("https://goo.gl/RrPQm5")
+        
+        link(href="/static/css/main.css", rel="stylesheet")
+        
+        Plink(href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/zenburn.min.css", rel="stylesheet")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js")
+        script(src="/static/js/es6/nav.js")
+        
+        script.
+            hljs.initHighlightingOnLoad();
+
+    body
+        include nav
+        block content
+        include footer

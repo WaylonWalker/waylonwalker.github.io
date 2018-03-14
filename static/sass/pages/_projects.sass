@@ -1,0 +1,79 @@
+
+#projects
+    
+    h1, h2, h3, h4, h5, h6
+        padding: 2rem
+    h2
+        padding: 0
+        margin: 0
+        margin-top: 1rem
+        margin-left: 1rem
+        font-size: 1.5rem 
+        
+
+    p
+        // margin-left: 1rem 
+    
+
+    .project
+        border-top: 3rem solid #444
+        display: block
+        border-radius: $br
+        min-height: 100px
+        background-color: #FFF
+        // padding: 0.5rem
+        margin: 2rem auto
+        box-shadow: $bs
+
+        p
+            padding: 2.5rem 
+                     
+        h1:first-child
+            border-radius: $br $br 0 0
+            margin: 0
+            text-align: center
+            padding: 1.5rem 0 0 0
+            background-color: #444
+            
+        img
+            display: block 
+            margin: 3rem
+            object-fit: cover
+            max-width: 250px
+            margin: auto
+            border-radius: $br
+            box-shadow: $bs
+        
+        p:first-of-type
+            padding: 0.5rem
+            margin: 0
+            margin-bottom: 1rem 
+            background-color: #444 
+            text-align: center
+    blockquote      
+        padding-left: 5rem
+        p
+            font-family: 'Shadows Into Light', cursive
+            border-left: 4px solid $teal
+            background: none 
+    
+    .right
+        float: right
+        position: relative
+        margin: 1rem
+
+    .left
+        float: left
+        position: relative
+        margin: 1rem
+
+    .small
+        max-width: 150px
+        
+    .right-sm
+        @extend .right
+        @extend .small
+        
+    .left-sm
+        @extend .left
+        @extend .small

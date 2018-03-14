@@ -1,0 +1,48 @@
+#socials
+    grid-area: socials
+    font-size: 1.8rem 
+    max-width: 300px 
+    display: block    
+    text-align: center
+    padding: 4rem 1rem
+    margin: 0 auto
+    
+    i
+        color: darken($teal, 0%)
+    
+    i:hover
+        color: darken($teal, 10%)
+            
+    h1, h2, h3, h4, h5, h6
+        margin: 0.5rem
+        display: none
+        @include breakpoint(sm)
+            display: block
+    a
+        text-decoration: none
+        
+    
+    ul
+        list-style-type: none
+        display: flex
+        justify-content: space-around
+        margin: auto
+        max-width: 200px
+        
+        li
+            border-radius: 50% 
+            // flex: 1 1 auto
+            text-align: center
+            margin: 1rem
+    
+    img
+        display: none
+    @include breakpoint(sm)
+        font-size: 1rem
+        img
+            // display: block
+            width: 200px
+            margin-bottom: 1rem
+        
+        .title
+            // display: none

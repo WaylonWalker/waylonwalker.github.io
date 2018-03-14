@@ -1,0 +1,328 @@
+
+<!-- https://rawgit.com/WaylonWalker/61c7588e6033f03fa3481f84107d5cac/raw/3756ca5982aaeb598663322ec49ccbe82da5f078/MakeoverMonday_1.html -->
+
+<!--  Essential META Tags -->
+
+
+
+<meta property="og:title" content="Makeover Monday 1-1-2018">
+<meta property="og:description" content="Poultry Consumption Overtakes Red Meat">
+<meta property="og:image" content="https://pbs.twimg.com/media/DSj5YQxX4AATurl.jpg">
+<meta property="twitter:image" content="https://pbs.twimg.com/media/DSj5YQxX4AATurl.jpg">
+<meta property="og:url" content="waylonwalker.com">
+<meta name="twitter:card" content="summary">
+
+
+<!--  Non-Essential, But Recommended -->
+
+<meta property="og:site_name" content="waylonwalker.com">
+<meta property="twitter:site" content="@_waylonwalker">
+<meta property="twitter:creator" content="@_waylonwalker">
+<meta name="twitter:image:alt" content="C3.js figure">
+
+
+<!--  Non-Essential, But Required for Analytics -->
+
+<!-- <meta property="fb:app_id" content="your_app_id" /> -->
+<meta name="twitter:site" content="@_waylonwalker">
+
+<!-- END META TAGS -->
+
+<link href='https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css' 
+    rel='stylesheet' 
+    type='text/css'/>
+<script src='https://d3js.org/d3.v3.min.js' charset='utf-8'></script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js'></script>
+<link href="https://fonts.googleapis.com/css?family=Oswald|Lato|Dancing+Script|Shadows+Into+Light" rel="stylesheet">
+
+<style>
+  
+h1{
+text-align: center;
+font-family: 'Oswald', sans-serif;
+}
+em {
+  color: #777;
+  font-family: 'Shadows Into Light', cursive; }
+
+.poultry{
+color: #F0E68C;
+}
+.red{
+color: #F08080;
+}
+.c3-line {
+    stroke-width: 5px;
+}
+
+</style>
+
+
+<div id='chard-wrapper' class='chard-wrapper'>
+  <div id='chard-title' class='chard-title'><h1><span class='poultry'>Poultry</span> Consumption<br> Overtakes <br><span class='red'>Red Meat</span></h1>
+<p><em>Based on percent of overall US Meat Consumption</em></p>
+<p><em>SOURCE: National Chicken Council</em></p></div>
+  <div 
+    id='chard-figure'' 
+    class='chard-figure' 
+    style='
+      width: 100%; 
+      height: 100%'
+    >
+      
+  </div>
+</div>
+
+<script>
+  var data = {
+  'size': {
+    'height': 430
+  },
+  'subchart': {
+    'show': false
+  },
+  'point': {
+    'show': false,
+    'r': 5
+  },
+  'grid': {
+    'x': {
+      'show': false
+    },
+    'y': {
+      'show': false
+    }
+  },
+  'data': {
+    'x': 'x',
+    'xFormat': '%Y-%m-%d',
+    'type': 'line',
+    'types': [],
+    'axes': {
+      '% red meat': 'y',
+      '% poultry': 'y',
+      'x': 'y'
+    },
+    'columns': [
+      [
+        '% red meat',
+        0.7492957746478873,
+        0.7092161016949152,
+        0.7132352941176471,
+        0.7165991902834008,
+        0.7208374875373879,
+        0.7106573705179283,
+        0.7078048780487805,
+        0.7137404580152672,
+        0.6971593644679828,
+        0.6860824742268041,
+        0.7016765285996056,
+        0.6975435005117707,
+        0.6932692307692307,
+        0.6906718221362977,
+        0.6730298580518844,
+        0.6573529411764706,
+        0.6603590490053372,
+        0.6514784294716434,
+        0.6413965087281795,
+        0.6446921958313135,
+        0.635666347075743,
+        0.6284640676373885,
+        0.6158565361019348,
+        0.5890926187118006,
+        0.5926443202979517,
+        0.5774647887323944,
+        0.5621468926553672,
+        0.5539467538533395,
+        0.5496809480401094,
+        0.538496583143508,
+        0.5406376290974405,
+        0.5422503389064618,
+        0.5343650432407829,
+        0.5281980742778541,
+        0.5350916405900761,
+        0.5282118055555556,
+        0.5223815732290309,
+        0.5185022026431718,
+        0.5134099616858238,
+        0.5049166310389055,
+        0.5008445945945946,
+        0.4940627650551315,
+        0.4911167512690355,
+        0.4947056332062685,
+        0.489556135770235,
+        0.4977718360071301,
+        0.4849438202247191,
+        0.47470101195952163,
+        0.48274253731343286,
+        0.4791666666666667,
+        0.46784715750232997,
+        0.46331702979101824,
+        NaN,
+        NaN,
+        NaN
+      ],
+      [
+        '% poultry',
+        0.19267605633802817,
+        0.2330508474576271,
+        0.2295168067226891,
+        0.22925101214574897,
+        0.2238285144566301,
+        0.23306772908366535,
+        0.2351219512195122,
+        0.23139312977099238,
+        0.24265767934520943,
+        0.24845360824742269,
+        0.2386587771203156,
+        0.240532241555783,
+        0.24471153846153845,
+        0.24842919284678588,
+        0.26138032305433184,
+        0.278921568627451,
+        0.27947598253275113,
+        0.2874454677653902,
+        0.2967581047381546,
+        0.290838584585555,
+        0.29674017257909874,
+        0.3010803193987787,
+        0.3114676734308636,
+        0.33521391631405734,
+        0.33705772811918067,
+        0.34929577464788736,
+        0.36770244821092274,
+        0.3769266697804764,
+        0.3837739288969918,
+        0.3940774487471526,
+        0.3920071845532106,
+        0.39087211929507454,
+        0.3996358670914884,
+        0.4062356717102246,
+        0.40008940545373267,
+        0.40755208333333337,
+        0.4115601912212082,
+        0.4167400881057268,
+        0.42017879948914433,
+        0.42539546814878154,
+        0.42905405405405406,
+        0.43723494486853265,
+        0.43908629441624364,
+        0.43625582380347305,
+        0.4412532637075718,
+        0.4318181818181818,
+        0.4440449438202247,
+        0.4567617295308187,
+        0.45102611940298515,
+        0.45462962962962966,
+        0.4641192917054986,
+        0.46776345042240997,
+        NaN,
+        NaN,
+        NaN
+      ],
+      [
+        'x',
+        '1960-01-01',
+        '1965-01-01',
+        '1966-01-01',
+        '1967-01-01',
+        '1968-01-01',
+        '1969-01-01',
+        '1970-01-01',
+        '1971-01-01',
+        '1972-01-01',
+        '1973-01-01',
+        '1974-01-01',
+        '1975-01-01',
+        '1976-01-01',
+        '1977-01-01',
+        '1978-01-01',
+        '1979-01-01',
+        '1980-01-01',
+        '1981-01-01',
+        '1982-01-01',
+        '1983-01-01',
+        '1984-01-01',
+        '1985-01-01',
+        '1986-01-01',
+        '1987-01-01',
+        '1988-01-01',
+        '1989-01-01',
+        '1990-01-01',
+        '1991-01-01',
+        '1992-01-01',
+        '1993-01-01',
+        '1994-01-01',
+        '1995-01-01',
+        '1996-01-01',
+        '1997-01-01',
+        '1998-01-01',
+        '1999-01-01',
+        '2000-01-01',
+        '2001-01-01',
+        '2002-01-01',
+        '2003-01-01',
+        '2004-01-01',
+        '2005-01-01',
+        '2006-01-01',
+        '2007-01-01',
+        '2008-01-01',
+        '2009-01-01',
+        '2010-01-01',
+        '2011-01-01',
+        '2012-01-01',
+        '2013-01-01',
+        '2014-01-01',
+        '2015-01-01',
+        '2016-01-01',
+        '2017-01-01',
+        '2018-01-01'
+      ]
+    ],
+    'hide': false,
+    'colors': {
+      '% red meat': '#F08080',
+      '% poultry': '#F0E68C',
+      'x': '#F08080'
+    }
+  },
+  'axis': {
+    'rotated': false,
+    'x': {
+      'tick': {
+        'count': 10,
+        'values': false,
+        'culling': {},
+        'format': '%Y-%m-%d'
+      },
+      'type': 'timeseries'
+    },
+    'y': {
+      'tick': {},
+      'show': true
+    },
+    'y2': {
+      'tick': {}
+    }
+  },
+  'legend': {
+    'show': true
+  },
+  'transition': {
+    'duration': 500
+  },
+  'zoom': {
+    'enabled': true,
+    'rescale': true
+  }
+};
+
+  data['axis']['y']['tick']['format'] = d3.format('%0.s')
+  data['axis']['y2']['tick']['format'] = d3.format('0.3s')
+  data['bindto']='#chard-figure'
+  window.chard = c3.generate(data);
+  window.chard_destroy = function (){
+    chard.destroy()
+  }
+</script>

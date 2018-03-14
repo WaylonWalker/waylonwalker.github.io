@@ -1,0 +1,44 @@
+doctype html
+html(lang='en')
+head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    
+    title WaylonWalker
+
+    link(rel='stylesheet' href='/static/css/index.css')
+
+body
+    
+    section#hero
+        include ../layout/nav
+        
+        h1.name Waylon #[span.last Walker]
+        
+        include ../layout/about
+
+        .nav
+            ul
+                li Projects
+                li About
+
+
+    section#family
+        h1.name Walker #[span.last Family]
+
+        include ../layout/family
+
+    section#hobby
+        h1.name Projects #[span.last Hobby]
+
+        include ../layout/hobby
+
+    section#work
+        h1.name Projects #[span.last Career]
+
+        include ../layout/work
+    
+    
+    include ../layout/footer
+    
