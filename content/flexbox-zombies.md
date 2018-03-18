@@ -17,6 +17,12 @@
     * ```align-items: flex-end;```
     * options = ('flex-start', 'flex-end', 'normal', 'end', 'self-start', 'self-end', 'center', 'start' 'end')
 5. Tke care of any one-off alignments
+_applied to items_
     * ```align-self: flex-start;```
     * options = ('flex-start', 'flex-end', 'normal', 'end', 'self-start', 'self-end', 'center', 'start' 'end')
+6. growth along the red Justify Laser
+_applied to items_
+    * ```flex-grow: 1```
+
+
 

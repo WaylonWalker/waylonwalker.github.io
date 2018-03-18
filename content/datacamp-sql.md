@@ -1,4 +1,22 @@
-## Joining Data in Posgres
+# Learning SQL in 2018
+
+In 2018 I transitioned from a Product Engineering (Mechanical) role to a Data Scientist Role.  I entered this space with strong subject matter expertise in our data, munging through data in pyhon, and data visualization in python.  My sql skills were lacking to say the least.  I had learned what I needed to know to get data from our relational databases, then use pandas to do any further analysis.    Just run something like the following and you have data.
+
+``` sql
+SELECT 
+    * 
+FROM 
+    Table 
+Where 
+    col_1 = 'col_1_filter'
+```
+
+This works great for small data sets that you only need to run once.  There is no shame to pull in a big dataset and start munging with it in pandas to get some results, and make decisions.  The problem becomes when your dataset becomes too big or you need to run the query on a frequent basis.  Doing the aggregations on the server run much quicker, as it reduces the time spent in io.  My longest running steps are currently io related.  Reducing these steps have improved my workflow.  At the point that I was getting server timeout errors, or using the same long running query in many places I would be searching for examples online, because I just did not have the experience with many more techniques.
+
+
+## [Joining Data in Posgres](https://campus.datacamp.com/courses/joining-data-in-postgresql)
+
+    I decided to take the [Joining Data in Posgres](https://campus.datacamp.com/courses/joining-data-in-postgresql) course from DataCamp to get some practice, put away the cheat sheets, move away from Stack Overflow, and improve my speed.  Below are my notes from the course.  I will use this a refresher when I need a quick reference.
 
 ### Using()
 When joining two tables on the same column the ```USING``` clause can be used as a shorthand.
@@ -91,6 +109,7 @@ SELECT DISTINCT
     ) AS countries_num
 
 From Prime Ministers
+```
 
 #### FROM
 
