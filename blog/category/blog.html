@@ -3,8 +3,7 @@
 <head>
         <meta charset="utf-8" />
         <title>WaylonWalker - Blog</title>
-        <link rel="stylesheet" href="../theme/css/main.css" />
-        <link href="www.waylonwalker.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="WaylonWalker Atom Feed" />
+        <link rel="stylesheet" href="www.waylonwalker.com/blog/theme/css/main.css" />
 
         <!--[if IE]>
             <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -13,43 +12,176 @@
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="../">WaylonWalker </a></h1>
+                <h1><a href="www.waylonwalker.com/blog/">WaylonWalker </a></h1>
                 <nav><ul>
-                    <li class="active"><a href="../category/blog.html">Blog</a></li>
+                    <li class="active"><a href="www.waylonwalker.com/blog/category/blog.html">Blog</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../no-more-death-by-powerpoint.html">No More Death By PowerPoint</a></h1>
+                    <h1 class="entry-title"><a href="www.waylonwalker.com/blog/stepping-up-my-sql.html">Stepping up my SQL</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2017-12-31T00:00:00-06:00">
-                Published: Sun 31 December 2017
+        <abbr class="published" title="2018-03-24T00:00:00-05:00">
+                Published: Sat 24 March 2018
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="../author/waylon-walker.html">Waylon Walker</a>
+                By                         <a class="url fn" href="www.waylonwalker.com/blog/author/waylon-walker.html">Waylon Walker</a>
         </address>
-<p>In <a href="../category/blog.html">Blog</a>.</p>
-<p>tags: <a href="../tag/pug.html">Pug</a> <a href="../tag/jade.html">Jade</a> <a href="../tag/reveal.html">Reveal</a> </p>
-</footer><!-- /.post-info --><h1>No More Death By PowerPoint</h1>
-<blockquote>
-<p>I Waylon S. Walker vow that from this point forward I will no longer create powerpoints to be considerec <strong>DEATH BY POWERPOINT</strong></p>
-</blockquote>
-<p>If you have not seen David JP Phillips <a href="https://www.youtube.com/watch?v=Iwpi1Lm6dFo">Death By PowerPoint</a>  TEDx, stop now and watch it.  You will never look at slides the same again.  Watching this video ruined me for watching presentations with these issues.  Reveal is a tool that makes it very easy to follow these principles</p>
-<p>I currently work in a company that employs over 100K employees, and to this day I cannot recall a single presentation given where the slides did not violate the rules stated in David's Talk.  This year I am putting a stop to this starting with myself.  I am starting a new job role in 2018 and there is no better time to make some drastic changes to my workflow than now.  I expect there to be a few followers and many naysayers, but I dont care.  I will employ the directives listed below.</p>
-<h2>1+1=0</h2>
-<p>Very few people (<em>if any</em>) in your will be able to multi-task.  The human brain is just not built to truly multi-task.  Some folks can be good at task switching quickly but very few of us can truly multi-task.  By overwhelming your audience with more than one distinct message, you have successfully overwhelmed your audience and successfully delivered 0 messages to your audiance.</p>
-<h2>6 items</h2>
-<p>The human brain is very capable of processing up to 6 items very efficiently, beyond this becomes an exponential rate of processing.  Watch David's video and you will see a remarkable example.</p>
-<h2>Size and Contrast</h2>
-<p>The most important points should be the fist thing that your eye goes to on the screen.  </p>
-<h2>More Slides</h2>
-<p>No one ever said the sheer amount of slides was ever the problem.</p>
-<h2>Supporting Material</h2>
-<p>Sentences, Notes, reference material, etc belong in the speaker notes.  This is the part that took the longest for me to realize.  In my company PowerPoint documents as living documents that folks will reference long after the presentation is over.  For this reason we tend to put every point that we want to discuss on the slides, so that they are there weeks, months, even years later when someone goes back to review your slides.  Placing this material in the speaker notes will allow you to utilize your presentation as reference material if you need to, and refrain from placing it on the screen.</p>
-<h2>Tools</h2>
-<p>A tool that is becoming very popular outside of the PowerPoind world is <a href="https://github.com/hakimel/reveal.js/">Reveal js</a>.  It is a fantastic framework to build beautiful slides using html.  I find that maintaining html to be a bit cumbersome. And the templating language <a href="https://pugjs.org/">pug</a> to be much more simple.  I will be using my own fork of <a href="https://github.com/jlengstorf/reveal.js-jade">reveal.js-jade</a> in 2018.  It will allow me to have interactive visualizations right in my slides.  Reveal also does a really nice job at making it hard to break the Death By PowerPoint rules.  It tends to be hard to jam a ton of information into them.</p>                </article>
+<p>In <a href="www.waylonwalker.com/blog/category/blog.html">Blog</a>.</p>
+<p>tags: <a href="www.waylonwalker.com/blog/tag/sql.html">SQL</a> <a href="www.waylonwalker.com/blog/tag/datacamp.html">DataCamp</a> </p>
+</footer><!-- /.post-info --><h1>Stepping up my SQL</h1>
+<p>In 2018 I transitioned from a Product Engineering (Mechanical) role to a Data Scientist Role.  I entered this space with strong subject matter expertise with our products, our data, munging through data in pyhon, and data visualization in python.  My sql skills were lacking to say the least.  I had learned what I needed to know to get data from our relational databases, then use pandas to do any further analysis.    Just run something like the following and you have data.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> 
+    <span class="o">*</span> 
+<span class="k">FROM</span> 
+    <span class="k">Table</span> 
+<span class="k">Where</span> 
+    <span class="n">col_1</span> <span class="o">=</span> <span class="s1">&#39;col_1_filter&#39;</span>
+</pre></div>
+
+
+<p>This technique works great for small data sets that you only need to run once.  There is no shame to pull in a big dataset and start munging with it in pandas to get some results, and make decisions.  The problem becomes when your dataset becomes too big or you need to run the query on a frequent basis.  Doing the aggregations on the server run much quicker, as it reduces the time spent in io.  My longest running steps are currently io related.  Reducing these steps have improved my workflow.  At the point that I was getting server timeout errors, or using the same long running query in many places I would be searching for examples online, because I just did not have the experience with many more techniques.  I decided it was time to put away the cheat sheets, step away from Stack Overflow, and improve my speed.</p>
+<h2>Why Learn SQL in 2018??</h2>
+<p>SQL is far from the hot topic in 2018, AI, Deep Learning, BIG data, Machine Learning, Natural Language Processing take the win here.  SQL is so simple why would anyone want to spend time learning SQL?  The reason... all of those hot topics in 2018 require data.  My data mostly comes from relational databases which require sql to get data from them.  Without the ability to efficiently get the data I need to do an aanlysis I cannot even start.  Sure I could use an ORM, but I found that to be a bit unwieldy with the thousands of tables  we have in formats that were determined many years ago. Plus raw SQL is more transportable.  I commonly collaborate with other folks who do not use python.  I am proud that I am able to point them to the SQL I use rather than telling them to suck it up an learn python.  I truly believe that people are the most effective when they are able to choose their own stack of tools.  Taking some time to focus on the basics of Data Science will help be build a strong foundation for my career.</p>
+<h2><a href="https://campus.datacamp.com/courses/joining-data-in-postgresql">Joining Data in Posgres</a></h2>
+<p>Below are my notes from the <a href="https://campus.datacamp.com/courses/joining-data-in-postgresql">Joining Data in Posgres</a>
+course on DataCamp.  I will use these notes as a refresher when I need a quick reference.</p>
+<h3>Using()</h3>
+<p>When joining two tables on the same column the <code>USING</code> clause can be used as a shorthand.</p>
+<p><strong>without using</strong></p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> 
+
+<span class="k">FROM</span> 
+    <span class="n">Table1</span> <span class="k">as</span> <span class="n">t1</span>
+
+<span class="k">LEFT</span> <span class="k">JOIN</span> 
+    <span class="n">Table2</span> <span class="k">as</span> <span class="n">t2</span>
+    <span class="k">ON</span> <span class="n">t1</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">t2</span><span class="p">.</span><span class="n">id</span>
+</pre></div>
+
+
+<p><strong>with using</strong></p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> 
+    <span class="o">*</span> 
+
+<span class="k">FROM</span> 
+    <span class="n">Table1</span> <span class="k">as</span> <span class="n">t1</span>
+
+<span class="k">LEFT</span> <span class="k">JOIN</span> 
+    <span class="n">Table2</span> <span class="k">as</span> <span class="n">t2</span>
+    <span class="k">USING</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Join Types</h3>
+<p><em>for joining columns of data together into a single table</em></p>
+<p><code>INNER</code>: Includes only records contained in <strong>both</strong> tables.</p>
+<p><code>RIGHT</code>: Inlcudes all records from the <strong>right</strong>, droping values from the left if non-existent in the right, or leaving nulls if non-existant in the left.</p>
+<p><code>LEFT</code>: Inlcudes all records from the <strong>left</strong>, droping values from the right if non-existent in the left, or leaving nulls if non-existant in the right.</p>
+<p><code>FULL</code>: Combination of <code>Left</code> and <code>Right</code> Join, leaving nulls where data is missing in one table, and not droping any data.</p>
+<p><code>CROSS</code>: returns all <strong>pairs</strong> from two tables, does not have an on or using clause.</p>
+<h3>Union</h3>
+<p><em>for concatenating rows of data with the same columns</em></p>
+<p><code>Union</code>: returns only unique records, does not include duplicates.</p>
+<p><code>Union All</code>: returns all records(including duplicates)</p>
+<h3>Intersect</h3>
+<p><code>Intersect</code>: returns only records appearing in both tables</p>
+<h3>Execpt</h3>
+<p><code>Except</code>: returns only records not in the second table</p>
+<h3>Self-Joins</h3>
+<p><code>Semi-Join</code>: Filters based on results of a subquery.  Does not have direct sql syntax.  This type of join is achieved through a subquery in the where statement.</p>
+<p><code>Anti-Join</code>: Similar to the Semi-join, but using a <code>not</code> modifier.  This is particularly useful for debugging situations.</p>
+<h3>Subqueries</h3>
+<p>This is where I have really stepped up my sql game.  I was able to get practice writing more complex queries. I also learned about different methods of joining tables together.</p>
+<h4>WHERE</h4>
+<p>Subqueries are commonly found in the where clause to filter data.  Below is an example given in the course to select only the Asian countries with below average fertility rate from the states table. </p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> 
+   <span class="n">name</span><span class="p">,</span>
+   <span class="n">fert_rate</span>
+<span class="k">FROM</span> 
+    <span class="n">states</span>
+<span class="k">WHERE</span> 
+    <span class="n">continent</span> <span class="o">=</span> <span class="s1">&#39;Asia&#39;</span>
+<span class="k">AND</span> <span class="n">fert_rate</span> <span class="o">&lt;</span>
+        <span class="p">(</span><span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">fert_rate</span><span class="p">)</span>
+         <span class="k">FROM</span> <span class="n">states</span><span class="p">;)</span>
+</pre></div>
+
+
+<h4>SELECT</h4>
+<p>Subqueries can be found in the <code>SELECT</code> clause to create new columns of data.  This is a different technique than I have used in the past.  Previously I have only used <code>GROUPBY</code> statements to get this effect.  I can see where this can be really useful because it is not constrained by aggregations any data point can be pulled in with this tecnhique.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">DISTINCT</span>
+    <span class="n">continent</span><span class="p">,</span>
+    <span class="p">(</span><span class="k">SELECT</span> 
+        <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+     <span class="k">FROM</span> 
+        <span class="n">states</span>
+     <span class="k">WHERE</span> 
+        <span class="n">prime_ministers</span><span class="p">.</span><span class="n">continent</span> <span class="o">=</span> <span class="n">states</span><span class="p">.</span><span class="n">continent</span>
+    <span class="p">)</span> <span class="k">AS</span> <span class="n">countries_num</span>
+
+<span class="k">From</span> <span class="n">Prime</span> <span class="n">Ministers</span>
+</pre></div>
+
+
+<h4>FROM</h4>
+<p>subqueries found in the <code>FROM</code> clause can be very helpful to create a new dataset from an existing table.  I find these the easiest to read as it is not much different than creating a new table.  Again this can be very powerful in creating new columns that were not easily available otherwise.  </p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">DISTINCT</span>
+    <span class="n">monarchs</span><span class="p">.</span><span class="n">continent</span><span class="p">,</span>
+    <span class="n">subquery</span><span class="p">.</span><span class="n">max_perc</span>
+
+<span class="k">FROM</span>
+    <span class="n">monarchs</span><span class="p">,</span>
+    <span class="p">(</span><span class="k">SELECT</span>
+        <span class="n">continent</span><span class="p">,</span>
+        <span class="k">MAX</span><span class="p">(</span><span class="n">women_parli_perc</span><span class="p">)</span> <span class="k">AS</span> <span class="n">max_perc</span>
+
+    <span class="k">FROM</span>
+        <span class="n">states</span>
+
+    <span class="k">GROUP</span> <span class="k">BY</span> 
+        <span class="n">continent</span>
+    <span class="p">)</span> <span class="k">as</span> <span class="n">subquery</span>
+
+<span class="k">WHERE</span>
+    <span class="n">monarchs</span><span class="p">.</span><span class="n">continent</span> <span class="o">=</span> <span class="n">subquery</span><span class="p">.</span><span class="n">continent</span>
+
+<span class="k">ORDER</span> <span class="k">BY</span>
+    <span class="n">continent</span><span class="p">;</span>
+</pre></div>
+
+
+<h4>ON</h4>
+<p><strong>Challenge Problem 1</strong>  This problem was the one that had me more stumped than any other problem in the course.  I found the subquery inside the on statement very confusing to understand.  In this question we are joining the countries table to a subquery what yields country codes of countries with offial languages from the languages table.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">DISTINCT</span>
+    <span class="k">c</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
+    <span class="n">e</span><span class="p">.</span><span class="n">total_investment</span><span class="p">,</span>
+    <span class="n">e</span><span class="p">.</span><span class="n">imports</span>
+
+<span class="k">FROM</span> 
+    <span class="n">countries</span> <span class="k">as</span> <span class="k">c</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> 
+    <span class="n">economies</span> <span class="k">as</span> <span class="n">e</span>
+    <span class="k">ON</span> <span class="k">c</span><span class="p">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">code</span>
+
+    <span class="k">AND</span> <span class="k">c</span><span class="p">.</span><span class="n">code</span> <span class="k">in</span> <span class="p">(</span>
+    <span class="k">SELECT</span> 
+        <span class="n">l</span><span class="p">.</span><span class="n">code</span> 
+    <span class="k">FROM</span> 
+        <span class="n">languages</span> <span class="k">as</span> <span class="n">l</span>
+    <span class="k">WHERE</span> 
+        <span class="n">official</span> <span class="o">=</span> <span class="k">true</span>
+    <span class="p">)</span>
+
+<span class="k">WHERE</span> 
+    <span class="k">c</span><span class="p">.</span><span class="n">region</span> <span class="o">=</span> <span class="s1">&#39;Central America&#39;</span>
+<span class="k">AND</span> <span class="n">e</span><span class="p">.</span><span class="k">year</span> <span class="o">=</span> <span class="mi">2015</span>
+
+<span class="k">ORDER</span> <span class="k">BY</span> 
+    <span class="k">c</span><span class="p">.</span><span class="n">name</span> <span class="k">asc</span><span class="p">;</span>
+</pre></div>                </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>
@@ -58,7 +190,33 @@
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="../background-tasks-in-python.html" rel="bookmark"
+                    <h1><a href="www.waylonwalker.com/blog/no-more-death-by-powerpoint.html" rel="bookmark"
+                           title="Permalink to No More Death By PowerPoint">No More Death By PowerPoint</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-12-31T00:00:00-06:00">
+                Published: Sun 31 December 2017
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="www.waylonwalker.com/blog/author/waylon-walker.html">Waylon Walker</a>
+        </address>
+<p>In <a href="www.waylonwalker.com/blog/category/blog.html">Blog</a>.</p>
+<p>tags: <a href="www.waylonwalker.com/blog/tag/pug.html">Pug</a> <a href="www.waylonwalker.com/blog/tag/jade.html">Jade</a> <a href="www.waylonwalker.com/blog/tag/reveal.html">Reveal</a> </p>
+</footer><!-- /.post-info -->                <h1>No More Death By PowerPoint</h1>
+<blockquote>
+<p>I Waylon S. Walker vow that from this point forward I will no longer create powerpoints to be considerec <strong>DEATH BY POWERPOINT</strong></p>
+</blockquote>
+<p>If you have not seen David JP Phillips <a href="https://www.youtube.com/watch?v=Iwpi1Lm6dFo">Death By PowerPoint</a>  TEDx, stop now and watch it.  You will never look at slides …</p>
+                <a class="readmore" href="www.waylonwalker.com/blog/no-more-death-by-powerpoint.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="www.waylonwalker.com/blog/background-tasks-in-python.html" rel="bookmark"
                            title="Permalink to background tasks in python">background tasks in python</a></h1>
                 </header>
 
@@ -69,19 +227,19 @@
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="../author/waylon-walker.html">Waylon Walker</a>
+                By                         <a class="url fn" href="www.waylonwalker.com/blog/author/waylon-walker.html">Waylon Walker</a>
         </address>
-<p>In <a href="../category/blog.html">Blog</a>.</p>
-<p>tags: <a href="../tag/python.html">Python</a> <a href="../tag/data-science.html">Data Science</a> </p>
+<p>In <a href="www.waylonwalker.com/blog/category/blog.html">Blog</a>.</p>
+<p>tags: <a href="www.waylonwalker.com/blog/tag/python.html">Python</a> <a href="www.waylonwalker.com/blog/tag/data-science.html">Data Science</a> </p>
 </footer><!-- /.post-info -->                <h1>background tasks in python</h1>
 <p>I have tried most of the different methods in the past and found that copying and pasting the <a href="https://docs.python.org/3/library/concurrent.futures.html#threadpoolexecutor-example">threadpoolexecutor example</a> or the <a href="https://docs.python.org/3/library/concurrent.futures.html#processpoolexecutor-example">processpoolexecutor example</a> from the standard library documentation to be the most reliable.  Since this is often something that I stuff in the back of …</p>
-                <a class="readmore" href="../background-tasks-in-python.html">read more</a>
+                <a class="readmore" href="www.waylonwalker.com/blog/background-tasks-in-python.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="../pycon-2017-roundup.html" rel="bookmark"
+                    <h1><a href="www.waylonwalker.com/blog/pycon-2017-roundup.html" rel="bookmark"
                            title="Permalink to Pycon 2017 Roundup">Pycon 2017 Roundup</a></h1>
                 </header>
 
@@ -92,10 +250,10 @@
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="../author/waylon-walker.html">Waylon Walker</a>
+                By                         <a class="url fn" href="www.waylonwalker.com/blog/author/waylon-walker.html">Waylon Walker</a>
         </address>
-<p>In <a href="../category/blog.html">Blog</a>.</p>
-<p>tags: <a href="../tag/python.html">Python</a> <a href="../tag/pycon.html">Pycon</a> <a href="../tag/youtube.html">Youtube</a> </p>
+<p>In <a href="www.waylonwalker.com/blog/category/blog.html">Blog</a>.</p>
+<p>tags: <a href="www.waylonwalker.com/blog/tag/python.html">Python</a> <a href="www.waylonwalker.com/blog/tag/pycon.html">Pycon</a> <a href="www.waylonwalker.com/blog/tag/youtube.html">Youtube</a> </p>
 </footer><!-- /.post-info -->                <h1>Pycon 2017 Roundup</h1>
 <p>Good afternoon fellow Data Geeks.  Last week <a href="https://www.youtube.com/channel/UCrJhliKNQ8g0qoE_zvL8eVg">Pycon</a> released 141 videos of greatness.  Here are my top picks from the event.</p>
 <h2>#3 Kelsey Hightower - Keynote - Pycon 2017</h2>
@@ -105,7 +263,7 @@
 <h2>#1 Trey Hunner Readability Counts PyCon 2017</h2>
 <p><a href="http://www.youtube.com/watch?v=knMg6G9_XCg" title="Click to Watch"><img alt="Click to Watch" src="http://img.youtube.com/vi/knMg6G9_XCg/0.jpg"></a></p>
 <h2>What's …</h2>
-                <a class="readmore" href="../pycon-2017-roundup.html">read more</a>
+                <a class="readmore" href="www.waylonwalker.com/blog/pycon-2017-roundup.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->
@@ -114,7 +272,6 @@
                 <div class="social">
                         <h2>social</h2>
                         <ul>
-                            <li><a href="www.waylonwalker.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
 
                             <li><a href="https://twitter.com/_WaylonWalker">@_WaylonWalker</a></li>
                             <li><a href="https://github.com/waylonwalker">waylonwalker</a></li>
