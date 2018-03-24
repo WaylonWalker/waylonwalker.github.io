@@ -1,4 +1,4 @@
-# Learning SQL in 2018
+# Stepping up my SQL
 
 In 2018 I transitioned from a Product Engineering (Mechanical) role to a Data Scientist Role.  I entered this space with strong subject matter expertise in our data, munging through data in pyhon, and data visualization in python.  My sql skills were lacking to say the least.  I had learned what I needed to know to get data from our relational databases, then use pandas to do any further analysis.    Just run something like the following and you have data.
 
@@ -16,11 +16,13 @@ This works great for small data sets that you only need to run once.  There is n
 
 ## [Joining Data in Posgres](https://campus.datacamp.com/courses/joining-data-in-postgresql)
 
-    I decided to take the [Joining Data in Posgres](https://campus.datacamp.com/courses/joining-data-in-postgresql) course from DataCamp to get some practice, put away the cheat sheets, move away from Stack Overflow, and improve my speed.  Below are my notes from the course.  I will use this a refresher when I need a quick reference.
+I decided it was time to put away the cheat sheets, step away from Stack Overflow, and improve my speed.  Below are my notes from the [Joining Data in Posgres](https://campus.datacamp.com/courses/joining-data-in-postgresql)
+course on DataCamp.  I will use these notes as a refresher when I need a quick reference.
 
 ### Using()
 When joining two tables on the same column the ```USING``` clause can be used as a shorthand.
 
+**without using**
 ```sql 
 SELECT * 
 
@@ -32,6 +34,7 @@ LEFT JOIN
     ON t1.id = t2.id
 ```
 
+**with using**
 ```sql 
 SELECT 
     * 
@@ -44,15 +47,21 @@ LEFT JOIN
     USING (id)
 ```
 
-### Joins
+### Join Types
+_for joining columns of data together into a single table_
 
-```INNER```: Includes only records contained in both tables.
-```RIGHT```: Inlcudes all records from the right, droping values from the left if non-existent in the right, or leaving nulls if non-existant in the left.
-```LEFT```: Inlcudes all records from the left, droping values from the right if non-existent in the left, or leaving nulls if non-existant in the right.
+```INNER```: Includes only records contained in **both** tables.
+
+```RIGHT```: Inlcudes all records from the **right**, droping values from the left if non-existent in the right, or leaving nulls if non-existant in the left.
+
+```LEFT```: Inlcudes all records from the **left**, droping values from the right if non-existent in the left, or leaving nulls if non-existant in the right.
+
 ```FULL```: Combination of ```Left``` and ```Right``` Join, leaving nulls where data is missing in one table, and not droping any data.
-```CROSS```: returns all pairs from two tables, does not have an on or using clause.
+
+```CROSS```: returns all **pairs** from two tables, does not have an on or using clause.
 
 ### Union
+_for concatenating rows of data with the same columns_
 
 ```Union```: returns only unique records, does not include duplicates.
 
@@ -82,10 +91,8 @@ Subqueries are commonly found in the where clause.  Below is an example given in
 SELECT 
    name,
    fert_rate
-
 FROM 
     states
-
 WHERE 
     continent = 'Asia'
 AND fert_rate <
@@ -100,10 +107,8 @@ SELECT DISTINCT
     continent,
     (SELECT 
         COUNT(*)
-
      FROM 
         states
-
      WHERE 
         prime_ministers.continent = states.continent
     ) AS countries_num
