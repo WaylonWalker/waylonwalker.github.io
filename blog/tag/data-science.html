@@ -3,7 +3,8 @@
 <head>
         <meta charset="utf-8" />
         <title>WaylonWalker - Data Science</title>
-        <link rel="stylesheet" href="www.waylonwalker.com/blog/theme/css/main.css" />
+        <link rel="stylesheet" href="../theme/css/main.css" />
+        <link href="www.waylonwalker.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="WaylonWalker Atom Feed" />
 
         <!--[if IE]>
             <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -12,25 +13,25 @@
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="www.waylonwalker.com/blog/">WaylonWalker </a></h1>
+                <h1><a href="../">WaylonWalker </a></h1>
                 <nav><ul>
-                    <li><a href="www.waylonwalker.com/blog/category/blog.html">Blog</a></li>
+                    <li><a href="../category/blog.html">Blog</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="www.waylonwalker.com/blog/background-tasks-in-python.html">background tasks in python</a></h1>
+                    <h1 class="entry-title"><a href="../background-tasks-in-python.html">background tasks in python</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2017-09-16T00:00:00-05:00">
                 Published: Sat 16 September 2017
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="www.waylonwalker.com/blog/author/waylon-walker.html">Waylon Walker</a>
+                By                         <a class="url fn" href="../author/waylon-walker.html">Waylon Walker</a>
         </address>
-<p>In <a href="www.waylonwalker.com/blog/category/blog.html">Blog</a>.</p>
-<p>tags: <a href="www.waylonwalker.com/blog/tag/python.html">Python</a> <a href="www.waylonwalker.com/blog/tag/data-science.html">Data Science</a> </p>
+<p>In <a href="../category/blog.html">Blog</a>.</p>
+<p>tags: <a href="../tag/python.html">Python</a> <a href="../tag/data-science.html">Data Science</a> </p>
 </footer><!-- /.post-info --><h1>background tasks in python</h1>
 <p>I have tried most of the different methods in the past and found that copying and pasting the <a href="https://docs.python.org/3/library/concurrent.futures.html#threadpoolexecutor-example">threadpoolexecutor example</a> or the <a href="https://docs.python.org/3/library/concurrent.futures.html#processpoolexecutor-example">processpoolexecutor example</a> from the standard library documentation to be the most reliable.  Since this is often something that I stuff in the back of a utility module of a library it is not something that I write often enough to be familiar with, which makes it both hard to write and hard to read and debug.  If you are looking for a good overview of the difference concurrency <a href="https://twitter.com/raymondh">Raymond Hettinger</a> has a great talk about the difference between the various different methods, when to use them and why.</p>
 <p>Recently a new python library was released to make running tasks in the background very simple. The <a href="https://github.com/kennethreitz/background">background</a> project by Kenneth Reitz is a high level implementation of python 3's ThreadPoolExecutor.  I have been playing around with this project over the last week and I will say that this is definitely the simplest way to run background tasks in python by far.  It really simplifes the syntax and lets me focus on my job rather than implementing custom concurrent code that is more difficult to debug.</p>
@@ -140,6 +141,7 @@ background n
                 <div class="social">
                         <h2>social</h2>
                         <ul>
+                            <li><a href="www.waylonwalker.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
 
                             <li><a href="https://twitter.com/_WaylonWalker">@_WaylonWalker</a></li>
                             <li><a href="https://github.com/waylonwalker">waylonwalker</a></li>
