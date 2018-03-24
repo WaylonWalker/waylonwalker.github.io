@@ -1,6 +1,12 @@
+Title: Stepping up my SQL
+Date: 2018-03-24
+Category: Blog
+Tags: SQL, DataCamp
+
+
 # Stepping up my SQL
 
-In 2018 I transitioned from a Product Engineering (Mechanical) role to a Data Scientist Role.  I entered this space with strong subject matter expertise in our data, munging through data in pyhon, and data visualization in python.  My sql skills were lacking to say the least.  I had learned what I needed to know to get data from our relational databases, then use pandas to do any further analysis.    Just run something like the following and you have data.
+In 2018 I transitioned from a Product Engineering (Mechanical) role to a Data Scientist Role.  I entered this space with strong subject matter expertise with our products, our data, munging through data in pyhon, and data visualization in python.  My sql skills were lacking to say the least.  I had learned what I needed to know to get data from our relational databases, then use pandas to do any further analysis.    Just run something like the following and you have data.
 
 ``` sql
 SELECT 
@@ -11,12 +17,15 @@ Where
     col_1 = 'col_1_filter'
 ```
 
-This works great for small data sets that you only need to run once.  There is no shame to pull in a big dataset and start munging with it in pandas to get some results, and make decisions.  The problem becomes when your dataset becomes too big or you need to run the query on a frequent basis.  Doing the aggregations on the server run much quicker, as it reduces the time spent in io.  My longest running steps are currently io related.  Reducing these steps have improved my workflow.  At the point that I was getting server timeout errors, or using the same long running query in many places I would be searching for examples online, because I just did not have the experience with many more techniques.
+This technique works great for small data sets that you only need to run once.  There is no shame to pull in a big dataset and start munging with it in pandas to get some results, and make decisions.  The problem becomes when your dataset becomes too big or you need to run the query on a frequent basis.  Doing the aggregations on the server run much quicker, as it reduces the time spent in io.  My longest running steps are currently io related.  Reducing these steps have improved my workflow.  At the point that I was getting server timeout errors, or using the same long running query in many places I would be searching for examples online, because I just did not have the experience with many more techniques.  I decided it was time to put away the cheat sheets, step away from Stack Overflow, and improve my speed.
 
+## Why Learn SQL in 2018??
+
+SQL is far from the hot topic in 2018, AI, Deep Learning, BIG data, Machine Learning, Natural Language Processing take the win here.  SQL is so simple why would anyone want to spend time learning SQL?  The reason... all of those hot topics in 2018 require data.  My data mostly comes from relational databases which require sql to get data from them.  Without the ability to efficiently get the data I need to do an aanlysis I cannot even start.  Sure I could use an ORM, but I found that to be a bit unwieldy with the thousands of tables  we have in formats that were determined many years ago. Plus raw SQL is more transportable.  I commonly collaborate with other folks who do not use python.  I am proud that I am able to point them to the SQL I use rather than telling them to suck it up an learn python.  I truly believe that people are the most effective when they are able to choose their own stack of tools.  Taking some time to focus on the basics of Data Science will help be build a strong foundation for my career.
 
 ## [Joining Data in Posgres](https://campus.datacamp.com/courses/joining-data-in-postgresql)
 
-I decided it was time to put away the cheat sheets, step away from Stack Overflow, and improve my speed.  Below are my notes from the [Joining Data in Posgres](https://campus.datacamp.com/courses/joining-data-in-postgresql)
+Below are my notes from the [Joining Data in Posgres](https://campus.datacamp.com/courses/joining-data-in-postgresql)
 course on DataCamp.  I will use these notes as a refresher when I need a quick reference.
 
 ### Using()
@@ -83,9 +92,11 @@ _for concatenating rows of data with the same columns_
 
 ### Subqueries
 
+This is where I have really stepped up my sql game.  I was able to get practice writing more complex queries. I also learned about different methods of joining tables together.
+
 #### WHERE
 
-Subqueries are commonly found in the where clause.  Below is an example given in the course to select only the Asian countries with below average fertility rate from the states table.  
+Subqueries are commonly found in the where clause to filter data.  Below is an example given in the course to select only the Asian countries with below average fertility rate from the states table. 
 
 ``` sql
 SELECT 
@@ -101,6 +112,8 @@ AND fert_rate <
 ```
 
 #### SELECT
+
+Subqueries can be found in the `SELECT` clause to create new columns of data.  This is a different technique than I have used in the past.  Previously I have only used `GROUPBY` statements to get this effect.  I can see where this can be really useful because it is not constrained by aggregations any data point can be pulled in with this tecnhique.
 
 ``` sql
 SELECT DISTINCT
@@ -118,6 +131,9 @@ From Prime Ministers
 
 #### FROM
 
+subqueries found in the `FROM` clause can be very helpful to create a new dataset from an existing table.  I find these the easiest to read as it is not much different than creating a new table.  Again this can be very powerful in creating new columns that were not easily available otherwise.  
+
+
 ``` sql
 SELECT DISTINCT
     monarchs.continent,
@@ -127,7 +143,7 @@ FROM
     monarchs,
     (SELECT
         continent,
-        MAX(women_parli_perc AS max_perc
+        MAX(women_parli_perc) AS max_perc
 
     FROM
         states
