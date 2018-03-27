@@ -1,0 +1,31 @@
+$color1: hsla(109%, 33%, 6%, 1)
+$color2: hsla(280%, 23%, 44%, 1)
+$color3: hsla(312%, 15%, 52%, 1)
+$color4: hsla(358%, 23%, 58%, 1)
+$color5: hsla(1%, 27%, 64%, 1)
+
+body
+    background-color: lighten($color2, 40%)
+    color: $color4
+    padding: 0
+    margin: 0
+
+header
+    background-color: $color1
+#content
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-top: 10vh
+#chart
+    max-width: 400px
+#dropdown
+    display: flex
+    justify-content: center
+    align-items: center
+
+    select
+        margin-left: 1rem
+        padding: .2rem
+        background: $color3
+        border-radius: .3rem
