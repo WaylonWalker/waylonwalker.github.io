@@ -1,21 +1,30 @@
 nav.init
     #nav-btn
-        #ham ☰
+        //- #ham ☰
         //- #x X
     
-    #site-navigation
-    ul
-        li 
+    ul#site-navigation
+        //- li 
             a(href='/') Home
         li 
             a(href='/blog') blog
-        li 
+        li.drop 
             a(href='/makeovermonday') MakeoverMonday
-        li Personal
-            ul
+            ul.drop-item
+                li
+                    a(href='/makeovermondy/1') 1: Turkey
+                li
+                    a(href='/makeovermondy/2') 2: You
+                li
+                    a(href='/makeovermondy/3') 3: Poverty
+        li.drop 
+        li.drop 
+        li.drop 
+            p Personal
+            ul.drop-item
                 li 
                     a(href='/gratitude') gratitude
                 li
                     a(href='/goals') goals
                 li
-                    a(href='/fail') failuree
+                    a(href='/fail') failure

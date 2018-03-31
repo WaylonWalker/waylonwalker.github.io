@@ -31,9 +31,9 @@ block config
         meta(property='fb:app_id' content=config.fb_app_id)
         meta(name='twitter:site' content=config.twitter)
         
-        style @import url("https://goo.gl/RrPQm5")
-        link(href="/static/css/nav.css", rel="stylesheet")
-        link(href="/static/css/footer.css", rel="stylesheet")
+        //- style @import url("https://goo.gl/RrPQm5")
+        link(href="/static/css/index.css", rel="stylesheet")
+        //- link(href="/static/css/footer.css", rel="stylesheet")
         link(href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/zenburn.min.css", rel="stylesheet")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js")
         script.
@@ -43,10 +43,21 @@ block config
         
         
         
-
+    style.
+        #content {
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+        .viz-footer {
+            display: flex;
+            margin-bottom: 5rem;
+        }
+        .viz{
+            height: 1500px
+        }
     body
-        include ../../../layout/nav
-        #blog
+        include ../../../layout/header
+        #content
             h1 Makeover Monday Week 3
 
             p.
@@ -100,7 +111,6 @@ block config
                     )
                     pltdf = pltdf.join(st_rnk).sort_values('rank').drop(columns=['rank'])
 
-        #content
             h1 Poverty in U.S. States
             p
                 em Percent of households living below poverty line for the average 2.5 person household (>$20,000)
@@ -109,17 +119,18 @@ block config
                 Mississippi has the highest rate of povery, and is declining.  
             p.right.
                 North Dakota has the best improvement since 2009
-
-            include chard.html
         
-        .viz-footer 
-            .left 
-                p Source:
-                    a(href="https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml", title="US Census Bureau") US Census Bureu
-                p Courtesy of:
-                    a(href="https://data.world/makeovermonday/2018-w-3-u-s-household-income-distribution-by-state", title="data.world")  data.world
-            .right
-                p Author: 
-                a(href="www.waylonwalker.com", title="waylonwalker")  Waylon Walker
+            .viz
+                include chard.html
+
+            .viz-footer
+                .left
+                    p Source:
+                        a(href="https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml", title="US Census Bureau") US Census Bureu
+                    p Courtesy of:
+                        a(href="https://data.world/makeovermonday/2018-w-3-u-s-household-income-distribution-by-state", title="data.world")  data.world
+                .right
+                    p Author: 
+                    a(href="www.waylonwalker.com", title="waylonwalker")  Waylon Walker
         
         include ../../../layout/footer

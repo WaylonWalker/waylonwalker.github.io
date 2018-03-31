@@ -1,0 +1,63 @@
+html(lang="en")
+block config
+    -
+        const config = {
+            site_name: '@waylonwalker',
+            title: "MakeOverMonday 1-8-2018",
+            description: "Comparing Men and Womens Relationship Values",
+            image: "http://www.waylonwalker.com/MakeoverMonday/2/img/mm2.png",
+            url: "http://www.waylonwalker.com/MakeoverMonday/2",
+            card: "summary_large_image",
+            fb_app_id: 'NA',
+            twitter:'@waylonwalker',
+            disqus:false,
+            blog: false,
+            blog_n: 0,
+        };
+    -
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title You
+        link(href="/static/css/index.css", rel="stylesheet")
+
+        meta(property='og:site_name' content=site_name)
+        meta(property='og:title' content=config.title)
+        meta(property='og:description' content=config.description)
+        meta(property='og:image' content=config.image)
+        meta(property='og:url' content=config.url)
+        meta(name='twitter:card' content=config.card)
+        meta(property='fb:app_id' content=config.fb_app_id)
+        meta(name='twitter:site' content=config.twitter)
+
+    style
+        include you.css
+        color: #666
+        
+            
+    body
+        
+        include ../../../layout/header
+        #content
+            #title
+                h1 #[spa.blue Men] & #[span.pink Women]
+                p #[span.green Money] doesnt matter. 
+                p.right Looks matter more to #[span.blue Men]
+                p.center #[span.pink Women] care more about personality traits
+
+
+
+            include menVwomen.html
+
+            footer
+                p.wide
+                    em. 
+                      When people look for love, what is thing they prize most highly? A new 20-country YouGov international study examines which attributes people most prioritise in a partner. The results are good news for the romantics, as across the planet personality is prized ahead of looks.
+                   
+                #source
+                    p source: #[a(href="https://d25d2506sfb94s.cloudfront.net/cumulus_uploads/document/ucgs0hwj7h/YouGov%20global%20partner%20preferences.pdf", title="YouGov") #[span.red You]#[span.grey Gov]]
+
+                #Author
+                    p
+                        em Author: #[a(href="waylonwalker.com") Waylon Walker]

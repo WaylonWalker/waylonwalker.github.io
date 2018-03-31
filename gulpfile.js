@@ -6,9 +6,11 @@ var gulp = require('gulp')
     autoprefixer = require('gulp-autoprefixer')
     sourcemaps = require('gulp-sourcemaps')
     browserSync = require('browser-sync').create()
+    plumberNotifier = require('gulp-plumber-notifier')
     py_files = '**/*.py'
     pug_watch_files = ['templates/**/*.pug', 'templates/**/*.md']
     pug_files = ['templates/pages/**/*.pug']
+    pug_dest = ''
     js_files = 'static/es6**/*.js'
     js_dest = 'static/js'
     sass_files = ['static/sass/**/*.sass', 'static/sass/**/*.scss']
@@ -19,13 +21,17 @@ var gulp = require('gulp')
     exec = require('child_process').exec
 
 gulp.task('pug', function(){
-    return gulp.src(pug_files)
-    .pipe(pug())
-    .pipe(gulp.dest(''))
+    return gulp
+    .src(pug_files)
+    .pipe(plumberNotifier())
+    .pipe(pug({pretty: true}))
+    .pipe(gulp.dest(pug_dest))
 })
 
 gulp.task('js', function(){
-    return gulp.src(js_files)
+    return gulp
+    .src(js_files)
+    .pipe(plumberNotifier())
     .pipe(browserify({debug: true}))
     .pipe(gulp.dest(js_dest))
 })
@@ -39,6 +45,7 @@ gulp.task('js-watch', ['js'], function (done) {
 gulp.task('sass', function(){
     return gulp
     .src(sass_files)
+    .pipe(plumberNotifier())
     .pipe(sourcemaps.init())
     .pipe(sass({debug: true, outputStyle: 'compressed'}))
     .pipe(sourcemaps.write())

@@ -1,7 +1,4 @@
-Title: Stepping up my SQL
-Date: 2018-03-24
-Category: Blog
-Tags: SQL, DataCamp
+
 
 <!-- COMMON TAGS -->
 <meta charset="utf-8">
@@ -215,3 +212,5 @@ AND e.year = 2015
 ORDER BY 
     c.name asc;
 ```
+
+Check out more content from me at [my blog](http://waylonwalker.com/blog)

@@ -1,112 +1,59 @@
 $text-color: hsla(348, 60%, 50%, 1)
-
-nav
+header
     display: flex
-    margin: 1rem
-    margin-top: 0
-    text-align: center
-    // width: 2rem
-    
-    h1, h2, h3, h4, h5, h6
-      color: #666
-      font-family: 'Oswald', "Arial Black", "Arial Bold", Gadget, sans-serif
-      text-shadow: none
+    align-items: center
+    top: 0
+    position: fixed
+    width: 100%
+    background: hsla(0, 0, 80%, 0.8)
 
+    @media only screen and (max-width: 1000px)
+        text-align: center
+        position: relative
+        align-items: stretch
+        flex-direction: column
+    
     a
-        text-decoration: none
-        color: $text-color
-    
-    ul
-        height: 4rem
-        margin-top: 1rem
-        margin-left: 1rem
-        display: none
-        border-radius: .2rem
-        
-
-    li
-        text-align: center
-        background: hsla(168, 50%, 80%, 0.5)
-        color: $text-color
-        border: #FFF
-        perspective: 1000px
-        padding: 1rem 1rem
-        border-radius: 0.1rem
-    
-    li:hover
-        background: hsla(168, 20%, 60%, 0.5)
-        
-    .logo
-        background: hsla(168, 20%, 80%, .5)
-        border-radius: 50%
-        height: 2rem
-        width: 2rem
         padding: 1rem
-        text-align: center
-        vertical-align: center
-        
-nav:hover
-    .logo
-       background: hsla(168, 20%, 60%, 0.5)
-        
-    ul
-        display: flex
-        list-style-type: none
-        
-            // padding-left: 2rem
-        ul  
-            position: absolute 
-            display: none
-            
+        display: block
     a:hover
-        cursor: pointer
-        
-    li:hover
-        ul
-            display: block
-    
+        background: darken(hsla(0, 0, 80%, 0.8), 20%)
+    ul
+        list-style-type: none
+    nav
+        text-align: center
+        #site-navigation
+            display: flex
+            align-items: center
 
-    ul.first
-        li
-            opacity: 0
-            perspective: 1000px
-            transform-origin: top
-            @for $i from 1 through 4 
-                &:nth-child(#{$i})
-                    animation:
-                        name: first
-                        duration: 300ms 
-                        delay: (150ms * $i)
-                        timing-function: ease-in-out
-                        fill-mode: forwards
-    ul.drop
-        li
-            opacity: 0
-            @for $i from 1 through 6
-                &:nth-child(#{$i})
-                    animation:
-                        name: drop
-                        duration: 300ms 
-                        delay: (150ms * $i)
-                        timing-function: ease-in-out
-                        fill-mode: forwards
+            align-items: stretch
+            
+            @media only screen and (max-width: 1000px)
+                flex-direction: column
 
-@keyframes first
-    0%
-        opacity: 0
-        transform: rotateX(-90deg)
-    90%
-        transform: rotateX(20deg)
-    100% 
-        opacity: 1
-        transform: rotateX(0deg)
-         
-@keyframes drop
-    0%
-        opacity: 0
-        transform: scale(0.8) rotateY(-90deg)
-    80%
-        transform: scale(1.1) rotateY(20deg)
-    100%
-        opacity: 1
-        transform: scale(1) rotateY(0deg)
+
+
+            .drop-item
+                position: absolute
+                opacity: 0
+                transition: all .5s
+                max-height: 0
+                @media only screen and (max-width: 1000px)
+                    position: relative 
+                    left: 0
+                    width: 100%
+
+            .drop:hover
+                @media only screen and (max-width: 1000px)
+                    width: 100%
+                .drop-item
+                    opacity: 1
+                    max-height: 500px
+                    background: hsla(0, 0, 80%, 0.8)
+                    margin: 0
+                    display: flex
+                    flex-direction: column
+                    a
+                        display: block
+                        pading: 1rem
+
