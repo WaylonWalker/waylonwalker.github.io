@@ -1,6 +1,6 @@
 Title: background tasks in python
 Date: 9/16/2017
-Category: Blog
+Category: python
 Tags: Python, Data Science
 
 # background tasks in python

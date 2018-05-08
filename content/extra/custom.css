@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css?family=Oswald|Lato|Dancing+Script|Shadows+Into+Light");
+h5 {
+    color: #666;
+    font-family: 'Oswald', "Arial Black", "Arial Bold", Gadget, sans-serif;
+}
+
+p {
+    font-family: 'Lato';
+}
+
+strong {
+    color: #444;
+    font-family: 'Oswald', "Arial Black", "Arial Bold", Gadget, sans-serif;
+}
+
+body {
+    background: azure
+}
+
+/* pre {
+    background: #5e6059 !important
+} */
+
+#featured {
+    border-radius: 0px;
+}

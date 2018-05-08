@@ -10,3 +10,27 @@ I have gone quite awhile without using ```c``` and instead using ```d```.  The r
 
 * edit a macro register
 * register
+
+
+## autocomplete
+
+<C-x> <C-p> repeats previously typed text
+
+    1. Whole lines                                     |i CTRL-X CTRL-L|
+    2. keywords in the current file                    |i CTRL-X CTRL-N|
+    3. keywords in 'dictionary'                        |i CTRL-X CTRL-K|
+    4. keywords in 'thesaurus', thesaurus-style        |i CTRL-X CTRL-T|
+    5. keywords in the current and included files      |i CTRL-X CTRL-I|
+    6. tags                                            |i CTRL-X CTRL-]|
+    7. file names                                      |i CTRL-X CTRL-F|
+    8. definitions or macros                           |i CTRL-X CTRL-D|
+    9. Vim command-line                                |i CTRL-X CTRL-V|
+    10. User defined completion                        |i CTRL-X CTRL-U|
+    11. omni completion                                |i CTRL-X CTRL-O|
+    12. Spelling suggestions                           |i CTRL-X s|
+    13. keywords in 'complete'                         |i CTRL-N|
+
+## z-commands 
+
+```zn```		Fold none: reset 'foldenable'.  All folds will be open.
+
