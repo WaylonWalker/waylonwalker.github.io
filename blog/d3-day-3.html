@@ -1,36 +1,102 @@
+
 <!DOCTYPE html>
 <html lang="english">
 <head>
-        <meta charset="utf-8" />
-        <title>D3 Day 3</title>
-        <link rel="stylesheet" href="http://www.waylonwalker.com/blog/theme/css/main.css" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="/blog/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="/blog/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="/blog/theme/font-awesome/css/font-awesome.min.css">
+
+    <link href="/blog/static/custom.css" rel="stylesheet">
+
+
+
+
+
+
+<meta name="author" content="Waylon Walker" />
+<meta name="description" content="Creating my First d3.js viz by following along with Ben Clinkinbeard&#39;s d3 in 5 days email." />
+<meta name="keywords" content="D3, Viz, FrontEnd">
+
+<meta property="og:site_name" content="WaylonWalker"/>
+<meta property="og:title" content="D3 Day 3"/>
+<meta property="og:description" content="Creating my First d3.js viz by following along with Ben Clinkinbeard&#39;s d3 in 5 days email."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="/blog/d3-day-3.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2018-05-05 00:00:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="/blog/author/waylon-walker.html">
+<meta property="article:section" content="Viz"/>
+<meta property="article:tag" content="D3"/>
+<meta property="article:tag" content="Viz"/>
+<meta property="article:tag" content="FrontEnd"/>
+<meta property="og:image" content="">
+
+  <title>WaylonWalker &ndash; D3 Day 3</title>
+
 </head>
+<body>
+  <aside>
+    <div>
+      <a href="/blog">
+        <img src="/blog/theme/img/profile.png" alt="Waylon Walker" title="Waylon Walker">
+      </a>
+      <h1><a href="/blog">Waylon Walker</a></h1>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="http://www.waylonwalker.com/blog/">WaylonWalker </a></h1>
-                <nav><ul>
-                    <li class="active"><a href="http://www.waylonwalker.com/blog/category/blog.html">Blog</a></li>
-                </ul>
-                </nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="http://www.waylonwalker.com/blog/d3-day-3.html" rel="bookmark"
-           title="Permalink to D3 Day 3">D3 Day 3</a></h1>
-    </header>
+<p>Data Scientist</p>
+      <nav>
+        <ul class="list">
 
-    <div class="entry-content">
-<footer class="post-info">
-        <span>Sat 05 May 2018</span>
-<span>| tags: <a href="http://www.waylonwalker.com/blog/tag/d3.html">D3</a><a href="http://www.waylonwalker.com/blog/tag/viz.html">Viz</a><a href="http://www.waylonwalker.com/blog/tag/frontend.html">FrontEnd</a></span>
-</footer><!-- /.post-info -->      <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js'></script>
+          <li><a href="/blog/" target="_blank">Home</a></li>
+          <li><a href="/" target="_blank">About</a></li>
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-twitter" href="https://twitter.com/_WaylonWalker" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/waylonwalker" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-instagram" href="https://www.instagram.com/yellowhatwoodworks/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="/blog">    Home
+</a>
+
+      <a href="/blog/archives.html">Archives</a>
+      <a href="/blog/categories.html">categories</a>
+      <a href="/blog/tags.html">tags</a>
+
+
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="d3-day-3">D3 Day 3</h1>
+    <p>
+          Posted on Sat 05 May 2018 in <a href="/blog/category/viz.html">Viz</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js'></script>
 
 <style>
     #content{
@@ -62,7 +128,7 @@
 </style>
 
 <h2>Learn D3 in 5 days</h2>
-<p>I recently subscribed to Ben Clinkinbear's learn D3.js in 5 days, and am currently on day 3.  I read through the first 2 days, and felt fairly comfortable with selecting elements, so I did not follow along on the first two days.  I probably should have, but there are only so many hours in the day.</p>
+<p>I recently subscribed to Ben Clinkinbeard's learn D3.js in 5 days, and am currently on day 3.  I read through the first 2 days, and felt fairly comfortable with selecting elements, so I did not follow along on the first two days.  I probably should have, but there are only so many hours in the day.</p>
 <h3>Why Learn D3</h3>
 <p>D3 is the ubiquitous dynamic visualization library for building custom interactive visualizations on the web.  It is a bit low level, and more verbose than many other libraries that build upon it, but if you want full control D3 is the way to go.  I have used a few libraries built upon d3 in the past and have been very happy with the results.  For now I want to start learning a bit about how d3 works.  I know that learning it is going to take a long time, so I want to start working on some simple examples now in order to build my understanding so that I can learn quickly when I am ready to dive in.  If I never decide I need to take the deep dive into d3, I think understanding how it works will only help when I am using higher level libraries.</p>
 <h2>Final Result</h2>
@@ -318,46 +384,53 @@ so see how to map data to attributes</p>
 
 <h2>Final Thoughts</h2>
 <p>I express how fun this was.  I have always viewed d3 as something so low level I would never be able to touch.  The tutorial was super fun and very approachable.  Any other resources that I have seen to start learning d3 appear to be very time consuming before you start writing code and digging into it yourself. These examples were great, I was able to get started creating visualizations in no more than 5 minutes of reading.  Now that I feel like I have a shallow understanding of how it works I feel better prepared to dive in.</p>
-    </div><!-- /.entry-content -->
-    <div class="comments">
-      <h2>Comments !</h2>
-      <div id="disqus_thread"></div>
-      <script type="text/javascript">
-        var disqus_identifier = "d3-day-3.html";
-        var disqus_url = "http://www.waylonwalker.com/blog/d3-day-3.html";
-        (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//waylonwalker.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-      </script>
-    </div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="/blog/tag/d3.html">D3</a>
+      <a href="/blog/tag/viz.html">Viz</a>
+      <a href="/blog/tag/frontend.html">FrontEnd</a>
+    </p>
+  </div>
 
-  </article>
-</section>
-        <section id="extras" class="body">
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
 
-                            <li><a href="https://twitter.com/_WaylonWalker">@_WaylonWalker</a></li>
-                            <li><a href="https://github.com/waylonwalker">waylonwalker</a></li>
-                            <li><a href="https://www.instagram.com/yellowhatwoodworks/"><i class="fa fa-instagram"></i>@yellowhatwoodworks</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
 
-        <footer id="contentinfo" class="body">
-        </footer><!-- /#contentinfo -->
 
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'waylonwalker';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 </script>
+<noscript>
+        Please enable JavaScript to view comments.
+
+</noscript>
+<!-- End Disqus -->
+</article>
+
+    <footer>
+<p>Waylon Walker</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " WaylonWalker ",
+  "url" : "/blog",
+  "image": "",
+  "description": "Blogging about my adventures in data science"
+}
+</script>
+
 </body>
 </html>

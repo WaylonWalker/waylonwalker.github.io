@@ -1,163 +1,125 @@
+
 <!DOCTYPE html>
 <html lang="english">
 <head>
-        <meta charset="utf-8" />
-        <title>WaylonWalker - Data Science</title>
-        <link rel="stylesheet" href="http://www.waylonwalker.com/blog/theme/css/main.css" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="/blog/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="/blog/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="/blog/theme/font-awesome/css/font-awesome.min.css">
+
+    <link href="/blog/static/custom.css" rel="stylesheet">
+
+
+
+
+
+
+    <meta name="author" content="Waylon Walker" />
+    <meta name="description" content="Blogging about my adventures in data science" />
+<meta property="og:site_name" content="WaylonWalker"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="WaylonWalker"/>
+<meta property="og:description" content="Blogging about my adventures in data science"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="/blog"/>
+
+  <title>WaylonWalker &ndash;     Tag Data Science
+</title>
+
 </head>
+<body>
+  <aside>
+    <div>
+      <a href="/blog">
+        <img src="/blog/theme/img/profile.png" alt="Waylon Walker" title="Waylon Walker">
+      </a>
+      <h1><a href="/blog">Waylon Walker</a></h1>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="http://www.waylonwalker.com/blog/">WaylonWalker </a></h1>
-                <nav><ul>
-                    <li><a href="http://www.waylonwalker.com/blog/category/blog.html">Blog</a></li>
-                </ul>
-                </nav>
-        </header><!-- /#banner -->
+<p>Data Scientist</p>
+      <nav>
+        <ul class="list">
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="http://www.waylonwalker.com/blog/background-tasks-in-python.html">background tasks in python</a></h1>
-<footer class="post-info">
-        <span>Sat 16 September 2017</span>
-<span>| tags: <a href="http://www.waylonwalker.com/blog/tag/python.html">Python</a><a href="http://www.waylonwalker.com/blog/tag/data-science.html">Data Science</a></span>
-</footer><!-- /.post-info --><h1>background tasks in python</h1>
-<p>I have tried most of the different methods in the past and found that copying and pasting the <a href="https://docs.python.org/3/library/concurrent.futures.html#threadpoolexecutor-example">threadpoolexecutor example</a> or the <a href="https://docs.python.org/3/library/concurrent.futures.html#processpoolexecutor-example">processpoolexecutor example</a> from the standard library documentation to be the most reliable.  Since this is often something that I stuff in the back of a utility module of a library it is not something that I write often enough to be familiar with, which makes it both hard to write and hard to read and debug.  If you are looking for a good overview of the difference concurrency <a href="https://twitter.com/raymondh">Raymond Hettinger</a> has a great talk about the difference between the various different methods, when to use them and why.</p>
-<p>Recently a new python library was released to make running tasks in the background very simple. The <a href="https://github.com/kennethreitz/background">background</a> project by Kenneth Reitz is a high level implementation of python 3's ThreadPoolExecutor.  I have been playing around with this project over the last week and I will say that this is definitely the simplest way to run background tasks in python by far.  It really simplifes the syntax and lets me focus on my job rather than implementing custom concurrent code that is more difficult to debug.</p>
-<h2>Background</h2>
-<p>I have pulled the latest version of the project in Sept 2017.  I found that it had some updates that were important to pass *args and **kwargs compared to the pypi version.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">background</span> <span class="kn">as</span> <span class="nn">bg</span>
+          <li><a href="/blog/" target="_blank">Home</a></li>
+          <li><a href="/" target="_blank">About</a></li>
+        </ul>
+      </nav>
 
-<span class="o">%</span><span class="n">load_ext</span> <span class="n">watermark</span>
-<span class="o">%</span><span class="n">watermark</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="n">p</span> <span class="n">background</span>
-</pre></div>
+      <ul class="social">
+        <li><a class="sc-twitter" href="https://twitter.com/_WaylonWalker" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/waylonwalker" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-instagram" href="https://www.instagram.com/yellowhatwoodworks/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+      </ul>
+    </div>
 
 
-<div class="highlight"><pre><span></span>2017-09-16
+  </aside>
+  <main>
 
-CPython 3.6.2
-IPython 6.1.0
+    <nav>
+      <a href="/blog">    Home
+</a>
 
-background n
-</pre></div>
-
-
-<h2>Define Worker Functions</h2>
-<p>Each of these worker functions takes 1s to run, simulating a moderately long calculation that we need to do many times over.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">work</span><span class="p">():</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="mi">1</span>
-
-<span class="nd">@bg.task</span>
-<span class="k">def</span> <span class="nf">bg_work</span><span class="p">():</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="mi">1</span>
-</pre></div>
+      <a href="/blog/archives.html">Archives</a>
+      <a href="/blog/categories.html">categories</a>
+      <a href="/blog/tags.html">tags</a>
 
 
-<h2>Run the Worker Functions</h2>
-<h2>Blocking function</h2>
-<p>This function is blocking each time the function runs, thus taking 1 second to run for each calculation.  The example below took exactly <strong>100 s</strong> to run 100 calculations.  Depending on your use case this may not be fast enough.  If the calculations do not rely on the global state</p>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
-<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-    <span class="n">work</span><span class="p">()</span>
-</pre></div>
+    </nav>
 
 
-<div class="highlight"><pre><span></span>Wall time: 1min 40s
-</pre></div>
+
+<article>
+  <header>
+    <h2><a href="/blog/background-tasks-in-python.html#background-tasks-in-python">background tasks in python</a></h2>
+    <p>
+          Posted on Sat 16 September 2017 in <a href="/blog/category/python.html">python</a>
 
 
-<h3>Reaction</h3>
-<p>I  know what half of you are saying to yourselfs..</p>
-<blockquote>
-<p>!!What!! that took 100 s, by now my users have already sent a dozen messages and filed an issue that my feature is down</p>
-</blockquote>
-<p>and the other half</p>
-<blockquote>
-<p>Seriously that wasnt even enough time to grab a coffee.  Any real time consuming analysis takes at least 3 dats 14 hours 159 seconds before I start to care about concurrency</p>
-</blockquote>
-<p>To you I say... I am impatient and I got other things to do rather than wait on this maching to finish its work.  Let's get into this concurrency stuff.</p>
-<h2>Background Function</h2>
-<p>This function spins off worker processes and runs much faster.  By default background sets the number of processes to the number of cpu cores available, Therefore this function should run in n/4 + (inefficiency).  Here we see that the result is just over <strong>13 s</strong>.</p>
-<p>Note:<em>Since there is a bit of inefficiency added by needing to handle all of the threads it is not exactly divided by the number of workers.</em></p>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
-<span class="n">f_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">bg_work</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)];</span>
+          &#8226;     Tagged with
 
-<span class="k">while</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">([</span><span class="n">f</span><span class="o">.</span><span class="n">done</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">f_list</span><span class="p">]):</span>
-    <span class="k">pass</span>
-</pre></div>
+              <a href="/blog/tag/python.html">Python</a>,              <a href="/blog/tag/data-science.html">Data Science</a>
+    </p>
+  </header>
+  <div>
+      <h1>background tasks in python</h1>
+<p>I have tried most of the different methods in the past and found that copying and pasting the <a href="https://docs.python.org/3/library/concurrent.futures.html#threadpoolexecutor-example">threadpoolexecutor example</a> or the <a href="https://docs.python.org/3/library/concurrent.futures.html#processpoolexecutor-example">processpoolexecutor example</a> from the standard library documentation to be the most reliable.  Since this is often something that I stuff in the back of …</p>
+      <br>
+      <a class="btn" href="/blog/background-tasks-in-python.html#background-tasks-in-python">    Continue reading
+</a>
+  </div>
+</article>
+
+  <div class="pagination">
+  </div>
 
 
-<div class="highlight"><pre><span></span>Wall time: 13.1 s
-</pre></div>
 
 
-<h3>Reaction</h3>
-<p>I know what your saying this time.</p>
-<blockquote>
-<p>really a 7.6x improvement...  Is that really even woth the extra work.  </p>
-</blockquote>
-<p>Fine then lets crank it up to 11!</p>
-<h3>Lots of Background</h3>
-<p>lets set the number of background processes to a value just higher to than the number of workers we need to run in order to start them all simultaneously. With this simple example that is not very CPU intensive we see the result is just over the amount of time that it takes to run 1 worker. </p>
-<div class="highlight"><pre><span></span><span class="n">bg</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="mi">110</span>
-</pre></div>
+    <footer>
+<p>Waylon Walker</p>    </footer>
+  </main>
 
 
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
-<span class="n">f_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">bg_work</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)];</span>
-
-<span class="k">while</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">([</span><span class="n">f</span><span class="o">.</span><span class="n">done</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">f_list</span><span class="p">]):</span>
-    <span class="k">pass</span>
-</pre></div>
 
 
-<div class="highlight"><pre><span></span>Wall time: 1.09 s
-</pre></div>
-
-
-<h3>Reaction</h3>
-<blockquote>
-<p>91x improvement by putting my calculations into a function, adding a decorator, and some checks, im in.</p>
-</blockquote>
-<h2>On Tap</h2>
-<p>This week while taking it up to 11 I was enjoying a super thick and rich cup of El Salvador Finca Rosa from Onyx Coffee Labs.  Check out their love for letting the bean speak for it self and producing a great cup.</p>
-<p><a href="https://onyxcoffeelab.com"><img src="https://cdn.shopify.com/s/files/1/1707/3261/files/coffee_science.png?5305428688827820856"></a></p><p><a href="http://www.waylonwalker.com/blog/background-tasks-in-python.html#disqus_thread">comments</a></p>                </article>
-<p class="paginator">
-    Page 1 / 1
-</p>
-            </aside><!-- /#featured -->
-            </ol><!-- /#posts-list -->
-            </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-
-                            <li><a href="https://twitter.com/_WaylonWalker">@_WaylonWalker</a></li>
-                            <li><a href="https://github.com/waylonwalker">waylonwalker</a></li>
-                            <li><a href="https://www.instagram.com/yellowhatwoodworks/"><i class="fa fa-instagram"></i>@yellowhatwoodworks</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-        </footer><!-- /#contentinfo -->
-
-<script type="text/javascript">
-    var disqus_shortname = 'waylonwalker';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " WaylonWalker ",
+  "url" : "/blog",
+  "image": "",
+  "description": "Blogging about my adventures in data science"
+}
 </script>
+
 </body>
 </html>

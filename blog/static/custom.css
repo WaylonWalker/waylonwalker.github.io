@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css?family=Oswald|Lato|Dancing+Script|Shadows+Into+Light");
+h1, h2, h3, h4, h5 {
+    color: #666;
+    font-family: 'Oswald', "Arial Black", "Arial Bold", Gadget, sans-serif;
+}
+
+p {
+    font-family: 'Lato';
+}
+
+strong {
+    color: #444;
+    font-family: 'Oswald', "Arial Black", "Arial Bold", Gadget, sans-serif;
+}
+
+body {
+    /* background: azure */
+}
+
+aside {
+    background: #351a2e
+}
+
+
+pre {
+    background: #f2f2f2 !important
+}
+
+#featured {
+    border-radius: 0px;
+}
+
+.dataframe {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 80%; }
+
+.dataframe td, .dataframe th {
+  border: 1px solid #ddd;
+  padding: 8px; }
+
+.dataframe tr:nth-child(even) {
+  background-color: #f2f2f2; }
+
+.dataframe tr:hover {
+  background-color: #ddd; }
+
+.dataframe th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #fff6df;
+  color: #707070; }
