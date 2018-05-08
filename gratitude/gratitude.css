@@ -3,25 +3,55 @@
 header {
   display: flex;
   align-items: center;
-  padding: 1rem 0 1rem 0;
   top: 0;
   position: fixed;
   width: 100%;
   background: rgba(204, 204, 204, 0.8); }
+  @media only screen and (max-width: 1000px) {
+    header {
+      text-align: center;
+      position: relative;
+      align-items: stretch;
+      flex-direction: column; } }
+  header a {
+    padding: 1rem;
+    display: block; }
+  header a:hover {
+    background: rgba(153, 153, 153, 0.8); }
   header ul {
     list-style-type: none; }
   header nav {
-    display: flex;
     text-align: center; }
     header nav #site-navigation {
       display: flex;
-      align-items: center; }
-      header nav #site-navigation a {
-        padding: 1rem; }
-      header nav #site-navigation a:hover {
-        background: rgba(153, 153, 153, 0.8); }
-      header nav #site-navigation .drop {
-        display: none; }
+      align-items: center;
+      align-items: stretch; }
+      @media only screen and (max-width: 1000px) {
+        header nav #site-navigation {
+          flex-direction: column; } }
+      header nav #site-navigation .drop-item {
+        position: absolute;
+        opacity: 0;
+        transition: all .5s;
+        max-height: 0; }
+        @media only screen and (max-width: 1000px) {
+          header nav #site-navigation .drop-item {
+            position: relative;
+            left: 0;
+            width: 100%; } }
+      @media only screen and (max-width: 1000px) {
+        header nav #site-navigation .drop:hover {
+          width: 100%; } }
+      header nav #site-navigation .drop:hover .drop-item {
+        opacity: 1;
+        max-height: 500px;
+        background: rgba(204, 204, 204, 0.8);
+        margin: 0;
+        display: flex;
+        flex-direction: column; }
+        header nav #site-navigation .drop:hover .drop-item a {
+          display: block;
+          pading: 1rem; }
 
 footer {
   text-align: right;
@@ -63,7 +93,7 @@ body {
   background: url("/gratitude/static/img/juha-lakaniemi-445378.jpg") cover no-repeat fixed; }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #879290;
+  color: #616b69;
   font-family: 'Oswald', "Arial Black", "Arial Bold", Gadget, sans-serif; }
 
 p {
