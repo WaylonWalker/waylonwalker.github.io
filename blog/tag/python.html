@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="http://www.waylonwalker.com/blog/theme/css/main.css" />
 
         <!--[if IE]>
-            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 </head>
 
@@ -15,22 +15,16 @@
                 <h1><a href="http://www.waylonwalker.com/blog/">WaylonWalker </a></h1>
                 <nav><ul>
                     <li><a href="http://www.waylonwalker.com/blog/category/blog.html">Blog</a></li>
-                </ul></nav>
+                </ul>
+                </nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
                     <h1 class="entry-title"><a href="http://www.waylonwalker.com/blog/background-tasks-in-python.html">background tasks in python</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2017-09-16T00:00:00-05:00">
-                Published: Sat 16 September 2017
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://www.waylonwalker.com/blog/author/waylon-walker.html">Waylon Walker</a>
-        </address>
-<p>In <a href="http://www.waylonwalker.com/blog/category/blog.html">Blog</a>.</p>
-<p>tags: <a href="http://www.waylonwalker.com/blog/tag/python.html">Python</a> <a href="http://www.waylonwalker.com/blog/tag/data-science.html">Data Science</a> </p>
+        <span>Sat 16 September 2017</span>
+<span>| tags: <a href="http://www.waylonwalker.com/blog/tag/python.html">Python</a><a href="http://www.waylonwalker.com/blog/tag/data-science.html">Data Science</a></span>
 </footer><!-- /.post-info --><h1>background tasks in python</h1>
 <p>I have tried most of the different methods in the past and found that copying and pasting the <a href="https://docs.python.org/3/library/concurrent.futures.html#threadpoolexecutor-example">threadpoolexecutor example</a> or the <a href="https://docs.python.org/3/library/concurrent.futures.html#processpoolexecutor-example">processpoolexecutor example</a> from the standard library documentation to be the most reliable.  Since this is often something that I stuff in the back of a utility module of a library it is not something that I write often enough to be familiar with, which makes it both hard to write and hard to read and debug.  If you are looking for a good overview of the difference concurrency <a href="https://twitter.com/raymondh">Raymond Hettinger</a> has a great talk about the difference between the various different methods, when to use them and why.</p>
 <p>Recently a new python library was released to make running tasks in the background very simple. The <a href="https://github.com/kennethreitz/background">background</a> project by Kenneth Reitz is a high level implementation of python 3's ThreadPoolExecutor.  I have been playing around with this project over the last week and I will say that this is definitely the simplest way to run background tasks in python by far.  It really simplifes the syntax and lets me focus on my job rather than implementing custom concurrent code that is more difficult to debug.</p>
@@ -134,11 +128,10 @@ background n
 </blockquote>
 <h2>On Tap</h2>
 <p>This week while taking it up to 11 I was enjoying a super thick and rich cup of El Salvador Finca Rosa from Onyx Coffee Labs.  Check out their love for letting the bean speak for it self and producing a great cup.</p>
-<p><a href="https://onyxcoffeelab.com"><img src="https://cdn.shopify.com/s/files/1/1707/3261/files/coffee_science.png?5305428688827820856"></a></p><p>There are <a href="http://www.waylonwalker.com/blog/background-tasks-in-python.html#disqus_thread">comments</a>.</p>                </article>
+<p><a href="https://onyxcoffeelab.com"><img src="https://cdn.shopify.com/s/files/1/1707/3261/files/coffee_science.png?5305428688827820856"></a></p><p><a href="http://www.waylonwalker.com/blog/background-tasks-in-python.html#disqus_thread">comments</a></p>                </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>
-                    <hr />
                     <ol id="posts-list" class="hfeed">
 
             <li><article class="hentry">
@@ -149,15 +142,8 @@ background n
 
                 <div class="entry-content">
 <footer class="post-info">
-        <abbr class="published" title="2017-05-30T00:00:00-05:00">
-                Published: Tue 30 May 2017
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://www.waylonwalker.com/blog/author/waylon-walker.html">Waylon Walker</a>
-        </address>
-<p>In <a href="http://www.waylonwalker.com/blog/category/blog.html">Blog</a>.</p>
-<p>tags: <a href="http://www.waylonwalker.com/blog/tag/python.html">Python</a> <a href="http://www.waylonwalker.com/blog/tag/pycon.html">Pycon</a> <a href="http://www.waylonwalker.com/blog/tag/youtube.html">Youtube</a> </p>
+        <span>Tue 30 May 2017</span>
+<span>| tags: <a href="http://www.waylonwalker.com/blog/tag/python.html">Python</a><a href="http://www.waylonwalker.com/blog/tag/pycon.html">Pycon</a><a href="http://www.waylonwalker.com/blog/tag/youtube.html">Youtube</a></span>
 </footer><!-- /.post-info -->                <h1>Pycon 2017 Roundup</h1>
 <p>Good afternoon fellow Data Geeks.  Last week <a href="https://www.youtube.com/channel/UCrJhliKNQ8g0qoE_zvL8eVg">Pycon</a> released 141 videos of greatness.  Here are my top picks from the event.</p>
 <h2>#3 Kelsey Hightower - Keynote - Pycon 2017</h2>
@@ -168,10 +154,13 @@ background n
 <p><a href="http://www.youtube.com/watch?v=knMg6G9_XCg" title="Click to Watch"><img alt="Click to Watch" src="http://img.youtube.com/vi/knMg6G9_XCg/0.jpg"></a></p>
 <h2>What's …</h2>
                 <a class="readmore" href="http://www.waylonwalker.com/blog/pycon-2017-roundup.html">read more</a>
-<p>There are <a href="http://www.waylonwalker.com/blog/pycon-2017-roundup.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+<p><a href="http://www.waylonwalker.com/blog/pycon-2017-roundup.html#disqus_thread">comments</a></p>                </div><!-- /.entry-content -->
             </article></li>
-                </ol><!-- /#posts-list -->
-                </section><!-- /#content -->
+            </ol><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+            </section><!-- /#content -->
         <section id="extras" class="body">
                 <div class="social">
                         <h2>social</h2>
@@ -185,11 +174,6 @@ background n
         </section><!-- /#extras -->
 
         <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
         </footer><!-- /#contentinfo -->
 
 <script type="text/javascript">
@@ -197,7 +181,7 @@ background n
     (function () {
         var s = document.createElement('script'); s.async = true;
         s.type = 'text/javascript';
-        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
 </script>
