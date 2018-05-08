@@ -1,5 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>WaylonWalker - Blog</title><link href="www.waylonwalker.com/blog/" rel="alternate"></link><link href="www.waylonwalker.com/blog/feeds/blog.atom.xml" rel="self"></link><id>www.waylonwalker.com/blog/</id><updated>2018-05-05T00:00:00-05:00</updated><entry><title>D3 Day 3</title><link href="www.waylonwalker.com/blog/d3-day-3.html" rel="alternate"></link><published>2018-05-05T00:00:00-05:00</published><updated>2018-05-05T00:00:00-05:00</updated><author><name>Waylon Walker</name></author><id>tag:None,2018-05-05:www.waylonwalker.com/blog/d3-day-3.html</id><summary type="html">&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js'&gt;&lt;/script&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>WaylonWalker - Blog</title><link href="www.waylonwalker.com/blog/" rel="alternate"></link><link href="www.waylonwalker.com/blog/feeds/blog.atom.xml" rel="self"></link><id>www.waylonwalker.com/blog/</id><updated>2018-05-06T00:00:00-05:00</updated><entry><title>D3 Day 4</title><link href="www.waylonwalker.com/blog/d3-day-4.html" rel="alternate"></link><published>2018-05-06T00:00:00-05:00</published><updated>2018-05-06T00:00:00-05:00</updated><author><name>Waylon Walker</name></author><id>tag:None,2018-05-06:www.waylonwalker.com/blog/d3-day-4.html</id><summary type="html">&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js'&gt;&lt;/script&gt;
+
+&lt;style&gt;
+    #content{
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .chart {
+        display: block;
+        padding: 10px;
+        background: peachpuff;
+        transition: all 500ms
+    }
+
+    .bar {
+        height: 30px;
+        margin: 5px;
+        background: teal;
+    }
+    .bar:hover{
+        background: #444;
+        }
+    button {
+        background: rgb(240, 196, 211);
+        border: none;
+        font-size: 1.3rem;
+        border-radius: 5px;
+        padding: .2rem 1rem;
+        margin-bottom: 1rem
+    }
+    .on {
+        background: palevioletred;
+    }
+    .big {
+    width …&lt;/style&gt;</summary><content type="html">&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js'&gt;&lt;/script&gt;
+
+&lt;style&gt;
+    #content{
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .chart {
+        display: block;
+        padding: 10px;
+        background: peachpuff;
+        transition: all 500ms
+    }
+
+    .bar {
+        height: 30px;
+        margin: 5px;
+        background: teal;
+    }
+    .bar:hover{
+        background: #444;
+        }
+    button {
+        background: rgb(240, 196, 211);
+        border: none;
+        font-size: 1.3rem;
+        border-radius: 5px;
+        padding: .2rem 1rem;
+        margin-bottom: 1rem
+    }
+    .on {
+        background: palevioletred;
+    }
+    .big {
+    width: 100%
+    }
+    .small {
+    width: 50%
+    }
+&lt;/style&gt;
+
+&lt;h2&gt;Learn D3 in 5 days&lt;/h2&gt;
+&lt;h2&gt;Recall Example 3 from yesterday&lt;/h2&gt;
+&lt;div id="chart3" class='chart'&gt;
+    &lt;button class='math' onclick="render3('math')"&gt;Math&lt;/button&gt;
+    &lt;button class='science' onclick="render3('science')"&gt;Science&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    const data3 = [
+        { name: 'Alice', math: 93, science: 84 },
+        { name: 'Bob', math: 73, science: 82 },
+        { name: 'James', math: 92, science: 78 },
+        { name: 'Steve', math: 77, science: 93 },
+        { name: 'Jordan', math: 80, science: 68 },
+    ]
+
+    function render3(subject) {
+        d3.select('#chart3')
+            .selectAll('button')
+            .classed('on', false)
+        d3.select('#chart3')
+            .select('.' + subject)
+            .attr('class', subject + ' on')
+
+        const bars = d3.select('#chart3')
+            .selectAll('div')
+            .data(data3, function(d) {
+                return d.name
+            })
+        const newBars = bars.enter()
+            .append('div')
+                .attr('class', 'bar')
+                .style('width', 0)
+        newBars.merge(bars)
+            .transition()
+            .style('width', function(d) {
+                return (d[subject]) + 'px'
+            })
+    }
+    render3('math')
+&lt;/script&gt;
+
+&lt;h2&gt;Add Scales&lt;/h2&gt;
+&lt;p&gt;&lt;div id='buttons'&gt;
+    &lt;h3&gt;Subject&lt;/h3&gt;
+    &lt;div id='subjects'&gt;
+        &lt;button class='math' onclick="render4('math')"&gt;Math&lt;/button&gt;
+        &lt;button class='science' onclick="render4('science')"&gt;Science&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;h3&gt;Chart Size&lt;/h3&gt;
+    &lt;div id='sizes'&gt;
+        &lt;button class='chart4-big-btn' onclick='chart4_size("big")')&gt;Large&lt;/button&gt;
+        &lt;button class='chart4-small-btn' onclick='chart4_size("small")'&gt;Small&lt;/button&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;div id="chart4" class='chart'&gt;&lt;/div&gt;
+
+&lt;script&gt;
+    const data4 = [
+        { name: 'Alice', math: 93, science: 84},
+        { name: 'Bob', math: 73, science: 82 },
+        { name: 'James', math: 92, science: 78},
+        { name: 'Steve', math: 77, science: 93 },
+        { name: 'Jordan', math: 80, science: 68 },
+    ]
+
+    chart4 = document.getElementById('chart4')
+
+
+    let width = function() {
+        return chart4.getBoundingClientRect().width
+        }
+    let height = function() {
+        return chart4.getBoundingClientRect().height
+        }
+    let barHeight = function() {
+        height() /  data4.length + 'px'
+        }
+
+    function chart4_size(size) {
+        d3.select('#sizes')
+            .selectAll('button')
+            .classed('on', false)
+        d3.select('#sizes')
+            .select('.chart4-' + size + '-btn')
+            .classed('on', true)
+        d3.select('#chart4')
+            .attr('class', 'chart ' + size)
+        subject = document.getElementById('subjects').querySelector('.on').classList[0]
+        render4(subject)
+    }
+
+    function render4(subject) {
+
+        d3.select('#subjects')
+            .selectAll('button')
+            .classed('on', false);
+
+        d3.select('#subjects')
+            .select('.' + subject)
+            .attr('class', subject + ' on');
+
+        let xScale = d3.scaleLinear()
+            .domain([0, 100])
+            .range([0, width()]);
+
+        const bars = d3.select('#chart4')
+            .selectAll('div')
+            .data(data4, function(d) {
+                return d.name
+            })
+        const newBars = bars.enter()
+            .append('div')
+                .attr('class', 'bar')
+                .style('width', 0)
+
+        newBars.merge(bars)
+            .transition()
+            .style('width', function(d) {
+                return xScale(d[subject]) + 'px'
+            })
+            .style('height', barHeight())
+    }
+    render4('math')
+    chart4_size('big')
+&lt;/script&gt;</content><category term="D3"></category><category term="Viz"></category><category term="FrontEnd"></category></entry><entry><title>D3 Day 3</title><link href="www.waylonwalker.com/blog/d3-day-3.html" rel="alternate"></link><published>2018-05-05T00:00:00-05:00</published><updated>2018-05-05T00:00:00-05:00</updated><author><name>Waylon Walker</name></author><id>tag:None,2018-05-05:www.waylonwalker.com/blog/d3-day-3.html</id><summary type="html">&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js'&gt;&lt;/script&gt;
 
 &lt;style&gt;
     #content{
