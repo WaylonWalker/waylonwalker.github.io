@@ -138,6 +138,102 @@
 <h2><a href="https://www.youtube.com/watch?v=q-x7jK72E6E">Jason Huggins - Keynote </a></h2>
 <p>Jason had a great talk about teaching kids to code through his experiences with First Lego League.  He found that the event has the best of intentions, but does lend itself to schools with a larger budget that is able to order many different kits.  He has found himself deep down a rabbit hole of finding an affordable alternative that can be done with the inexpensive raspbery pi zero, and controlled  with the cheapest tablets.  He is currently working on a programming language called wildcard, that can be programmed with paper.  This really reminds me of a game that I play with my 5 year old son <a href="www.robotturtles.com">Robot Turtles</a>.  He really likes to play it.  I will definitely be following this project to see if this is something that I can do with him when its ready.</p>
 <p><a href="https://www.youtube.com/watch?v=q-x7jK72E6E"><img alt="Click to Watch" src="http://img.youtube.com/vi/q-x7jK72E6E/0.jpg"></a></p>
+<h2><a href="https://www.youtube.com/watch?v=DlgG0QdrqAU">Alex Petralia - Analyzing Data: What pandas and SQL Taught Me About Taking an Average</a></h2>
+<p>Asks the right questions before writing the first line of code.  Even the simplest questions such as averages have many possible pitfalls along the way.  Alex discusses how to prepare your data before averaging in this talk.  He brings some new <em>"Jargon"</em> .  I am not sure that this jargon made this any easier for me to understand or discuss.  It may take some time for this one to sink in to become effective.  I feel like using plain english is more effective as it is more easily understood by anyone.  "find the <strong>daily</strong> average <strong>sales</strong> by <strong>seller</strong>"</p>
+<h3>Jargon</h3>
+<p><strong>Collapsing key:</strong> 
+<em> the collapsed/aggregated data relevant to this analysis<br>
+</em> <em>we are overriding the primary key (i.e. what a table defines as an observation)</em>
+* the original number of rows</p>
+<p><strong>Grouping key:</strong> the key defining a group<em><em><br>
+</em> <em>eg. "for each Seller" is (seller), "for each Country and city is (Country, City)</em><br>
+</em> this defines how many rows are in the result</p>
+<p><strong> Obvervation key: a unit of observation for this analysis</strong><br>
+<em> <em>eg. "daily average" is (Date), "across regions" is (Region)</em>
+</em> this defines how many rows are in the denominator</p>
+<h3>Formula</h3>
+<p>Collapsing Key - Grouping Key = Observation Key</p>
+<h3>Example Question</h3>
+<p>Calculate the Average Daily Sales for each Seller.</p>
+<p><strong>Collapsing Key:</strong> (Date, Seller)
+<strong>Grouping Key:</strong> (Seller)
+<strong>Observation Key:</strong> (Date)</p>
+<h3>data set</h3>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>Date</th>
+<th>Seller</th>
+<th>ApplesSold</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Monday</td>
+<td>Mary</td>
+<td>5</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Monday</td>
+<td>Bob</td>
+<td>4</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Tuesday</td>
+<td>Bob</td>
+<td>8</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Thursday</td>
+<td>Jane</td>
+<td>10</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Thursday</td>
+<td>Jane</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<h3>SQL Example</h3>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span>
+    <span class="n">Seller</span><span class="p">,</span>
+    <span class="k">AVG</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+<span class="k">FROM</span> <span class="p">(</span>
+    <span class="k">SELECT</span>
+       <span class="nb">DATE</span><span class="p">,</span>
+       <span class="n">SELLER</span><span class="p">,</span>
+       <span class="k">SUM</span><span class="p">(</span><span class="n">ApplesSold</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total</span>
+    <span class="k">FROM</span>
+       <span class="n">Apples</span>
+    <span class="k">GROUP</span> <span class="k">BY</span>
+       <span class="nb">DATE</span><span class="p">,</span>
+       <span class="n">SELLER</span> <span class="c1">-- Collapsing Key</span>
+    <span class="p">)</span> <span class="k">as</span> <span class="n">t</span>
+<span class="k">GROUP</span> <span class="k">BY</span>
+    <span class="n">Seller</span> <span class="c1">-- Grouping Key</span>
+</pre></div>
+
+
+<h3>Pandas Example</h3>
+<p>I am interested in trying out this technique of using the second groupby.  I typically use an unstack instead, but that relies on having the order of the Collapsing key correct.</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="n">pd</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Seller&#39;</span><span class="p">])</span> <span class="c1"># Collapsing Key</span>
+    <span class="p">[</span><span class="s1">&#39;ApplesSold&#39;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s1">&#39;Seller&#39;</span><span class="p">)</span> <span class="c1"># Grouping Key</span>
+    <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="p">)</span>
+</pre></div>
+
+
+<p><a href="https://www.youtube.com/watch?v=DlgG0QdrqAU"><img alt="Click to Watch" src="http://img.youtube.com/vi/DlgG0QdrqAU/0.jpg"></a></p>
   </div>
   <div class="tag-cloud">
     <p>
