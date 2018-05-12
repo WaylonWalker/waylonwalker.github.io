@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+<html lang="english">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="/blog/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="/blog/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="/blog/theme/font-awesome/css/font-awesome.min.css">
+
+    <link href="/blog/static/custom.css" rel="stylesheet">
+
+
+
+
+
+
+<meta name="author" content="Waylon Walker" />
+<meta name="description" content="I decided it was time to put away the cheat sheets, step away from Stack Overflow, and improve my speed." />
+<meta name="keywords" content="Data, SQL, Learning">
+
+<meta property="og:site_name" content="WaylonWalker"/>
+<meta property="og:title" content="Stepping Up My SQL Game"/>
+<meta property="og:description" content="I decided it was time to put away the cheat sheets, step away from Stack Overflow, and improve my speed."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="/blog/stepping-up-my-sql-game.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2018-03-25 00:00:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="/blog/author/waylon-walker.html">
+<meta property="article:section" content="Blog"/>
+<meta property="article:tag" content="Data"/>
+<meta property="article:tag" content="SQL"/>
+<meta property="article:tag" content="Learning"/>
+<meta property="og:image" content="">
+
+  <title>WaylonWalker &ndash; Stepping Up My SQL Game</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="/blog">
+        <img src="/blog/theme/img/profile.png" alt="Waylon Walker" title="Waylon Walker">
+      </a>
+      <h1><a href="/blog">Waylon Walker</a></h1>
+
+<p>Data Scientist</p>
+      <nav>
+        <ul class="list">
+
+          <li><a href="/blog/" target="_blank">Home</a></li>
+          <li><a href="/" target="_blank">About</a></li>
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-twitter" href="https://twitter.com/_WaylonWalker" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/waylonwalker" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-instagram" href="https://www.instagram.com/yellowhatwoodworks/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="/blog">    Home
+</a>
+
+      <a href="/blog/archives.html">Archives</a>
+      <a href="/blog/categories.html">categories</a>
+      <a href="/blog/tags.html">tags</a>
+
+
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="stepping-up-my-sql-game">Stepping Up My SQL Game</h1>
+    <p>
+          Posted on Sun 25 March 2018 in <a href="/blog/category/blog.html">Blog</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <!-- COMMON TAGS -->
+
+<p><meta charset="utf-8">
+<title>Stepping Up My SQL Game</title>
+<!-- Search Engine -->
+<meta name="description" content="I decided it was time to put away the cheat sheets, step away from Stack Overflow, and improve my speed.">
+<meta name="image" content="http://www.waylonwalker.com/static/images/blog/sql.png">
+<!-- Schema.org for Google -->
+<meta itemprop="name" content="Stepping Up My SQL Game">
+<meta itemprop="description" content="I decided it was time to put away the cheat sheets, step away from Stack Overflow, and improve my speed.">
+<meta itemprop="image" content="http://www.waylonwalker.com/static/images/blog/sql.png">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Stepping Up My SQL Game">
+<meta name="twitter:description" content="I decided it was time to put away the cheat sheets, step away from Stack Overflow, and improve my speed.">
+<meta name="twitter:site" content="@_waylonwalker">
+<meta name="twitter:creator" content="@_waylonwalker">
+<meta name="twitter:image:src" content="http://www.waylonwalker.com/static/images/blog/sql.png">
+<!-- Open Graph general (Facebook, Pinterest & Google+) -->
+<meta name="og:title" content="Stepping Up My SQL Game">
+<meta name="og:description" content="I decided it was time to put away the cheat sheets, step away from Stack Overflow, and improve my speed.">
+<meta name="og:image" content="http://www.waylonwalker.com/static/images/blog/sql.png">
+<meta name="og:url" content="http://www.waylonwalker.com/blog/stepping-up-my-sql.html">
+<meta name="og:site_name" content="waylonwalker.com">
+<meta name="og:type" content="website"></p>
+<h1>Stepping up my SQL game</h1>
+<p>In 2018 I transitioned from a Product Engineering (Mechanical) role to a Data Scientist Role.  I entered this space with strong subject matter expertise with our products, our data, munging through data in pyhon, and data visualization in python.  My sql skills were lacking to say the least.  I had learned what I needed to know to get data from our relational databases, then use pandas to do any further analysis.    Just run something like the following and you have data.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> 
+    <span class="o">*</span> 
+<span class="k">FROM</span> 
+    <span class="k">Table</span> 
+<span class="k">Where</span> 
+    <span class="n">col_1</span> <span class="o">=</span> <span class="s1">&#39;col_1_filter&#39;</span>
+</pre></div>
+
+
+<p>This technique works great for small data sets that you only need to run once.  There is no shame to pull in a big dataset and start munging with it in pandas to get some results, and make decisions.  The problem becomes when your dataset becomes too big or you need to run the query on a frequent basis.  Doing the aggregations on the server run much quicker, as it reduces the time spent in io.  My longest running steps are currently io related.  Reducing these steps have improved my workflow.  At the point that I was getting server timeout errors, or using the same long running query in many places I would be searching for examples online, because I just did not have the experience with many more techniques.  I decided it was time to put away the cheat sheets, step away from Stack Overflow, and improve my speed.</p>
+<h2>Why Learn SQL in 2018??</h2>
+<p>SQL is far from the hot topic in 2018, AI, Deep Learning, BIG data, Machine Learning, Natural Language Processing take the win here.  SQL is so simple why would anyone want to spend time learning SQL?  The reason... all of those hot topics in 2018 require data.  My data mostly comes from relational databases which require sql to get data from them.  Without the ability to efficiently get the data I need to do an aanlysis I cannot even start.  Sure I could use an ORM, but I found that to be a bit unwieldy with the thousands of tables  we have in formats that were determined many years ago. Plus raw SQL is more transportable.  I commonly collaborate with other folks who do not use python.  I am proud that I am able to point them to the SQL I use rather than telling them to suck it up an learn python.  I truly believe that people are the most effective when they are able to choose their own stack of tools.  Taking some time to focus on the basics of Data Science will help be build a strong foundation for my career.</p>
+<h2><a href="https://campus.datacamp.com/courses/joining-data-in-postgresql">Joining Data in Posgres</a></h2>
+<p>Below are my notes from the <a href="https://campus.datacamp.com/courses/joining-data-in-postgresql">Joining Data in Posgres</a>
+course on DataCamp.  I will use these notes as a refresher when I need a quick reference.</p>
+<h3>Using()</h3>
+<p>When joining two tables on the same column the <code>USING</code> clause can be used as a shorthand.</p>
+<p><strong>without using</strong></p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> 
+
+<span class="k">FROM</span> 
+    <span class="n">Table1</span> <span class="k">as</span> <span class="n">t1</span>
+
+<span class="k">LEFT</span> <span class="k">JOIN</span> 
+    <span class="n">Table2</span> <span class="k">as</span> <span class="n">t2</span>
+    <span class="k">ON</span> <span class="n">t1</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">t2</span><span class="p">.</span><span class="n">id</span>
+</pre></div>
+
+
+<p><strong>with using</strong></p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> 
+    <span class="o">*</span> 
+
+<span class="k">FROM</span> 
+    <span class="n">Table1</span> <span class="k">as</span> <span class="n">t1</span>
+
+<span class="k">LEFT</span> <span class="k">JOIN</span> 
+    <span class="n">Table2</span> <span class="k">as</span> <span class="n">t2</span>
+    <span class="k">USING</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Join Types</h3>
+<p><em>for joining columns of data together into a single table</em></p>
+<p><code>INNER</code>: Includes only records contained in <strong>both</strong> tables.</p>
+<p><code>RIGHT</code>: Inlcudes all records from the <strong>right</strong>, droping values from the left if non-existent in the right, or leaving nulls if non-existant in the left.</p>
+<p><code>LEFT</code>: Inlcudes all records from the <strong>left</strong>, droping values from the right if non-existent in the left, or leaving nulls if non-existant in the right.</p>
+<p><code>FULL</code>: Combination of <code>Left</code> and <code>Right</code> Join, leaving nulls where data is missing in one table, and not droping any data.</p>
+<p><code>CROSS</code>: returns all <strong>pairs</strong> from two tables, does not have an on or using clause.</p>
+<h3>Union</h3>
+<p><em>for concatenating rows of data with the same columns</em></p>
+<p><code>Union</code>: returns only unique records, does not include duplicates.</p>
+<p><code>Union All</code>: returns all records(including duplicates)</p>
+<h3>Intersect</h3>
+<p><code>Intersect</code>: returns only records appearing in both tables</p>
+<h3>Execpt</h3>
+<p><code>Except</code>: returns only records not in the second table</p>
+<h3>Self-Joins</h3>
+<p><code>Semi-Join</code>: Filters based on results of a subquery.  Does not have direct sql syntax.  This type of join is achieved through a subquery in the where statement.</p>
+<p><code>Anti-Join</code>: Similar to the Semi-join, but using a <code>not</code> modifier.  This is particularly useful for debugging situations.</p>
+<h3>Subqueries</h3>
+<p>This is where I have really stepped up my sql game.  I was able to get practice writing more complex queries. I also learned about different methods of joining tables together.</p>
+<h4>WHERE</h4>
+<p>Subqueries are commonly found in the where clause to filter data.  Below is an example given in the course to select only the Asian countries with below average fertility rate from the states table. </p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> 
+   <span class="n">name</span><span class="p">,</span>
+   <span class="n">fert_rate</span>
+<span class="k">FROM</span> 
+    <span class="n">states</span>
+<span class="k">WHERE</span> 
+    <span class="n">continent</span> <span class="o">=</span> <span class="s1">&#39;Asia&#39;</span>
+<span class="k">AND</span> <span class="n">fert_rate</span> <span class="o">&lt;</span>
+        <span class="p">(</span><span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">fert_rate</span><span class="p">)</span>
+         <span class="k">FROM</span> <span class="n">states</span><span class="p">;)</span>
+</pre></div>
+
+
+<h4>SELECT</h4>
+<p>Subqueries can be found in the <code>SELECT</code> clause to create new columns of data.  This is a different technique than I have used in the past.  Previously I have only used <code>GROUPBY</code> statements to get this effect.  I can see where this can be really useful because it is not constrained by aggregations any data point can be pulled in with this tecnhique.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">DISTINCT</span>
+    <span class="n">continent</span><span class="p">,</span>
+    <span class="p">(</span><span class="k">SELECT</span> 
+        <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+     <span class="k">FROM</span> 
+        <span class="n">states</span>
+     <span class="k">WHERE</span> 
+        <span class="n">prime_ministers</span><span class="p">.</span><span class="n">continent</span> <span class="o">=</span> <span class="n">states</span><span class="p">.</span><span class="n">continent</span>
+    <span class="p">)</span> <span class="k">AS</span> <span class="n">countries_num</span>
+
+<span class="k">From</span> <span class="n">Prime</span> <span class="n">Ministers</span>
+</pre></div>
+
+
+<h4>FROM</h4>
+<p>subqueries found in the <code>FROM</code> clause can be very helpful to create a new dataset from an existing table.  I find these the easiest to read as it is not much different than creating a new table.  Again this can be very powerful in creating new columns that were not easily available otherwise.  </p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">DISTINCT</span>
+    <span class="n">monarchs</span><span class="p">.</span><span class="n">continent</span><span class="p">,</span>
+    <span class="n">subquery</span><span class="p">.</span><span class="n">max_perc</span>
+
+<span class="k">FROM</span>
+    <span class="n">monarchs</span><span class="p">,</span>
+    <span class="p">(</span><span class="k">SELECT</span>
+        <span class="n">continent</span><span class="p">,</span>
+        <span class="k">MAX</span><span class="p">(</span><span class="n">women_parli_perc</span><span class="p">)</span> <span class="k">AS</span> <span class="n">max_perc</span>
+
+    <span class="k">FROM</span>
+        <span class="n">states</span>
+
+    <span class="k">GROUP</span> <span class="k">BY</span> 
+        <span class="n">continent</span>
+    <span class="p">)</span> <span class="k">as</span> <span class="n">subquery</span>
+
+<span class="k">WHERE</span>
+    <span class="n">monarchs</span><span class="p">.</span><span class="n">continent</span> <span class="o">=</span> <span class="n">subquery</span><span class="p">.</span><span class="n">continent</span>
+
+<span class="k">ORDER</span> <span class="k">BY</span>
+    <span class="n">continent</span><span class="p">;</span>
+</pre></div>
+
+
+<h4>ON</h4>
+<p><strong>Challenge Problem 1</strong>  This problem was the one that had me more stumped than any other problem in the course.  I found the subquery inside the on statement very confusing to understand.  In this question we are joining the countries table to a subquery what yields country codes of countries with offial languages from the languages table.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">DISTINCT</span>
+    <span class="k">c</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
+    <span class="n">e</span><span class="p">.</span><span class="n">total_investment</span><span class="p">,</span>
+    <span class="n">e</span><span class="p">.</span><span class="n">imports</span>
+
+<span class="k">FROM</span> 
+    <span class="n">countries</span> <span class="k">as</span> <span class="k">c</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> 
+    <span class="n">economies</span> <span class="k">as</span> <span class="n">e</span>
+    <span class="k">ON</span> <span class="k">c</span><span class="p">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">code</span>
+
+    <span class="k">AND</span> <span class="k">c</span><span class="p">.</span><span class="n">code</span> <span class="k">in</span> <span class="p">(</span>
+    <span class="k">SELECT</span> 
+        <span class="n">l</span><span class="p">.</span><span class="n">code</span> 
+    <span class="k">FROM</span> 
+        <span class="n">languages</span> <span class="k">as</span> <span class="n">l</span>
+    <span class="k">WHERE</span> 
+        <span class="n">official</span> <span class="o">=</span> <span class="k">true</span>
+    <span class="p">)</span>
+
+<span class="k">WHERE</span> 
+    <span class="k">c</span><span class="p">.</span><span class="n">region</span> <span class="o">=</span> <span class="s1">&#39;Central America&#39;</span>
+<span class="k">AND</span> <span class="n">e</span><span class="p">.</span><span class="k">year</span> <span class="o">=</span> <span class="mi">2015</span>
+
+<span class="k">ORDER</span> <span class="k">BY</span> 
+    <span class="k">c</span><span class="p">.</span><span class="n">name</span> <span class="k">asc</span><span class="p">;</span>
+</pre></div>
+
+
+<p>Check out more content from me at <a href="http://waylonwalker.com/blog">my blog</a></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="/blog/tag/data.html">Data</a>
+      <a href="/blog/tag/sql.html">SQL</a>
+      <a href="/blog/tag/learning.html">Learning</a>
+    </p>
+  </div>
+
+
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'waylonwalker';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+        Please enable JavaScript to view comments.
+
+</noscript>
+<!-- End Disqus -->
+</article>
+
+    <footer>
+<p>Waylon Walker</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " WaylonWalker ",
+  "url" : "/blog",
+  "image": "",
+  "description": "Blogging about my adventures in data science"
+}
+</script>
+
+</body>
+</html>

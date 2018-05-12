@@ -1,0 +1,858 @@
+
+<!DOCTYPE html>
+<html lang="english">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="/blog/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="/blog/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="/blog/theme/font-awesome/css/font-awesome.min.css">
+
+    <link href="/blog/static/custom.css" rel="stylesheet">
+
+
+
+
+
+
+<meta name="author" content="Waylon Walker" />
+<meta name="description" content="My favorite pandas pattern I work with a lot of transactional timeseries data that includes categories. I often want to create timeseries plots with each category as its own line. This is the method that I use almost data to achieve this result. Typically the data that am working with …" />
+<meta name="keywords" content="">
+
+<meta property="og:site_name" content="WaylonWalker"/>
+<meta property="og:title" content="My favorite pandas pattern"/>
+<meta property="og:description" content="My favorite pandas pattern I work with a lot of transactional timeseries data that includes categories. I often want to create timeseries plots with each category as its own line. This is the method that I use almost data to achieve this result. Typically the data that am working with …"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="/blog/drafts/my-favorite-pandas-pattern.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2018-03-01 00:00:00-06:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="/blog/author/waylon-walker.html">
+<meta property="article:section" content="misc"/>
+<meta property="og:image" content="">
+
+  <title>WaylonWalker &ndash; My favorite pandas pattern</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="/blog">
+        <img src="/blog/theme/img/profile.png" alt="Waylon Walker" title="Waylon Walker">
+      </a>
+      <h1><a href="/blog">Waylon Walker</a></h1>
+
+<p>Data Scientist</p>
+      <nav>
+        <ul class="list">
+
+          <li><a href="/blog/" target="_blank">Home</a></li>
+          <li><a href="/" target="_blank">About</a></li>
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-twitter" href="https://twitter.com/_WaylonWalker" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/waylonwalker" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-instagram" href="https://www.instagram.com/yellowhatwoodworks/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="/blog">    Home
+</a>
+
+      <a href="/blog/archives.html">Archives</a>
+      <a href="/blog/categories.html">categories</a>
+      <a href="/blog/tags.html">tags</a>
+
+
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="my-favorite-pandas-pattern">My favorite pandas pattern</h1>
+    <p>
+          Posted on Thu 01 March 2018 in <a href="/blog/category/misc.html">misc</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <h1>My favorite pandas pattern</h1>
+<p>I work with a lot of transactional timeseries data that includes categories.  I often want to create timeseries plots with each category as its own line.  This is the method that I use almost data to achieve this result.  Typically the data that am working with changes very slowly and trends happen over years not days or weeks.  Plotting daily/weekly data tends to be noisy and hides the trend.  I use this pattern because it works well with my data and is easy to explain to my stakeholders.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="o">%</span> <span class="n">matplotlib</span> <span class="n">inline</span>
+</pre></div>
+
+
+<h2>Lets Fake some data</h2>
+<p>Here I am trying to simulate a subset of a large transactional data set. This could be something like sales data, production data, hourly billing, anything that has a date, category, and value.  Since we generated this data we know that it is clean.  I am still going to assume that it contains some nulls, and an irregular date range.</p>
+<div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">365</span><span class="o">*</span><span class="mi">5</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;level_0&#39;</span><span class="p">:</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;level_1&#39;</span><span class="p">:</span> <span class="s1">&#39;item&#39;</span><span class="p">,</span>
+        <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;qty&#39;</span><span class="p">,</span> <span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span>
+                     <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;paper&#39;</span><span class="p">,</span> <span class="s1">&#39;pencils&#39;</span><span class="p">,</span> <span class="s1">&#39;note cards&#39;</span><span class="p">,</span> <span class="s1">&#39;markers&#39;</span><span class="p">],</span>
+                     <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;1/1/2017&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">),</span>
+                     <span class="p">)</span>
+        <span class="o">.</span><span class="n">stack</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">))</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>item</th>
+      <th>qty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2017-01-01</td>
+      <td>paper</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2017-01-01</td>
+      <td>pencils</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2017-01-01</td>
+      <td>note cards</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2017-01-01</td>
+      <td>markers</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2017-01-02</td>
+      <td>paper</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2>The pattern</h2>
+<p>Here I am going to take my groupby date and item, this will take care of duplicate entries with the same time stamp.  Select the value I want to sum on. unstack the items index into columns.  Resample the data by month.  I could easily use any of the <a href="http://pandas.pydata.org/pandas-docs/stable/timeseries.html#offset-aliases">available rules</a>. Fill any missing months with 0, since there wasnt a transaction during that month. Apply a rolling window to get the annual sum.  I find that this helps to ground values in values that my stakeholders are used to seeing on a regular basis and reduces the need for them to recalculate in their head.  Then I am going to drop the nulls created by the rolling window for the first 11 rows.</p>
+<div class="highlight"><pre><span></span><span class="n">plot_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span>
+             <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;item&#39;</span><span class="p">])</span>
+             <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+             <span class="p">[</span><span class="s1">&#39;qty&#39;</span><span class="p">]</span>
+             <span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+             <span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+             <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+             <span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+             <span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+             <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+             <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+             <span class="p">)</span>
+<span class="n">plot_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>item</th>
+      <th>markers</th>
+      <th>note cards</th>
+      <th>paper</th>
+      <th>pencils</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-12-31</th>
+      <td>1543.0</td>
+      <td>1739.0</td>
+      <td>1613.0</td>
+      <td>1657.0</td>
+    </tr>
+    <tr>
+      <th>2018-01-31</th>
+      <td>1572.0</td>
+      <td>1744.0</td>
+      <td>1635.0</td>
+      <td>1635.0</td>
+    </tr>
+    <tr>
+      <th>2018-02-28</th>
+      <td>1563.0</td>
+      <td>1717.0</td>
+      <td>1645.0</td>
+      <td>1645.0</td>
+    </tr>
+    <tr>
+      <th>2018-03-31</th>
+      <td>1596.0</td>
+      <td>1703.0</td>
+      <td>1629.0</td>
+      <td>1600.0</td>
+    </tr>
+    <tr>
+      <th>2018-04-30</th>
+      <td>1557.0</td>
+      <td>1693.0</td>
+      <td>1648.0</td>
+      <td>1581.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><span class="n">plot_data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Rolling annual sum of Categorical Random Data&#39;</span><span class="p">);</span>
+</pre></div>
+
+
+<p><img alt="png" src="output_6_0.png"></p>
+<h2>For the Visual Learners</h2>
+<p>I will break down the pattern here</p>
+<h3>Groupby</h3>
+<div class="highlight"><pre><span></span><span class="n">plot_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span>
+             <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;item&#39;</span><span class="p">])</span>
+             <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+             <span class="p">)</span>
+<span class="n">plot_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>qty</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th>item</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="4" valign="top">2017-01-01</th>
+      <th>markers</th>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>note cards</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>paper</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>pencils</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2017-01-02</th>
+      <th>markers</th>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Select Values</h3>
+<p>In this case I chose to do this to avoid working with a multiple levels in the columns that would be created in the unstack() step.</p>
+<div class="highlight"><pre><span></span><span class="n">plot_data</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">[</span><span class="s1">&#39;qty&#39;</span><span class="p">]</span>
+
+<span class="n">plot_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>date        item      
+2017-01-01  markers       9
+            note cards    5
+            paper         1
+            pencils       4
+2017-01-02  markers       4
+Name: qty, dtype: int32
+</pre></div>
+
+
+<h3>unstack</h3>
+<p>transform the last column in the index ('item') into rows.</p>
+<div class="highlight"><pre><span></span><span class="n">plot_data</span> <span class="o">=</span> <span class="n">plot_data</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+
+<span class="n">plot_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>item</th>
+      <th>markers</th>
+      <th>note cards</th>
+      <th>paper</th>
+      <th>pencils</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-01-01</th>
+      <td>9</td>
+      <td>5</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2017-01-02</th>
+      <td>4</td>
+      <td>2</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>2017-01-03</th>
+      <td>9</td>
+      <td>5</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2017-01-04</th>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2017-01-05</th>
+      <td>0</td>
+      <td>1</td>
+      <td>6</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>resample</h3>
+<p>This step is important for irregular data in order to get the data into regular intervals.</p>
+<div class="highlight"><pre><span></span><span class="n">plot_data</span> <span class="o">=</span> <span class="n">plot_data</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">plot_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>item</th>
+      <th>markers</th>
+      <th>note cards</th>
+      <th>paper</th>
+      <th>pencils</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-01-31</th>
+      <td>145</td>
+      <td>128</td>
+      <td>117</td>
+      <td>146</td>
+    </tr>
+    <tr>
+      <th>2017-02-28</th>
+      <td>136</td>
+      <td>140</td>
+      <td>133</td>
+      <td>135</td>
+    </tr>
+    <tr>
+      <th>2017-03-31</th>
+      <td>112</td>
+      <td>145</td>
+      <td>125</td>
+      <td>163</td>
+    </tr>
+    <tr>
+      <th>2017-04-30</th>
+      <td>143</td>
+      <td>148</td>
+      <td>112</td>
+      <td>147</td>
+    </tr>
+    <tr>
+      <th>2017-05-31</th>
+      <td>86</td>
+      <td>134</td>
+      <td>139</td>
+      <td>141</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>rolling</h3>
+<p>I like to use rolling because it get the data into annual numbers, and reduces noise.  I have found that most of my datasets have patterns and trends that are greater than 1y.  This  is just due to the industry that I am in.  Play with the resample and rolling rules to fit the need of your own data.</p>
+<div class="highlight"><pre><span></span><span class="n">plot_data</span> <span class="o">=</span> <span class="n">plot_data</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">plot_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>item</th>
+      <th>markers</th>
+      <th>note cards</th>
+      <th>paper</th>
+      <th>pencils</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-01-31</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2017-02-28</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2017-03-31</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2017-04-30</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2017-05-31</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2017-06-30</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2017-07-31</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2017-08-31</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2017-09-30</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2017-10-31</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2017-11-30</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2017-12-31</th>
+      <td>1543.0</td>
+      <td>1739.0</td>
+      <td>1613.0</td>
+      <td>1657.0</td>
+    </tr>
+    <tr>
+      <th>2018-01-31</th>
+      <td>1572.0</td>
+      <td>1744.0</td>
+      <td>1635.0</td>
+      <td>1635.0</td>
+    </tr>
+    <tr>
+      <th>2018-02-28</th>
+      <td>1563.0</td>
+      <td>1717.0</td>
+      <td>1645.0</td>
+      <td>1645.0</td>
+    </tr>
+    <tr>
+      <th>2018-03-31</th>
+      <td>1596.0</td>
+      <td>1703.0</td>
+      <td>1629.0</td>
+      <td>1600.0</td>
+    </tr>
+    <tr>
+      <th>2018-04-30</th>
+      <td>1557.0</td>
+      <td>1693.0</td>
+      <td>1648.0</td>
+      <td>1581.0</td>
+    </tr>
+    <tr>
+      <th>2018-05-31</th>
+      <td>1624.0</td>
+      <td>1674.0</td>
+      <td>1632.0</td>
+      <td>1592.0</td>
+    </tr>
+    <tr>
+      <th>2018-06-30</th>
+      <td>1582.0</td>
+      <td>1645.0</td>
+      <td>1657.0</td>
+      <td>1593.0</td>
+    </tr>
+    <tr>
+      <th>2018-07-31</th>
+      <td>1662.0</td>
+      <td>1654.0</td>
+      <td>1680.0</td>
+      <td>1613.0</td>
+    </tr>
+    <tr>
+      <th>2018-08-31</th>
+      <td>1654.0</td>
+      <td>1617.0</td>
+      <td>1650.0</td>
+      <td>1616.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>dropna</h3>
+<p>get rid of the first 11 null rows</p>
+<div class="highlight"><pre><span></span><span class="n">plot_data</span> <span class="o">=</span> <span class="n">plot_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="n">plot_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>item</th>
+      <th>markers</th>
+      <th>note cards</th>
+      <th>paper</th>
+      <th>pencils</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-12-31</th>
+      <td>1543.0</td>
+      <td>1739.0</td>
+      <td>1613.0</td>
+      <td>1657.0</td>
+    </tr>
+    <tr>
+      <th>2018-01-31</th>
+      <td>1572.0</td>
+      <td>1744.0</td>
+      <td>1635.0</td>
+      <td>1635.0</td>
+    </tr>
+    <tr>
+      <th>2018-02-28</th>
+      <td>1563.0</td>
+      <td>1717.0</td>
+      <td>1645.0</td>
+      <td>1645.0</td>
+    </tr>
+    <tr>
+      <th>2018-03-31</th>
+      <td>1596.0</td>
+      <td>1703.0</td>
+      <td>1629.0</td>
+      <td>1600.0</td>
+    </tr>
+    <tr>
+      <th>2018-04-30</th>
+      <td>1557.0</td>
+      <td>1693.0</td>
+      <td>1648.0</td>
+      <td>1581.0</td>
+    </tr>
+    <tr>
+      <th>2018-05-31</th>
+      <td>1624.0</td>
+      <td>1674.0</td>
+      <td>1632.0</td>
+      <td>1592.0</td>
+    </tr>
+    <tr>
+      <th>2018-06-30</th>
+      <td>1582.0</td>
+      <td>1645.0</td>
+      <td>1657.0</td>
+      <td>1593.0</td>
+    </tr>
+    <tr>
+      <th>2018-07-31</th>
+      <td>1662.0</td>
+      <td>1654.0</td>
+      <td>1680.0</td>
+      <td>1613.0</td>
+    </tr>
+    <tr>
+      <th>2018-08-31</th>
+      <td>1654.0</td>
+      <td>1617.0</td>
+      <td>1650.0</td>
+      <td>1616.0</td>
+    </tr>
+    <tr>
+      <th>2018-09-30</th>
+      <td>1669.0</td>
+      <td>1648.0</td>
+      <td>1638.0</td>
+      <td>1634.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'waylonwalker';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+        Please enable JavaScript to view comments.
+
+</noscript>
+<!-- End Disqus -->
+</article>
+
+    <footer>
+<p>Waylon Walker</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " WaylonWalker ",
+  "url" : "/blog",
+  "image": "",
+  "description": "Blogging about my adventures in data science"
+}
+</script>
+
+</body>
+</html>
