@@ -1,4 +1,8 @@
-
+Title: Stepping Up My SQL Game
+Date: 03/25/2018
+Category: Blog
+Tags: Data, SQL, Learning
+Summary: I decided it was time to put away the cheat sheets, step away from Stack Overflow, and improve my speed.
 
 <!-- COMMON TAGS -->
 <meta charset="utf-8">

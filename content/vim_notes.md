@@ -1,3 +1,6 @@
+Title: Vim Notes
+Date: 02/01/2018
+Status: Draft
 # vim notes
 
 ## Using c to change text

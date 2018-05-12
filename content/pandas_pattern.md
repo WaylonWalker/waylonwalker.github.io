@@ -1,3 +1,6 @@
+Title: My favorite pandas pattern
+Date: 03/01/2018
+Status: Draft
 
 # My favorite pandas pattern
 

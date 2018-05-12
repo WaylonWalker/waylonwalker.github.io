@@ -1,3 +1,7 @@
+Title: Follow Your Passion
+Date: 01/01/2018
+status: Draft
+
 # Follow Your Passion
 
 _my journey into data science_
