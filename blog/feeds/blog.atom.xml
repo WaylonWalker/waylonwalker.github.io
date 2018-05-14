@@ -1,523 +1,323 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>WaylonWalker - Blog</title><link href="www.waylonwalker.com/blog/" rel="alternate"></link><link href="www.waylonwalker.com/blog/feeds/blog.atom.xml" rel="self"></link><id>www.waylonwalker.com/blog/</id><updated>2018-05-06T00:00:00-05:00</updated><entry><title>D3 Day 4</title><link href="www.waylonwalker.com/blog/d3-day-4.html" rel="alternate"></link><published>2018-05-06T00:00:00-05:00</published><updated>2018-05-06T00:00:00-05:00</updated><author><name>Waylon Walker</name></author><id>tag:None,2018-05-06:www.waylonwalker.com/blog/d3-day-4.html</id><summary type="html">&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js'&gt;&lt;/script&gt;
-
-&lt;style&gt;
-    #content{
-        max-width: 800px;
-        margin: 0 auto;
-    }
-    .chart {
-        display: block;
-        padding: 10px;
-        background: peachpuff;
-        transition: all 500ms
-    }
-
-    .bar {
-        height: 30px;
-        margin: 5px;
-        background: teal;
-    }
-    .bar:hover{
-        background: #444;
-        }
-    button {
-        background: rgb(240, 196, 211);
-        border: none;
-        font-size: 1.3rem;
-        border-radius: 5px;
-        padding: .2rem 1rem;
-        margin-bottom: 1rem
-    }
-    .on {
-        background: palevioletred;
-    }
-    .big {
-    width …&lt;/style&gt;</summary><content type="html">&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js'&gt;&lt;/script&gt;
-
-&lt;style&gt;
-    #content{
-        max-width: 800px;
-        margin: 0 auto;
-    }
-    .chart {
-        display: block;
-        padding: 10px;
-        background: peachpuff;
-        transition: all 500ms
-    }
-
-    .bar {
-        height: 30px;
-        margin: 5px;
-        background: teal;
-    }
-    .bar:hover{
-        background: #444;
-        }
-    button {
-        background: rgb(240, 196, 211);
-        border: none;
-        font-size: 1.3rem;
-        border-radius: 5px;
-        padding: .2rem 1rem;
-        margin-bottom: 1rem
-    }
-    .on {
-        background: palevioletred;
-    }
-    .big {
-    width: 100%
-    }
-    .small {
-    width: 50%
-    }
-&lt;/style&gt;
-
-&lt;h2&gt;Learn D3 in 5 days&lt;/h2&gt;
-&lt;h2&gt;Recall Example 3 from yesterday&lt;/h2&gt;
-&lt;div id="chart3" class='chart'&gt;
-    &lt;button class='math' onclick="render3('math')"&gt;Math&lt;/button&gt;
-    &lt;button class='science' onclick="render3('science')"&gt;Science&lt;/button&gt;
-&lt;/div&gt;
-
-&lt;script&gt;
-    const data3 = [
-        { name: 'Alice', math: 93, science: 84 },
-        { name: 'Bob', math: 73, science: 82 },
-        { name: 'James', math: 92, science: 78 },
-        { name: 'Steve', math: 77, science: 93 },
-        { name: 'Jordan', math: 80, science: 68 },
-    ]
-
-    function render3(subject) {
-        d3.select('#chart3')
-            .selectAll('button')
-            .classed('on', false)
-        d3.select('#chart3')
-            .select('.' + subject)
-            .attr('class', subject + ' on')
-
-        const bars = d3.select('#chart3')
-            .selectAll('div')
-            .data(data3, function(d) {
-                return d.name
-            })
-        const newBars = bars.enter()
-            .append('div')
-                .attr('class', 'bar')
-                .style('width', 0)
-        newBars.merge(bars)
-            .transition()
-            .style('width', function(d) {
-                return (d[subject]) + 'px'
-            })
-    }
-    render3('math')
-&lt;/script&gt;
-
-&lt;h2&gt;Add Scales&lt;/h2&gt;
-&lt;p&gt;&lt;div id='buttons'&gt;
-    &lt;h3&gt;Subject&lt;/h3&gt;
-    &lt;div id='subjects'&gt;
-        &lt;button class='math' onclick="render4('math')"&gt;Math&lt;/button&gt;
-        &lt;button class='science' onclick="render4('science')"&gt;Science&lt;/button&gt;
-    &lt;/div&gt;
-    &lt;h3&gt;Chart Size&lt;/h3&gt;
-    &lt;div id='sizes'&gt;
-        &lt;button class='chart4-big-btn' onclick='chart4_size("big")')&gt;Large&lt;/button&gt;
-        &lt;button class='chart4-small-btn' onclick='chart4_size("small")'&gt;Small&lt;/button&gt;
-&lt;/div&gt;&lt;/p&gt;
-&lt;div id="chart4" class='chart'&gt;&lt;/div&gt;
-
-&lt;script&gt;
-    const data4 = [
-        { name: 'Alice', math: 93, science: 84},
-        { name: 'Bob', math: 73, science: 82 },
-        { name: 'James', math: 92, science: 78},
-        { name: 'Steve', math: 77, science: 93 },
-        { name: 'Jordan', math: 80, science: 68 },
-    ]
-
-    chart4 = document.getElementById('chart4')
-
-
-    let width = function() {
-        return chart4.getBoundingClientRect().width
-        }
-    let height = function() {
-        return chart4.getBoundingClientRect().height
-        }
-    let barHeight = function() {
-        height() /  data4.length + 'px'
-        }
-
-    function chart4_size(size) {
-        d3.select('#sizes')
-            .selectAll('button')
-            .classed('on', false)
-        d3.select('#sizes')
-            .select('.chart4-' + size + '-btn')
-            .classed('on', true)
-        d3.select('#chart4')
-            .attr('class', 'chart ' + size)
-        subject = document.getElementById('subjects').querySelector('.on').classList[0]
-        render4(subject)
-    }
-
-    function render4(subject) {
-
-        d3.select('#subjects')
-            .selectAll('button')
-            .classed('on', false);
-
-        d3.select('#subjects')
-            .select('.' + subject)
-            .attr('class', subject + ' on');
-
-        let xScale = d3.scaleLinear()
-            .domain([0, 100])
-            .range([0, width()]);
-
-        const bars = d3.select('#chart4')
-            .selectAll('div')
-            .data(data4, function(d) {
-                return d.name
-            })
-        const newBars = bars.enter()
-            .append('div')
-                .attr('class', 'bar')
-                .style('width', 0)
-
-        newBars.merge(bars)
-            .transition()
-            .style('width', function(d) {
-                return xScale(d[subject]) + 'px'
-            })
-            .style('height', barHeight())
-    }
-    render4('math')
-    chart4_size('big')
-&lt;/script&gt;</content><category term="D3"></category><category term="Viz"></category><category term="FrontEnd"></category></entry><entry><title>D3 Day 3</title><link href="www.waylonwalker.com/blog/d3-day-3.html" rel="alternate"></link><published>2018-05-05T00:00:00-05:00</published><updated>2018-05-05T00:00:00-05:00</updated><author><name>Waylon Walker</name></author><id>tag:None,2018-05-05:www.waylonwalker.com/blog/d3-day-3.html</id><summary type="html">&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js'&gt;&lt;/script&gt;
-
-&lt;style&gt;
-    #content{
-        max-width: 800px;
-        margin: 0 auto;
-    }
-    .chart {
-        display: block;
-        padding: 10px;
-        background: peachpuff;
-    }
-
-    .bar {
-        height: 30px;
-        margin: 5px;
-        background: teal;
-    }
-    button {
-        background: rgb(240, 196, 211);
-        border: none;
-        font-size: 1.3rem;
-        border-radius: 5px;
-        padding: .2rem 1rem;
-        margin-bottom: 1rem
-    }
-    .on {
-        background: palevioletred;
-    }
-&lt;/style&gt;
-
-&lt;h2&gt;Learn D3 in 5 days&lt;/h2&gt;
-&lt;p&gt;I recently subscribed to …&lt;/p&gt;</summary><content type="html">&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js'&gt;&lt;/script&gt;
-
-&lt;style&gt;
-    #content{
-        max-width: 800px;
-        margin: 0 auto;
-    }
-    .chart {
-        display: block;
-        padding: 10px;
-        background: peachpuff;
-    }
-
-    .bar {
-        height: 30px;
-        margin: 5px;
-        background: teal;
-    }
-    button {
-        background: rgb(240, 196, 211);
-        border: none;
-        font-size: 1.3rem;
-        border-radius: 5px;
-        padding: .2rem 1rem;
-        margin-bottom: 1rem
-    }
-    .on {
-        background: palevioletred;
-    }
-&lt;/style&gt;
-
-&lt;h2&gt;Learn D3 in 5 days&lt;/h2&gt;
-&lt;p&gt;I recently subscribed to Ben Clinkinbear's learn D3.js in 5 days, and am currently on day 3.  I read through the first 2 days, and felt fairly comfortable with selecting elements, so I did not follow along on the first two days.  I probably should have, but there are only so many hours in the day.&lt;/p&gt;
-&lt;h3&gt;Why Learn D3&lt;/h3&gt;
-&lt;p&gt;D3 is the ubiquitous dynamic visualization library for building custom interactive visualizations on the web.  It is a bit low level, and more verbose than many other libraries that build upon it, but if you want full control D3 is the way to go.  I have used a few libraries built upon d3 in the past and have been very happy with the results.  For now I want to start learning a bit about how d3 works.  I know that learning it is going to take a long time, so I want to start working on some simple examples now in order to build my understanding so that I can learn quickly when I am ready to dive in.  If I never decide I need to take the deep dive into d3, I think understanding how it works will only help when I am using higher level libraries.&lt;/p&gt;
-&lt;h2&gt;Final Result&lt;/h2&gt;
-&lt;p&gt;I cant express how fun it was to build this example. I always saw d3 as being super low level and that I could never build something in it.  It was so cool to watch the magic happen in such a short period of time.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="final_result" src="/static/images/gifs/d3-day3.gif"&gt;&lt;/p&gt;
-&lt;h2&gt;Prep&lt;/h2&gt;
-&lt;h3&gt;Load D3&lt;/h3&gt;
-&lt;p&gt;I am going to load d3 from the cloudflare cdn for simplicity&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    script src=&amp;#39;https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js&amp;#39;&amp;gt;&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>WaylonWalker - Blog</title><link href="www.waylonwalker.com/blog/" rel="alternate"></link><link href="www.waylonwalker.com/blog/feeds/blog.atom.xml" rel="self"></link><id>www.waylonwalker.com/blog/</id><updated>2018-05-12T00:00:00-05:00</updated><entry><title>Pycon 2018 Roundup</title><link href="www.waylonwalker.com/blog/pycon-2018-roundup.html" rel="alternate"></link><published>2018-05-12T00:00:00-05:00</published><updated>2018-05-12T00:00:00-05:00</updated><author><name>Waylon Walker</name></author><id>tag:None,2018-05-12:www.waylonwalker.com/blog/pycon-2018-roundup.html</id><summary type="html">&lt;p&gt;These are my notes from pycon 2018 videos.  I love the python community and especially the conference talks.  This year I am going to take some notes from my favorite talks and post them here.&lt;/p&gt;</summary><content type="html">&lt;p&gt;These are my notes from pycon 2018 videos.  I love the python community and especially the conference talks.  This year I am going to take some notes from my favorite talks and post them here.&lt;/p&gt;
+&lt;p&gt;This is an &lt;strong&gt;Incomplete&lt;/strong&gt; working post.&lt;/p&gt;
+&lt;h2&gt;&lt;a href="https://www.youtube.com/watch?v=zQeYx87mfyw"&gt;Jake VanderPlas - Performance Python: Seven Strategies for Optimizing Your Numerical Code&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Always&lt;/strong&gt; profile &lt;strong&gt;before&lt;/strong&gt; making any optimizations.&lt;/li&gt;
+&lt;li&gt;Vectorize with Numpy&lt;ul&gt;
+&lt;li&gt;Looping in python can be slow&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Use specialized data structures.&lt;ul&gt;
+&lt;li&gt;scipy.spacial&lt;/li&gt;
+&lt;li&gt;pandas&lt;/li&gt;
+&lt;li&gt;xarray&lt;/li&gt;
+&lt;li&gt;scipy.sparse&lt;/li&gt;
+&lt;li&gt;sparse package&lt;/li&gt;
+&lt;li&gt;scipy.sparce.csgraph &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cython&lt;ul&gt;
+&lt;li&gt;Add types&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Numba&lt;ul&gt;
+&lt;li&gt;jit&lt;/li&gt;
+&lt;li&gt;Fortran Like Speed&lt;/li&gt;
+&lt;li&gt;heavy dependencies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Dask&lt;ul&gt;
+&lt;li&gt;distributed tasks&lt;/li&gt;
+&lt;li&gt;Can be executed locally or on a cluster&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Look for an existing package&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;resist the urge to reinvent the wheel&lt;/strong&gt;  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=zQeYx87mfyw"&gt;&lt;img alt="Click to Watch" src="http://img.youtube.com/vi/zQeYx87mfyw/0.jpg"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;a href="https://www.youtube.com/watch?v=q-x7jK72E6E"&gt;Jason Huggins - Keynote &lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Jason had a great talk about teaching kids to code through his experiences with First Lego League.  He found that the event has the best of intentions, but does lend itself to schools with a larger budget that is able to order many different kits.  He has found himself deep down a rabbit hole of finding an affordable alternative that can be done with the inexpensive raspbery pi zero, and controlled  with the cheapest tablets.  He is currently working on a programming language called wildcard, that can be programmed with paper.  This really reminds me of a game that I play with my 5 year old son &lt;a href="www.robotturtles.com"&gt;Robot Turtles&lt;/a&gt;.  He really likes to play it.  I will definitely be following this project to see if this is something that I can do with him when its ready.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=q-x7jK72E6E"&gt;&lt;img alt="Click to Watch" src="http://img.youtube.com/vi/q-x7jK72E6E/0.jpg"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;a href="https://www.youtube.com/watch?v=ITksU31c1WY"&gt;Dan Callahan - Keynote - PyCon 2018&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I was a bit sad when I was looking through the list of PyCon 2018 talks and did not see anything that appeared to talk about web assembly, but hidden in Dan Callagan's keynote was a great story about web assembly and what it means to python.  Dan's keynote was a great story about using the best tools available to you.  He goes back to his childhood where he programmed in basic because thats what he could take with him away from the desktop on his TI-82.  In modern times we have so many platforms other than desktop, and new ones comming out so frequently that its impossible to see what the next one will be.  There are even computers in refrigerators today.  The one thing that seems to be common is that they all have a web browser.  With that we can write web apps with python, but we are still missing the JavaScript dominated client side story.  Dan shows that this is changing with web assembly.  He showed examples where Autodesk compiled Autocad to wasm, and can run it in the browser!!  He showed versions of windows 3 running completely inside of firefox.  While it is currenly not realistic to compile python to web assembly as it creates large file sizes, it is possible and he sees a bright future for python in the browser.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=ITksU31c1WY"&gt;&lt;img alt="Click to Watch" src="http://img.youtube.com/vi/ITksU31c1WY/0.jpg"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;a href="https://www.youtube.com/watch?v=DlgG0QdrqAU"&gt;Alex Petralia - Analyzing Data: What pandas and SQL Taught Me About Taking an Average&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Asks the right questions before writing the first line of code.  Even the simplest questions such as averages have many possible pitfalls along the way.  Alex discusses how to prepare your data before averaging in this talk.  He brings some new &lt;em&gt;"Jargon"&lt;/em&gt; .  I am not sure that this jargon made this any easier for me to understand or discuss.  It may take some time for this one to sink in to become effective.  I feel like using plain english is more effective as it is more easily understood by anyone.  "find the &lt;strong&gt;daily&lt;/strong&gt; average &lt;strong&gt;sales&lt;/strong&gt; by &lt;strong&gt;seller&lt;/strong&gt;"&lt;/p&gt;
+&lt;h3&gt;Jargon&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Collapsing key:&lt;/strong&gt; 
+&lt;em&gt; the collapsed/aggregated data relevant to this analysis&lt;br&gt;
+&lt;/em&gt; &lt;em&gt;we are overriding the primary key (i.e. what a table defines as an observation)&lt;/em&gt;
+* the original number of rows&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Grouping key:&lt;/strong&gt; the key defining a group&lt;em&gt;&lt;em&gt;&lt;br&gt;
+&lt;/em&gt; &lt;em&gt;eg. "for each Seller" is (seller), "for each Country and city is (Country, City)&lt;/em&gt;&lt;br&gt;
+&lt;/em&gt; this defines how many rows are in the result&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; Obvervation key: a unit of observation for this analysis&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt; &lt;em&gt;eg. "daily average" is (Date), "across regions" is (Region)&lt;/em&gt;
+&lt;/em&gt; this defines how many rows are in the denominator&lt;/p&gt;
+&lt;h3&gt;Formula&lt;/h3&gt;
+&lt;p&gt;Collapsing Key - Grouping Key = Observation Key&lt;/p&gt;
+&lt;h3&gt;Example Question&lt;/h3&gt;
+&lt;p&gt;Calculate the Average Daily Sales for each Seller.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Collapsing Key:&lt;/strong&gt; (Date, Seller)
+&lt;strong&gt;Grouping Key:&lt;/strong&gt; (Seller)
+&lt;strong&gt;Observation Key:&lt;/strong&gt; (Date)&lt;/p&gt;
+&lt;h3&gt;data set&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;id&lt;/th&gt;
+&lt;th&gt;Date&lt;/th&gt;
+&lt;th&gt;Seller&lt;/th&gt;
+&lt;th&gt;ApplesSold&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Monday&lt;/td&gt;
+&lt;td&gt;Mary&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Monday&lt;/td&gt;
+&lt;td&gt;Bob&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Tuesday&lt;/td&gt;
+&lt;td&gt;Bob&lt;/td&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Thursday&lt;/td&gt;
+&lt;td&gt;Jane&lt;/td&gt;
+&lt;td&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Thursday&lt;/td&gt;
+&lt;td&gt;Jane&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;SQL Example&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt;
+    &lt;span class="n"&gt;Seller&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="k"&gt;AVG&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;total&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="k"&gt;SELECT&lt;/span&gt;
+       &lt;span class="nb"&gt;DATE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+       &lt;span class="n"&gt;SELLER&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+       &lt;span class="k"&gt;SUM&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ApplesSold&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;AS&lt;/span&gt; &lt;span class="n"&gt;total&lt;/span&gt;
+    &lt;span class="k"&gt;FROM&lt;/span&gt;
+       &lt;span class="n"&gt;Apples&lt;/span&gt;
+    &lt;span class="k"&gt;GROUP&lt;/span&gt; &lt;span class="k"&gt;BY&lt;/span&gt;
+       &lt;span class="nb"&gt;DATE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+       &lt;span class="n"&gt;SELLER&lt;/span&gt; &lt;span class="c1"&gt;-- Collapsing Key&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;
+&lt;span class="k"&gt;GROUP&lt;/span&gt; &lt;span class="k"&gt;BY&lt;/span&gt;
+    &lt;span class="n"&gt;Seller&lt;/span&gt; &lt;span class="c1"&gt;-- Grouping Key&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;Base Styles&lt;/h3&gt;
-&lt;p&gt;I will use this as by stylesheet throughout the examples.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="nt"&gt;&amp;lt;style&amp;gt;&lt;/span&gt;
-        .chart {
-            display: block;
-            padding: 10px;
-            background: peachpuff;
-        }
-
-        .bar {
-            height: 30px;
-            margin: 5px;
-            background: teal;
-        }
-        button {
-            background: rgb(240, 196, 211);
-            border: none;
-            font-size: 1.3rem;
-            border-radius: 5px;
-            padding: .2rem 1rem;
-            margin-bottom: 1rem
-        }
-        .on {
-            background: palevioletred;
-        }
-    &lt;span class="nt"&gt;&amp;lt;/style&amp;gt;&lt;/span&gt;
+&lt;h3&gt;Pandas Example&lt;/h3&gt;
+&lt;p&gt;I am interested in trying out this technique of using the second groupby.  I typically use an unstack instead, but that relies on having the order of the Collapsing key correct.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pd&lt;/span&gt;
+    &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Date&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Seller&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="c1"&gt;# Collapsing Key&lt;/span&gt;
+    &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ApplesSold&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;level&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Seller&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# Grouping Key&lt;/span&gt;
+    &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Example one&lt;/h2&gt;
-&lt;p&gt;This one is a bit cheaty in that it has the exact number of divs already rendered for us, but it is a good learning point
-so see how to map data to attributes&lt;/p&gt;
-&lt;p&gt;By the way this is the first chart that I have ever created with d3, and this silly thing is so exciting!!&lt;/p&gt;
-&lt;h3&gt;Markup&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;chart1&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;chart&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=DlgG0QdrqAU"&gt;&lt;img alt="Click to Watch" src="http://img.youtube.com/vi/DlgG0QdrqAU/0.jpg"&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Python"></category><category term="Pycon"></category><category term="Youtube"></category></entry><entry><title>Stepping Up My SQL Game</title><link href="www.waylonwalker.com/blog/stepping-up-my-sql-game.html" rel="alternate"></link><published>2018-03-25T00:00:00-05:00</published><updated>2018-03-25T00:00:00-05:00</updated><author><name>Waylon Walker</name></author><id>tag:None,2018-03-25:www.waylonwalker.com/blog/stepping-up-my-sql-game.html</id><summary type="html">&lt;p&gt;I decided it was time to put away the cheat sheets, step away from Stack Overflow, and improve my speed.&lt;/p&gt;</summary><content type="html">&lt;!-- COMMON TAGS --&gt;
+
+&lt;p&gt;&lt;meta charset="utf-8"&gt;
+&lt;title&gt;Stepping Up My SQL Game&lt;/title&gt;
+&lt;!-- Search Engine --&gt;
+&lt;meta name="description" content="I decided it was time to put away the cheat sheets, step away from Stack Overflow, and improve my speed."&gt;
+&lt;meta name="image" content="http://www.waylonwalker.com/static/images/blog/sql.png"&gt;
+&lt;!-- Schema.org for Google --&gt;
+&lt;meta itemprop="name" content="Stepping Up My SQL Game"&gt;
+&lt;meta itemprop="description" content="I decided it was time to put away the cheat sheets, step away from Stack Overflow, and improve my speed."&gt;
+&lt;meta itemprop="image" content="http://www.waylonwalker.com/static/images/blog/sql.png"&gt;
+&lt;!-- Twitter --&gt;
+&lt;meta name="twitter:card" content="summary"&gt;
+&lt;meta name="twitter:title" content="Stepping Up My SQL Game"&gt;
+&lt;meta name="twitter:description" content="I decided it was time to put away the cheat sheets, step away from Stack Overflow, and improve my speed."&gt;
+&lt;meta name="twitter:site" content="@_waylonwalker"&gt;
+&lt;meta name="twitter:creator" content="@_waylonwalker"&gt;
+&lt;meta name="twitter:image:src" content="http://www.waylonwalker.com/static/images/blog/sql.png"&gt;
+&lt;!-- Open Graph general (Facebook, Pinterest &amp; Google+) --&gt;
+&lt;meta name="og:title" content="Stepping Up My SQL Game"&gt;
+&lt;meta name="og:description" content="I decided it was time to put away the cheat sheets, step away from Stack Overflow, and improve my speed."&gt;
+&lt;meta name="og:image" content="http://www.waylonwalker.com/static/images/blog/sql.png"&gt;
+&lt;meta name="og:url" content="http://www.waylonwalker.com/blog/stepping-up-my-sql.html"&gt;
+&lt;meta name="og:site_name" content="waylonwalker.com"&gt;
+&lt;meta name="og:type" content="website"&gt;&lt;/p&gt;
+&lt;h1&gt;Stepping up my SQL game&lt;/h1&gt;
+&lt;p&gt;In 2018 I transitioned from a Product Engineering (Mechanical) role to a Data Scientist Role.  I entered this space with strong subject matter expertise with our products, our data, munging through data in pyhon, and data visualization in python.  My sql skills were lacking to say the least.  I had learned what I needed to know to get data from our relational databases, then use pandas to do any further analysis.    Just run something like the following and you have data.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; 
+    &lt;span class="o"&gt;*&lt;/span&gt; 
+&lt;span class="k"&gt;FROM&lt;/span&gt; 
+    &lt;span class="k"&gt;Table&lt;/span&gt; 
+&lt;span class="k"&gt;Where&lt;/span&gt; 
+    &lt;span class="n"&gt;col_1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;col_1_filter&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;JavaScript&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;90&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;270&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;152&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;83&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="nx"&gt;d3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;#chart1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;selectAll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;div&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;class&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;style&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;width&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;d&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;px&amp;#39;&lt;/span&gt;
-    &lt;span class="p"&gt;})&lt;/span&gt;
+&lt;p&gt;This technique works great for small data sets that you only need to run once.  There is no shame to pull in a big dataset and start munging with it in pandas to get some results, and make decisions.  The problem becomes when your dataset becomes too big or you need to run the query on a frequent basis.  Doing the aggregations on the server run much quicker, as it reduces the time spent in io.  My longest running steps are currently io related.  Reducing these steps have improved my workflow.  At the point that I was getting server timeout errors, or using the same long running query in many places I would be searching for examples online, because I just did not have the experience with many more techniques.  I decided it was time to put away the cheat sheets, step away from Stack Overflow, and improve my speed.&lt;/p&gt;
+&lt;h2&gt;Why Learn SQL in 2018??&lt;/h2&gt;
+&lt;p&gt;SQL is far from the hot topic in 2018, AI, Deep Learning, BIG data, Machine Learning, Natural Language Processing take the win here.  SQL is so simple why would anyone want to spend time learning SQL?  The reason... all of those hot topics in 2018 require data.  My data mostly comes from relational databases which require sql to get data from them.  Without the ability to efficiently get the data I need to do an aanlysis I cannot even start.  Sure I could use an ORM, but I found that to be a bit unwieldy with the thousands of tables  we have in formats that were determined many years ago. Plus raw SQL is more transportable.  I commonly collaborate with other folks who do not use python.  I am proud that I am able to point them to the SQL I use rather than telling them to suck it up an learn python.  I truly believe that people are the most effective when they are able to choose their own stack of tools.  Taking some time to focus on the basics of Data Science will help be build a strong foundation for my career.&lt;/p&gt;
+&lt;h2&gt;&lt;a href="https://campus.datacamp.com/courses/joining-data-in-postgresql"&gt;Joining Data in Posgres&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Below are my notes from the &lt;a href="https://campus.datacamp.com/courses/joining-data-in-postgresql"&gt;Joining Data in Posgres&lt;/a&gt;
+course on DataCamp.  I will use these notes as a refresher when I need a quick reference.&lt;/p&gt;
+&lt;h3&gt;Using()&lt;/h3&gt;
+&lt;p&gt;When joining two tables on the same column the &lt;code&gt;USING&lt;/code&gt; clause can be used as a shorthand.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;without using&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; 
+
+&lt;span class="k"&gt;FROM&lt;/span&gt; 
+    &lt;span class="n"&gt;Table1&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;t1&lt;/span&gt;
+
+&lt;span class="k"&gt;LEFT&lt;/span&gt; &lt;span class="k"&gt;JOIN&lt;/span&gt; 
+    &lt;span class="n"&gt;Table2&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;t2&lt;/span&gt;
+    &lt;span class="k"&gt;ON&lt;/span&gt; &lt;span class="n"&gt;t1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;Result&lt;/h3&gt;
-&lt;div id="chart1" class='chart'&gt;
-    &lt;div&gt;&lt;/div&gt;
-    &lt;div&gt;&lt;/div&gt;
-    &lt;div&gt;&lt;/div&gt;
-    &lt;div&gt;&lt;/div&gt;
-    &lt;div&gt;&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;with using&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; 
+    &lt;span class="o"&gt;*&lt;/span&gt; 
 
-&lt;script&gt;
-    const data = [90, 270, 152, 42, 83]
-    d3.select('#chart1')
-        .selectAll('div')
-        .data(data)
-        .attr('class', 'bar')
-        .style('width', function (d) {
-            return d + 'px'
-        })
-&lt;/script&gt;
+&lt;span class="k"&gt;FROM&lt;/span&gt; 
+    &lt;span class="n"&gt;Table1&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;t1&lt;/span&gt;
 
-&lt;h2&gt;Example 2&lt;/h2&gt;
-&lt;p&gt;This time we are going to get a bit more dynamic.  The divs will be generated on the fly and will update with the press of a button.&lt;/p&gt;
-&lt;h3&gt;Markup&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;chart2&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;chart&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;button&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;math&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;onclick&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;render(&amp;#39;math&amp;#39;)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Math&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;button&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;button&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;science&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;onclick&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;render(&amp;#39;science&amp;#39;)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Science&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;button&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="k"&gt;LEFT&lt;/span&gt; &lt;span class="k"&gt;JOIN&lt;/span&gt; 
+    &lt;span class="n"&gt;Table2&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;t2&lt;/span&gt;
+    &lt;span class="k"&gt;USING&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;JavaScript&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;data2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-    &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Alice&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;math&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;93&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;science&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;84&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
-    &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Bob&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;math&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;73&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;science&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;82&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
-    &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;James&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;math&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;92&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;science&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;78&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
-    &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Steve&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;math&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;77&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;science&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;93&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
-    &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Jordan&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;math&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;science&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;68&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
-&lt;span class="p"&gt;]&lt;/span&gt;
-
-&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;render&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;subject&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="nx"&gt;d3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;#chart2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;selectAll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;button&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;classed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;on&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="nx"&gt;d3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;subject&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;class&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;subject&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39; on&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="nx"&gt;d3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;#chart2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;selectAll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;div&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;remove&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-    &lt;span class="nx"&gt;d3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;#chart2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;selectAll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;div&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;data2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;enter&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-            &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;div&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-            &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;class&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-            &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;style&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;width&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-                    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;subject&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;px&amp;#39;&lt;/span&gt;
-                &lt;span class="p"&gt;})&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="nx"&gt;render&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;math&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;h3&gt;Join Types&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;for joining columns of data together into a single table&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;INNER&lt;/code&gt;: Includes only records contained in &lt;strong&gt;both&lt;/strong&gt; tables.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;RIGHT&lt;/code&gt;: Inlcudes all records from the &lt;strong&gt;right&lt;/strong&gt;, droping values from the left if non-existent in the right, or leaving nulls if non-existant in the left.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;LEFT&lt;/code&gt;: Inlcudes all records from the &lt;strong&gt;left&lt;/strong&gt;, droping values from the right if non-existent in the left, or leaving nulls if non-existant in the right.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;FULL&lt;/code&gt;: Combination of &lt;code&gt;Left&lt;/code&gt; and &lt;code&gt;Right&lt;/code&gt; Join, leaving nulls where data is missing in one table, and not droping any data.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;CROSS&lt;/code&gt;: returns all &lt;strong&gt;pairs&lt;/strong&gt; from two tables, does not have an on or using clause.&lt;/p&gt;
+&lt;h3&gt;Union&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;for concatenating rows of data with the same columns&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Union&lt;/code&gt;: returns only unique records, does not include duplicates.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Union All&lt;/code&gt;: returns all records(including duplicates)&lt;/p&gt;
+&lt;h3&gt;Intersect&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;Intersect&lt;/code&gt;: returns only records appearing in both tables&lt;/p&gt;
+&lt;h3&gt;Execpt&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;Except&lt;/code&gt;: returns only records not in the second table&lt;/p&gt;
+&lt;h3&gt;Self-Joins&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;Semi-Join&lt;/code&gt;: Filters based on results of a subquery.  Does not have direct sql syntax.  This type of join is achieved through a subquery in the where statement.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Anti-Join&lt;/code&gt;: Similar to the Semi-join, but using a &lt;code&gt;not&lt;/code&gt; modifier.  This is particularly useful for debugging situations.&lt;/p&gt;
+&lt;h3&gt;Subqueries&lt;/h3&gt;
+&lt;p&gt;This is where I have really stepped up my sql game.  I was able to get practice writing more complex queries. I also learned about different methods of joining tables together.&lt;/p&gt;
+&lt;h4&gt;WHERE&lt;/h4&gt;
+&lt;p&gt;Subqueries are commonly found in the where clause to filter data.  Below is an example given in the course to select only the Asian countries with below average fertility rate from the states table. &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; 
+   &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+   &lt;span class="n"&gt;fert_rate&lt;/span&gt;
+&lt;span class="k"&gt;FROM&lt;/span&gt; 
+    &lt;span class="n"&gt;states&lt;/span&gt;
+&lt;span class="k"&gt;WHERE&lt;/span&gt; 
+    &lt;span class="n"&gt;continent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Asia&amp;#39;&lt;/span&gt;
+&lt;span class="k"&gt;AND&lt;/span&gt; &lt;span class="n"&gt;fert_rate&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;
+        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="k"&gt;AVG&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fert_rate&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+         &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;states&lt;/span&gt;&lt;span class="p"&gt;;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;Result&lt;/h3&gt;
-&lt;div id="chart2" class='chart'&gt;
-    &lt;button class='math' onclick="render('math')"&gt;Math&lt;/button&gt;
-    &lt;button class='science' onclick="render('science')"&gt;Science&lt;/button&gt;
-&lt;/div&gt;
+&lt;h4&gt;SELECT&lt;/h4&gt;
+&lt;p&gt;Subqueries can be found in the &lt;code&gt;SELECT&lt;/code&gt; clause to create new columns of data.  This is a different technique than I have used in the past.  Previously I have only used &lt;code&gt;GROUPBY&lt;/code&gt; statements to get this effect.  I can see where this can be really useful because it is not constrained by aggregations any data point can be pulled in with this tecnhique.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="k"&gt;DISTINCT&lt;/span&gt;
+    &lt;span class="n"&gt;continent&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; 
+        &lt;span class="k"&gt;COUNT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="k"&gt;FROM&lt;/span&gt; 
+        &lt;span class="n"&gt;states&lt;/span&gt;
+     &lt;span class="k"&gt;WHERE&lt;/span&gt; 
+        &lt;span class="n"&gt;prime_ministers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;continent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;states&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;continent&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;AS&lt;/span&gt; &lt;span class="n"&gt;countries_num&lt;/span&gt;
 
-&lt;script&gt;
-    const data2 = [
-        { name: 'Alice', math: 93, science: 84},
-        { name: 'Bob', math: 73, science: 82},
-        { name: 'James', math: 92, science: 78},
-        { name: 'Steve', math: 77, science: 93},
-        { name: 'Jordan', math: 80, science: 68},
-    ]
-
-    function render(subject) {
-        d3.select('#chart2')
-            .selectAll('button')
-            .classed('on', false)
-        d3.select('.' + subject)
-            .attr('class', subject + ' on')
-        d3.select('#chart2')
-            .selectAll('div')
-            .remove()
-        d3.select('#chart2')
-            .selectAll('div')
-            .data(data2)
-            .enter()
-                .append('div')
-                .attr('class', 'bar')
-                .style('width', function(d) {
-                     return (d[subject]-50)*3 + 'px'
-                    })
-    }
-    render('math')
-&lt;/script&gt;
-
-&lt;h2&gt;Example 3&lt;/h2&gt;
-&lt;p&gt;In Example2 the chart jumped from one state to the next with a complete wipe and redraw in betweeen.  In this example we will retain the same bars and only update their width.  This will allow us to transition/animate them.&lt;/p&gt;
-&lt;h3&gt;Markup&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;chart3&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;chart&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;button&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;math&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;onclick=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;render3(&amp;#39;math&amp;#39;)&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Math&lt;span class="nt"&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;button&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;science&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;onclick=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;render3(&amp;#39;science&amp;#39;)&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Science&lt;span class="nt"&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="k"&gt;From&lt;/span&gt; &lt;span class="n"&gt;Prime&lt;/span&gt; &lt;span class="n"&gt;Ministers&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;JavaScript&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;data3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-    &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Alice&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;math&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;93&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;science&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;84&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-    &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Bob&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;math&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;73&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;science&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;82&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-    &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;James&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;math&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;92&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;science&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;78&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-    &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Steve&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;math&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;77&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;science&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;93&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-    &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Jordan&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;math&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;science&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;68&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;h4&gt;FROM&lt;/h4&gt;
+&lt;p&gt;subqueries found in the &lt;code&gt;FROM&lt;/code&gt; clause can be very helpful to create a new dataset from an existing table.  I find these the easiest to read as it is not much different than creating a new table.  Again this can be very powerful in creating new columns that were not easily available otherwise.  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="k"&gt;DISTINCT&lt;/span&gt;
+    &lt;span class="n"&gt;monarchs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;continent&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;subquery&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max_perc&lt;/span&gt;
 
-&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;render3&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;subject&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="nx"&gt;d3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;#chart3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;selectAll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;button&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;classed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;on&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="nx"&gt;d3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;#chart3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;subject&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;class&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;subject&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39; on&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;FROM&lt;/span&gt;
+    &lt;span class="n"&gt;monarchs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt;
+        &lt;span class="n"&gt;continent&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="k"&gt;MAX&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;women_parli_perc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;AS&lt;/span&gt; &lt;span class="n"&gt;max_perc&lt;/span&gt;
 
-    &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;bars&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;d3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;#chart3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;selectAll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;div&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;data3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;d&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;
-        &lt;span class="p"&gt;})&lt;/span&gt;
-    &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;newBars&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;bars&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;enter&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;div&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-            &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;class&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-            &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;style&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;width&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="nx"&gt;newBars&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;merge&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;bars&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;transition&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-        &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;style&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;width&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;subject&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;px&amp;#39;&lt;/span&gt;
-        &lt;span class="p"&gt;})&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="nx"&gt;render3&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;math&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;FROM&lt;/span&gt;
+        &lt;span class="n"&gt;states&lt;/span&gt;
+
+    &lt;span class="k"&gt;GROUP&lt;/span&gt; &lt;span class="k"&gt;BY&lt;/span&gt; 
+        &lt;span class="n"&gt;continent&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;subquery&lt;/span&gt;
+
+&lt;span class="k"&gt;WHERE&lt;/span&gt;
+    &lt;span class="n"&gt;monarchs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;continent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;subquery&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;continent&lt;/span&gt;
+
+&lt;span class="k"&gt;ORDER&lt;/span&gt; &lt;span class="k"&gt;BY&lt;/span&gt;
+    &lt;span class="n"&gt;continent&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div id="chart3" class='chart'&gt;
-    &lt;button class='math' onclick="render3('math')"&gt;Math&lt;/button&gt;
-    &lt;button class='science' onclick="render3('science')"&gt;Science&lt;/button&gt;
-&lt;/div&gt;
+&lt;h4&gt;ON&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Challenge Problem 1&lt;/strong&gt;  This problem was the one that had me more stumped than any other problem in the course.  I found the subquery inside the on statement very confusing to understand.  In this question we are joining the countries table to a subquery what yields country codes of countries with offial languages from the languages table.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="k"&gt;DISTINCT&lt;/span&gt;
+    &lt;span class="k"&gt;c&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;total_investment&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;imports&lt;/span&gt;
 
-&lt;script&gt;
-    const data3 = [
-        { name: 'Alice', math: 93, science: 84 },
-        { name: 'Bob', math: 73, science: 82 },
-        { name: 'James', math: 92, science: 78 },
-        { name: 'Steve', math: 77, science: 93 },
-        { name: 'Jordan', math: 80, science: 68 },
-    ]
+&lt;span class="k"&gt;FROM&lt;/span&gt; 
+    &lt;span class="n"&gt;countries&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="k"&gt;c&lt;/span&gt;
+&lt;span class="k"&gt;LEFT&lt;/span&gt; &lt;span class="k"&gt;JOIN&lt;/span&gt; 
+    &lt;span class="n"&gt;economies&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;
+    &lt;span class="k"&gt;ON&lt;/span&gt; &lt;span class="k"&gt;c&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;
 
-    function render3(subject) {
-        d3.select('#chart3')
-            .selectAll('button')
-            .classed('on', false)
-        d3.select('#chart3')
-            .select('.' + subject)
-            .attr('class', subject + ' on')
+    &lt;span class="k"&gt;AND&lt;/span&gt; &lt;span class="k"&gt;c&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="k"&gt;SELECT&lt;/span&gt; 
+        &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt; 
+    &lt;span class="k"&gt;FROM&lt;/span&gt; 
+        &lt;span class="n"&gt;languages&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;
+    &lt;span class="k"&gt;WHERE&lt;/span&gt; 
+        &lt;span class="n"&gt;official&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;true&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
 
-        const bars = d3.select('#chart3')
-            .selectAll('div')
-            .data(data3, function(d) {
-                return d.name
-            })
-        const newBars = bars.enter()
-            .append('div')
-                .attr('class', 'bar')
-                .style('width', 0)
-        newBars.merge(bars)
-            .transition()
-            .style('width', function(d) {
-                return (d[subject]-50)*3 + 'px'
-            })
-    }
-    render3('math')
-&lt;/script&gt;
+&lt;span class="k"&gt;WHERE&lt;/span&gt; 
+    &lt;span class="k"&gt;c&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;region&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Central America&amp;#39;&lt;/span&gt;
+&lt;span class="k"&gt;AND&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;year&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2015&lt;/span&gt;
 
-&lt;h2&gt;Final Thoughts&lt;/h2&gt;
-&lt;p&gt;I express how fun this was.  I have always viewed d3 as something so low level I would never be able to touch.  The tutorial was super fun and very approachable.  Any other resources that I have seen to start learning d3 appear to be very time consuming before you start writing code and digging into it yourself. These examples were great, I was able to get started creating visualizations in no more than 5 minutes of reading.  Now that I feel like I have a shallow understanding of how it works I feel better prepared to dive in.&lt;/p&gt;</content><category term="D3"></category><category term="Viz"></category><category term="FrontEnd"></category></entry><entry><title>No More Death By PowerPoint</title><link href="www.waylonwalker.com/blog/no-more-death-by-powerpoint.html" rel="alternate"></link><published>2017-12-31T00:00:00-06:00</published><updated>2017-12-31T00:00:00-06:00</updated><author><name>Waylon Walker</name></author><id>tag:None,2017-12-31:www.waylonwalker.com/blog/no-more-death-by-powerpoint.html</id><summary type="html">&lt;h1&gt;No More Death By PowerPoint&lt;/h1&gt;
+&lt;span class="k"&gt;ORDER&lt;/span&gt; &lt;span class="k"&gt;BY&lt;/span&gt; 
+    &lt;span class="k"&gt;c&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="k"&gt;asc&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Check out more content from me at &lt;a href="http://waylonwalker.com/blog"&gt;my blog&lt;/a&gt;&lt;/p&gt;</content><category term="Data"></category><category term="SQL"></category><category term="Learning"></category></entry><entry><title>No More Death By PowerPoint</title><link href="www.waylonwalker.com/blog/no-more-death-by-powerpoint.html" rel="alternate"></link><published>2017-12-31T00:00:00-06:00</published><updated>2017-12-31T00:00:00-06:00</updated><author><name>Waylon Walker</name></author><id>tag:None,2017-12-31:www.waylonwalker.com/blog/no-more-death-by-powerpoint.html</id><summary type="html">&lt;h1&gt;No More Death By PowerPoint&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;I Waylon S. Walker vow that from this point forward I will no longer create powerpoints to be considerec &lt;strong&gt;DEATH BY POWERPOINT&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -538,111 +338,7 @@ so see how to map data to attributes&lt;/p&gt;
 &lt;h2&gt;Supporting Material&lt;/h2&gt;
 &lt;p&gt;Sentences, Notes, reference material, etc belong in the speaker notes.  This is the part that took the longest for me to realize.  In my company PowerPoint documents as living documents that folks will reference long after the presentation is over.  For this reason we tend to put every point that we want to discuss on the slides, so that they are there weeks, months, even years later when someone goes back to review your slides.  Placing this material in the speaker notes will allow you to utilize your presentation as reference material if you need to, and refrain from placing it on the screen.&lt;/p&gt;
 &lt;h2&gt;Tools&lt;/h2&gt;
-&lt;p&gt;A tool that is becoming very popular outside of the PowerPoind world is &lt;a href="https://github.com/hakimel/reveal.js/"&gt;Reveal js&lt;/a&gt;.  It is a fantastic framework to build beautiful slides using html.  I find that maintaining html to be a bit cumbersome. And the templating language &lt;a href="https://pugjs.org/"&gt;pug&lt;/a&gt; to be much more simple.  I will be using my own fork of &lt;a href="https://github.com/jlengstorf/reveal.js-jade"&gt;reveal.js-jade&lt;/a&gt; in 2018.  It will allow me to have interactive visualizations right in my slides.  Reveal also does a really nice job at making it hard to break the Death By PowerPoint rules.  It tends to be hard to jam a ton of information into them.&lt;/p&gt;</content><category term="Pug"></category><category term="Jade"></category><category term="Reveal"></category></entry><entry><title>background tasks in python</title><link href="www.waylonwalker.com/blog/background-tasks-in-python.html" rel="alternate"></link><published>2017-09-16T00:00:00-05:00</published><updated>2017-09-16T00:00:00-05:00</updated><author><name>Waylon Walker</name></author><id>tag:None,2017-09-16:www.waylonwalker.com/blog/background-tasks-in-python.html</id><summary type="html">&lt;h1&gt;background tasks in python&lt;/h1&gt;
-&lt;p&gt;I have tried most of the different methods in the past and found that copying and pasting the &lt;a href="https://docs.python.org/3/library/concurrent.futures.html#threadpoolexecutor-example"&gt;threadpoolexecutor example&lt;/a&gt; or the &lt;a href="https://docs.python.org/3/library/concurrent.futures.html#processpoolexecutor-example"&gt;processpoolexecutor example&lt;/a&gt; from the standard library documentation to be the most reliable.  Since this is often something that I stuff in the back of …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;background tasks in python&lt;/h1&gt;
-&lt;p&gt;I have tried most of the different methods in the past and found that copying and pasting the &lt;a href="https://docs.python.org/3/library/concurrent.futures.html#threadpoolexecutor-example"&gt;threadpoolexecutor example&lt;/a&gt; or the &lt;a href="https://docs.python.org/3/library/concurrent.futures.html#processpoolexecutor-example"&gt;processpoolexecutor example&lt;/a&gt; from the standard library documentation to be the most reliable.  Since this is often something that I stuff in the back of a utility module of a library it is not something that I write often enough to be familiar with, which makes it both hard to write and hard to read and debug.  If you are looking for a good overview of the difference concurrency &lt;a href="https://twitter.com/raymondh"&gt;Raymond Hettinger&lt;/a&gt; has a great talk about the difference between the various different methods, when to use them and why.&lt;/p&gt;
-&lt;p&gt;Recently a new python library was released to make running tasks in the background very simple. The &lt;a href="https://github.com/kennethreitz/background"&gt;background&lt;/a&gt; project by Kenneth Reitz is a high level implementation of python 3's ThreadPoolExecutor.  I have been playing around with this project over the last week and I will say that this is definitely the simplest way to run background tasks in python by far.  It really simplifes the syntax and lets me focus on my job rather than implementing custom concurrent code that is more difficult to debug.&lt;/p&gt;
-&lt;h2&gt;Background&lt;/h2&gt;
-&lt;p&gt;I have pulled the latest version of the project in Sept 2017.  I found that it had some updates that were important to pass *args and **kwargs compared to the pypi version.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;background&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;bg&lt;/span&gt;
-
-&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;load_ext&lt;/span&gt; &lt;span class="n"&gt;watermark&lt;/span&gt;
-&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;watermark&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;background&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2017-09-16
-
-CPython 3.6.2
-IPython 6.1.0
-
-background n
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h2&gt;Define Worker Functions&lt;/h2&gt;
-&lt;p&gt;Each of these worker functions takes 1s to run, simulating a moderately long calculation that we need to do many times over.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;work&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-
-&lt;span class="nd"&gt;@bg.task&lt;/span&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;bg_work&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h2&gt;Run the Worker Functions&lt;/h2&gt;
-&lt;h2&gt;Blocking function&lt;/h2&gt;
-&lt;p&gt;This function is blocking each time the function runs, thus taking 1 second to run for each calculation.  The example below took exactly &lt;strong&gt;100 s&lt;/strong&gt; to run 100 calculations.  Depending on your use case this may not be fast enough.  If the calculations do not rely on the global state&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;work&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Wall time: 1min 40s
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3&gt;Reaction&lt;/h3&gt;
-&lt;p&gt;I  know what half of you are saying to yourselfs..&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;!!What!! that took 100 s, by now my users have already sent a dozen messages and filed an issue that my feature is down&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;and the other half&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Seriously that wasnt even enough time to grab a coffee.  Any real time consuming analysis takes at least 3 dats 14 hours 159 seconds before I start to care about concurrency&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;To you I say... I am impatient and I got other things to do rather than wait on this maching to finish its work.  Let's get into this concurrency stuff.&lt;/p&gt;
-&lt;h2&gt;Background Function&lt;/h2&gt;
-&lt;p&gt;This function spins off worker processes and runs much faster.  By default background sets the number of processes to the number of cpu cores available, Therefore this function should run in n/4 + (inefficiency).  Here we see that the result is just over &lt;strong&gt;13 s&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Note:&lt;em&gt;Since there is a bit of inefficiency added by needing to handle all of the threads it is not exactly divided by the number of workers.&lt;/em&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;
-&lt;span class="n"&gt;f_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;bg_work&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)];&lt;/span&gt;
-
-&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="nb"&gt;all&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;f_list&lt;/span&gt;&lt;span class="p"&gt;]):&lt;/span&gt;
-    &lt;span class="k"&gt;pass&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Wall time: 13.1 s
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3&gt;Reaction&lt;/h3&gt;
-&lt;p&gt;I know what your saying this time.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;really a 7.6x improvement...  Is that really even woth the extra work.  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Fine then lets crank it up to 11!&lt;/p&gt;
-&lt;h3&gt;Lots of Background&lt;/h3&gt;
-&lt;p&gt;lets set the number of background processes to a value just higher to than the number of workers we need to run in order to start them all simultaneously. With this simple example that is not very CPU intensive we see the result is just over the amount of time that it takes to run 1 worker. &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;bg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;110&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;
-&lt;span class="n"&gt;f_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;bg_work&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)];&lt;/span&gt;
-
-&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="nb"&gt;all&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;f_list&lt;/span&gt;&lt;span class="p"&gt;]):&lt;/span&gt;
-    &lt;span class="k"&gt;pass&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Wall time: 1.09 s
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3&gt;Reaction&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;91x improvement by putting my calculations into a function, adding a decorator, and some checks, im in.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;On Tap&lt;/h2&gt;
-&lt;p&gt;This week while taking it up to 11 I was enjoying a super thick and rich cup of El Salvador Finca Rosa from Onyx Coffee Labs.  Check out their love for letting the bean speak for it self and producing a great cup.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://onyxcoffeelab.com"&gt;&lt;img src="https://cdn.shopify.com/s/files/1/1707/3261/files/coffee_science.png?5305428688827820856"&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Python"></category><category term="Data Science"></category></entry><entry><title>Pycon 2017 Roundup</title><link href="www.waylonwalker.com/blog/pycon-2017-roundup.html" rel="alternate"></link><published>2017-05-30T00:00:00-05:00</published><updated>2017-05-30T00:00:00-05:00</updated><author><name>Waylon Walker</name></author><id>tag:None,2017-05-30:www.waylonwalker.com/blog/pycon-2017-roundup.html</id><summary type="html">&lt;h1&gt;Pycon 2017 Roundup&lt;/h1&gt;
+&lt;p&gt;A tool that is becoming very popular outside of the PowerPoind world is &lt;a href="https://github.com/hakimel/reveal.js/"&gt;Reveal js&lt;/a&gt;.  It is a fantastic framework to build beautiful slides using html.  I find that maintaining html to be a bit cumbersome. And the templating language &lt;a href="https://pugjs.org/"&gt;pug&lt;/a&gt; to be much more simple.  I will be using my own fork of &lt;a href="https://github.com/jlengstorf/reveal.js-jade"&gt;reveal.js-jade&lt;/a&gt; in 2018.  It will allow me to have interactive visualizations right in my slides.  Reveal also does a really nice job at making it hard to break the Death By PowerPoint rules.  It tends to be hard to jam a ton of information into them.&lt;/p&gt;</content><category term="Pug"></category><category term="Jade"></category><category term="Reveal"></category></entry><entry><title>Pycon 2017 Roundup</title><link href="www.waylonwalker.com/blog/pycon-2017-roundup.html" rel="alternate"></link><published>2017-05-30T00:00:00-05:00</published><updated>2017-05-30T00:00:00-05:00</updated><author><name>Waylon Walker</name></author><id>tag:None,2017-05-30:www.waylonwalker.com/blog/pycon-2017-roundup.html</id><summary type="html">&lt;h1&gt;Pycon 2017 Roundup&lt;/h1&gt;
 &lt;p&gt;Good afternoon fellow Data Geeks.  Last week &lt;a href="https://www.youtube.com/channel/UCrJhliKNQ8g0qoE_zvL8eVg"&gt;Pycon&lt;/a&gt; released 141 videos of greatness.  Here are my top picks from the event.&lt;/p&gt;
 &lt;h2&gt;#3 Kelsey Hightower - Keynote - Pycon 2017&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://www.youtube.com/watch?v=u_iAXzy3xBA&amp;amp;t=1795s" title="Click to Watch"&gt;&lt;img alt="Click to Watch" src="http://img.youtube.com/vi/u_iAXzy3xBA/0.jpg"&gt;&lt;/a&gt;&lt;/p&gt;
