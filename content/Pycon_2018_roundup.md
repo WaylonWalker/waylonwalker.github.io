@@ -40,6 +40,12 @@ Jason had a great talk about teaching kids to code through his experiences with 
 
 [![Click to Watch](http://img.youtube.com/vi/q-x7jK72E6E/0.jpg)](https://www.youtube.com/watch?v=q-x7jK72E6E)
 
+## [Dan Callahan - Keynote - PyCon 2018](https://www.youtube.com/watch?v=ITksU31c1WY)
+I was a bit sad when I was looking through the list of PyCon 2018 talks and did not see anything that appeared to talk about web assembly, but hidden in Dan Callagan's keynote was a great story about web assembly and what it means to python.  Dan's keynote was a great story about using the best tools available to you.  He goes back to his childhood where he programmed in basic because thats what he could take with him away from the desktop on his TI-82.  In modern times we have so many platforms other than desktop, and new ones comming out so frequently that its impossible to see what the next one will be.  There are even computers in refrigerators today.  The one thing that seems to be common is that they all have a web browser.  With that we can write web apps with python, but we are still missing the JavaScript dominated client side story.  Dan shows that this is changing with web assembly.  He showed examples where Autodesk compiled Autocad to wasm, and can run it in the browser!!  He showed versions of windows 3 running completely inside of firefox.  While it is currenly not realistic to compile python to web assembly as it creates large file sizes, it is possible and he sees a bright future for python in the browser.
+
+
+[![Click to Watch](http://img.youtube.com/vi/ITksU31c1WY/0.jpg)](https://www.youtube.com/watch?v=ITksU31c1WY)
+
 ## [Alex Petralia - Analyzing Data: What pandas and SQL Taught Me About Taking an Average](https://www.youtube.com/watch?v=DlgG0QdrqAU)
 
 
@@ -114,3 +120,8 @@ I am interested in trying out this technique of using the second groupby.  I typ
 
 [![Click to Watch](http://img.youtube.com/vi/DlgG0QdrqAU/0.jpg)](https://www.youtube.com/watch?v=DlgG0QdrqAU)
 
+## [Devishi Jha - Teaching Python 101 - PyCon 2018](https://www.youtube.com/watch?v=s36GwDng904&t=1113s)
+
+I was really impresssed by the professional level of presentation from Devishi from such a young age!  She had a great talk about teaching python to young people.  This talk really resonated with me as a father of two young children. She was advocating for python to be taught more frequently and earlier in schools.  In her opion onece students have a basic grasp of algebra they should be starting to use python over a higher level abstraction like scratch.  She also advocated that on the other Java tends to make computer science unaproachable and too difficult for students.  It is too large of a jump and tends to steer students away.
+
+[![Click to Watch](http://img.youtube.com/vi/s36GwDng904/0.jpg)](https://www.youtube.com/watch?v=s36GwDng904)
