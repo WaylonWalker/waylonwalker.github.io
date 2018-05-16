@@ -34,6 +34,16 @@ This is an **Incomplete** working post.
 
 [![Click to Watch](http://img.youtube.com/vi/zQeYx87mfyw/0.jpg)](https://www.youtube.com/watch?v=zQeYx87mfyw)
 
+## [Justin Crown - "WHAT IS THIS MESS?" - Writing tests for pre-existing code bases - PyCon 2018](https://www.youtube.com/watch?v=LDdUuoI_lIg)
+
+This was a great talk about not only test driven development on existing code bases, but how to be a good steward of code.  Justin talks about how to clean up an existing code base, and leave it better than you found it.  Start by improving the parts that you touch, write tests, and improve docstrings whenever you make a change to a particular feature.  As you clean up the code base and it matures consider taking a sprint day to write tests and imporove documentation.  Doing it after you have familiarity with the project will make it much easier to do.  You will also improve your understanding of the parts that you have not touched along the way.
+
+One of the biggest takeaways that I heard in this talk, was do not assume that last person to touch the code was any less than yourself.  They likely did what they did for a reason, so before you have strong test coverage accross the project take it easy with rewriting everything they did, and only make the necessary changes.  Your changes could have an impact on other parts of the code base that you are not familiar with.
+
+[![Click to Watch](http://img.youtube.com/vi/LDdUuoI_lIg/0.jpg)](https://.youtube.com/watch?v=zQeYx87mfyw)
+
+
+
 ## [Jason Huggins - Keynote ](https://www.youtube.com/watch?v=q-x7jK72E6E)
 
 Jason had a great talk about teaching kids to code through his experiences with First Lego League.  He found that the event has the best of intentions, but does lend itself to schools with a larger budget that is able to order many different kits.  He has found himself deep down a rabbit hole of finding an affordable alternative that can be done with the inexpensive raspbery pi zero, and controlled  with the cheapest tablets.  He is currently working on a programming language called wildcard, that can be programmed with paper.  This really reminds me of a game that I play with my 5 year old son [Robot Turtles](www.robotturtles.com).  He really likes to play it.  I will definitely be following this project to see if this is something that I can do with him when its ready.
