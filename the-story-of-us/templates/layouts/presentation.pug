@@ -1,0 +1,86 @@
+include ../includes/_mixins
+
+block config
+  -
+    const config = {
+      title: 'The Story of Us',
+      description: 'How we got here.',
+      date: '2018-05-18',
+      author: {
+        name: 'Waylon Walker',
+        email: 'quadmx08@gmail.com',
+        link: 'http://www.waylonwalker.com',
+        twitter: '_waylonwalker',
+        github: 'waylonwalker',
+      },
+      theme: 'black',
+    };
+  -
+
+doctype html
+html
+
+  head
+    
+    meta(charset="utf-8")
+    meta(
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    )
+    link(rel='icon' href='./static/img/favicon.ico')
+
+    block title
+      title= config.title
+      meta(name="description" content=config.description)
+
+    link(rel="stylesheet" href="static/css/reveal.css")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
+
+    block theme
+      link#theme(rel="stylesheet" href= `static/css/theme/${config.theme}.css`)
+
+    link(rel="stylesheet" href="static/lib/css/zenburn.css")
+    script.
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'static/css/print/pdf.css' : 'static/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+
+    block styles
+
+  body
+
+    .reveal
+
+      .slides
+
+        block slides
+          //- +slide
+          //-   h1= config.title
+          //-   h3= config.description
+          //-   p
+          //-     small.
+          //-       #[= config.date] / 
+          //-       #[a(href= config.author.link)= config.author.name]
+          //-       #[a(href='https://twitter.com/' + config.author.twitter) #[i.fa.fa-twitter] #[span.label= config.author.twitter]] /
+          //-       #[a(href='https://github.com/' + config.author.github) #[i.fa.fa-github] #[span.label= config.author.github]]
+    block extras
+      include footer
+
+    block defaultscripts
+      script(src="static/lib/js/head.min.js")
+      script(src="static/js/reveal.js")
+      script.
+        Reveal.initialize({
+          history: true,
+
+          dependencies: [
+            { src: 'static/plugin/markdown/marked.js' },
+            { src: 'static/plugin/markdown/markdown.js' },
+            { src: 'static/plugin/notes/notes.js', async: true },
+            { src: 'static/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+          ]
+        });
+
+    block scripts

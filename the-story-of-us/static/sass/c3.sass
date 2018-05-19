@@ -1,0 +1,40 @@
+@import 'colors.sass'
+
+.plot
+  max-width: 500px
+  color: lighten($grey, 30%)
+  
+.c3-axis-y text 
+   fill: lighten($grey, 30%)
+   font-size: 1rem
+   font-family: "Lato" 
+    
+.c3-axis-y2 text 
+   fill: lighten($grey, 30%)
+   font-size: 1rem
+   font-family: "Lato"
+
+.c3-axis-x text 
+    fill: lighten($grey, 30%)
+    font-size: 1rem
+    font-family: "Lato"
+
+   
+.c3-legend-item
+    fill: lighten($grey, 30%)   
+    
+.c3-legend-item-event
+    fill: lighten($grey, 30%)
+
+
+.inverted .c3 .c3-axis-x path,
+.inverted .c3 .c3-axis-x line,
+.inverted .c3 .c3-axis-y path,
+.inverted .c3 .c3-axis-y line 
+    stroke: white
+
+
+.inverted .c3 .c3-axis-x g,
+.inverted .c3 .c3-axis-y g,
+.inverted .c3 .c3-legend-item-data text
+    fill: white

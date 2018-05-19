@@ -1,0 +1,95 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald|Lato|Dancing+Script)
+@import 'custom_reveal_nav.sass'
+@import 'colors.sass'
+@import 'c3.sass'
+
+*
+  font-family: 'Lato', sans-serif
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+  font-family: 'Oswald', sans-serif 
+  color: $primary
+
+.reveal section img
+  border: none
+
+.reveal section pre code
+    text-transform: none 
+
+.box
+  display block
+  height: 200px
+  width: 200px
+  margin: 20px !important
+
+.box_wrapper
+  display: flex
+  justify-content: center 
+
+.no-bullet
+    li
+        list-style: none
+
+.nb
+    @extend .no-bullet
+
+.cv
+  @extend .fragment
+  @extend .current-visible
+
+.reveal .slides section .fragment.current-visible
+    opacity: 0.2
+    visibility: visible
+
+    &.current-fragment
+        opacity: 1
+        visibility: visible
+        color: $current-visible
+
+
+footer
+    font-size: 1.5rem
+    position: fixed
+    bottom: 1rem
+    width: 100%
+    color: #888
+
+    a, a:visited
+      color: #888
+    
+    a:visited
+      
+    
+    img
+      // max-width: 100px 
+      max-height: 1.5rem
+      filter: saturate(50%) contrast(20%)
+      
+      
+    
+    ul
+        list-style: none 
+
+        
+
+    @media screen and (min-width: 600px) 
+    
+        ul
+            width: 100%
+            justify-content: center
+            display: flex 
+            margin: 0
+            padding: 0
+            li
+                margin: 0
+                margin-left: 1rem
+                margin-bottom: 0.5rem
+
+@media print
+  .no-print
+    visibility: hidden
+    display: none
+    height: 0
