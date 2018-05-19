@@ -1,3 +1,6 @@
+*.stg
+*.swp
+*.swo
 
 # Created by https://www.gitignore.io/api/node,code,python,sublimetext
 

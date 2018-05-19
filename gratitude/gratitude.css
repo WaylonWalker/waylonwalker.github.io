@@ -1,6 +1,7 @@
 @import url("/static/font-awesome-4.7.0/css/font-awesome.min.css");
 @import url("https://fonts.googleapis.com/css?family=Oswald|Lato|Dancing+Script|Shadows+Into+Light");
 header {
+  z-index: 100;
   display: flex;
   align-items: center;
   top: 0;

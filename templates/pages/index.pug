@@ -14,24 +14,44 @@ html(lang='en')
         
         section#hero
             
-            h1.name Waylon #[span.last Walker]
-            
-            include ../layout/about
+            .text
+                .first-name
+                    h1 Waylon #[span.last Walker]
+                include ../layout/about
+            .container
+                .highlight
+                .lowlight
 
         section#family
-            h1.name Walker #[span.last Family]
+            .text
+                .first-name
+                    h1 Walker #[span.last Family]
+                //- .flex
+                include ../layout/family
+            .container
+                .highlight
+                .lowlight
 
-            include ../layout/family
 
         section#hobby
-            h1.name Projects #[span.last Hobby]
+            .text
+                .first-name
+                    h1 Projects #[span.last Hobby]
+                include ../layout/hobby
+            .container
+                .highlight
+                .lowlight
 
-            include ../layout/hobby
 
         section#work
-            h1.name Projects #[span.last Career]
+            .text
+                .first-name
+                    h1 Projects #[span.last Career]
+                include ../layout/work
+            .container
+                .highlight
+                .lowlight
 
-            include ../layout/work
         
         
         include ../layout/footer
