@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald|Lato|Dancing+Script);
+@import url("https://fonts.googleapis.com/css?family=Permanent+Marker");
 .reveal .controls .navigate-left,
 .reveal .controls .navigate-left.enabled {
   border-right-color: #FFF; }
@@ -71,6 +72,22 @@
 .inverted .c3 .c3-axis-y g,
 .inverted .c3 .c3-legend-item-data text {
   fill: white; }
+
+.polaroid img {
+  transform: rotate(3deg);
+  border: .7rem solid white !important;
+  border-bottom: 4rem solid white !important;
+  border-radius: 5px; }
+
+.polaroid figcaption {
+  font-family: 'Permanent Marker', cursive;
+  position: relative;
+  top: -5rem;
+  color: #444;
+  background: -webkit-linear-gradient(90deg, #888, #444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: rotate(2deg); }
 
 * {
   font-family: 'Lato', sans-serif; }
