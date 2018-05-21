@@ -12,10 +12,12 @@
     font-family: 'Fira Sans', sans-serif
 
 body
-    background-color: $color-primary-4
+    // background-color: $color-primary-4
     overflow-x: hidden
 section
+    display: flex
     position: relative
+    min-height: 100vh
 .text-outer
     // position: relative
 .text
@@ -96,6 +98,7 @@ a
     font-weight: 800
     margin: 0
     padding-top: 2rem
+    padding-top: calc(40vh - 3rem)
     margin-left: 1rem
     margin-bottom: 0rem
     display: block
@@ -135,7 +138,7 @@ a
     color: hsla(348, 25%, 15%, 1)
     font-size: 1.2rem
     border-radius: 0.2rem
-    // margin: 1rem
+    margin-top: 1rem
     // position: absolute
     padding: 0.5rem
     max-width: 1200px
