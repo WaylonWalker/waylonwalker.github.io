@@ -75,19 +75,25 @@
 
 .polaroid img {
   transform: rotate(3deg);
-  border: .7rem solid white !important;
-  border-bottom: 4rem solid white !important;
-  border-radius: 5px; }
+  border: 1rem solid white !important;
+  border-bottom: 6rem solid white !important;
+  border-radius: 2px;
+  max-height: 50vh;
+  box-shadow: 3rem 3rem blue; }
 
 .polaroid figcaption {
   font-family: 'Permanent Marker', cursive;
   position: relative;
-  top: -5rem;
-  color: #444;
+  top: -7rem;
+  color: #FF0080;
   background: -webkit-linear-gradient(90deg, #888, #444);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  transform: rotate(2deg); }
+  transform: rotate(3deg); }
+
+figure .polaroid .fragment .current-visible {
+  position: absolute !important;
+  top: 0 !important; }
 
 * {
   font-family: 'Lato', sans-serif; }
@@ -116,14 +122,6 @@
 
 .no-bullet li, .nb li {
   list-style: none; }
-
-.reveal .slides section .fragment.current-visible, .reveal .slides section .cv {
-  opacity: 0.2;
-  visibility: visible; }
-  .reveal .slides section .fragment.current-visible.current-fragment, .reveal .slides section .current-fragment.cv {
-    opacity: 1;
-    visibility: visible;
-    color: #FFF; }
 
 footer {
   font-size: 1.5rem;

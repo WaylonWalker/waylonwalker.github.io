@@ -1,16 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker')
+
 .polaroid
     img
         transform: rotate(3deg)
-        border: .7rem solid white !important
-        border-bottom: 4rem solid white !important
-        border-radius: 5px
+        border: 1rem solid white !important
+        border-bottom: 6rem solid white !important
+        border-radius: 2px
+        max-height: 50vh
+        
     figcaption
         font-family: 'Permanent Marker', cursive
         position: relative
-        top: -5rem
-        color: #444
+        top: -7rem
+        // color: #444
+        color: #FF0080
         background: -webkit-linear-gradient(90deg, #888, #444)
         -webkit-background-clip: text
         -webkit-text-fill-color: transparent
-        transform: rotate(2deg)
+        transform: rotate(3deg)
+    
+figure .polaroid .fragment .current-visible
+        position: absolute !important
+        top: 0 !important
+
+    
