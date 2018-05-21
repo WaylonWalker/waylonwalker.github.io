@@ -78,8 +78,7 @@
   border: 1rem solid white !important;
   border-bottom: 6rem solid white !important;
   border-radius: 2px;
-  max-height: 50vh;
-  box-shadow: 3rem 3rem blue; }
+  max-height: 50vh; }
 
 .polaroid figcaption {
   font-family: 'Permanent Marker', cursive;
