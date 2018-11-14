@@ -78,6 +78,8 @@ I recently finished up the flexbox-zombies course to learn more about flexbox, a
 
 
 ![flexbox-zombies](/static/images/gifs/flexbox-zombies-12.gif)
+> A clip from the final round against Dave
+
 
 ## Basic Setup
 
@@ -88,7 +90,7 @@ Flexbox requires a wrapper container to work  I will refer to this as the  flex 
 I will use the following markup throughout the article, each with different css applied.
 
 
-**note**  The animated container is inspired by the flexbox-zombies course.  I really like how it allows you to see the responsiveness of each layout.
+**note**  The animated container is inspired by the flexbox-zombies course.  I really like how it allows you to see the responsiveness of each layout.  In the early example the reasoning may not be aparent, but as we go along some of the flexbox parameters will make more sense if we are viewing them on a dynamic layout since flexbox is designed for building responsive design.
 
 
 ```HTML
@@ -109,6 +111,55 @@ I will use the following markup throughout the article, each with different css 
     </div>
 </div>
 
+### Base Style
+```css
+    .item {
+        color: #6394C8;
+        font-size: 1.5rem;
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+        width: 100px;
+        background: #351D57;
+        margin: 5px;
+        border: 2px solid #A83E75;
+        box-shadow: 5px 5px 10px -5px rgba(0, 0, 0, .6);
+    }
+
+    .flex_container {
+        padding: 1rem;
+        box-shadow: 5px 5px 10px -5px rgba(0, 0, 0, .6);
+        background: rgba(99, 148, 200, .2);
+        animation: animate_container 2s cubic-bezier(.66, -0.0, .28, 1.0) infinite both alternate;
+    }
+
+    /* Animate the .flex_container to show responsiveness */
+
+    .flex_container:hover {
+    /* But not on hover, let the user pause the annimation*/
+        animation: none 
+    }
+
+    @keyframes animate_container {
+        0%{
+            width: 95%;
+        }
+
+        20% {
+            width: 95%;
+        }
+
+        80% {
+            width: 200px;
+        }
+
+        100% {
+            width: 200px;
+        }
+    }
+```
 ## Basic Technique
 
 [basic technique](/static/img/gif/basic-flexbox-technique.png)
@@ -461,7 +512,7 @@ _in order of importance_
 ### 8. Out of Order
 _applied to items_
 _behaves similar to z-index_
-* ```order``` - takes an integer valuegrat
+* ```order``` - takes an integer value
 
 <style>.c8a .flex_container { display: flex;} .c8a .item:nth-of-type(3){background: #B5F685; order: 1;}</style>
 <style>.c8b .flex_container { display: flex;} .c8b .item:nth-of-type(3){background: #B5F685; order: -1;}</style>
