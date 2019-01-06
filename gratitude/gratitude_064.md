@@ -1,8 +1,13 @@
-### Gratitude 062
+### Gratitude 64
 
-_2019-01-01_
+_Thu Jan  3 11:32:46 STD 2019_
 
-#### Productive Break
+#### Good Moods
 
-It's nearing the end of the annual shutdown. We have had a lot of illness running through the house over the course of the break, but the last couple of days have been very productive.  We have been **Spring Cleaning**.  We have cleared out a lot of unnecessary things, scrubbed the house, and packed up a lot of things in preparation for the upcoming move.  It feels great to finally start to see some progress on these tasks after talking about them for so long.
+
+This morning I was graced with the greatest mood that my son could possibly have.  He was incredibly courteous, grateful, willing to do things on his own.  He got himself dressed, put his own shoes on, and when I told him that we had an early morning Dr. appointment he did not throw a fit and was 100% on board with going.  He was at the top of his game, and as happy as could be.  
+
+>   Watching his gratitude and positivity shine this morning was more thatn enough motivation to start my day off on the right foot.
+
+These are the moments that we long for as parents, and it is important to not brush over them and forget them.  It's important to to watch him grow into a great meaningful member of society.  Watching his gratitude and positivity shine this morning was more thatn enough motivation to start my day off on the right foot, and we did. We dropped off Ayla at preschool, attended his Dr. Appointment then came back to play and continue our wonderful morning.
 
